@@ -1,0 +1,27 @@
+// 侧边栏
+.sidebar-wapper {
+  .scrollbar {
+    overflow-x: hidden; 
+  }
+  .el-scrollbar__view,
+  .sidebar-menu,
+  .el-menu {
+    height: 100%;
+  }
+  .el-menu {
+    border: none;
+    width: 100% !important;
+    .el-submenu {
+      .el-submenu__title i {
+        color: #fff;
+      }
+      .el-menu-item {
+        min-width: 100%;
+        &.is-active {
+          background-color: #fff !important;
+          color: #537bf0 !important;
+        }
+      }
+    }
+  }
+}
