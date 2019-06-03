@@ -1,23 +1,12 @@
-import App from '@/App.vue';
+import homePage from './home';
+import report from './report';
 
 export function importView(view) {
   return () => import(`@/views${view}`);
 }
 
-import { homePage, report } from './report';
+export const asyncRoutes = [report]; // 权限认证菜单
 
-console.log(report);
-
-const routes = [
-  {
-    path: '/'
-  },
-  {
-    path: '/pms',
-    name: 'pms',
-    component: App,
-    children: [homePage, report]
-  }
-];
+const routes = [homePage];
 
 export default routes;

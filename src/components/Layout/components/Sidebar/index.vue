@@ -1,13 +1,19 @@
 <template>
   <el-scrollbar wrap-class="scrollbar">
     <div class="sidebar-menu">
-      <el-menu mode="vertical" background-color="#537bf0" text-color="#fff">
+      <el-menu
+        :show-timeout="200"
+        :default-active="isActive($route)"
+        mode="vertical"
+        background-color="#537bf0"
+        text-color="#fff"
+      >
         <Logo />
-        <template v-for="route in menu">
+        <template v-for="route in routes">
           <SideItem
             :item="route"
-            :key="route.href"
-            :base-path="`/pms/${route.href}`"
+            :key="route.path"
+            :base-path="`/${route.path}`"
           />
         </template>
       </el-menu>
@@ -27,10 +33,52 @@ export default {
     Logo
   },
   computed: {
-    ...mapGetters(['menu'])
+    ...mapGetters(['menu', 'routes'])
   },
   created() {
-    console.log(this.menu);
+    console.log(this.routes);
+  },
+  methods: {
+    isActive(route) {
+      const {
+        meta: { parentName = '' }
+      } = route;
+      if (parentName) {
+        const routePath = this.getRoutePath(this.routes, parentName);
+        const path = routePath.join('/');
+        console.log(path);
+        return path;
+      }
+      console.log(route.path);
+      return route.path;
+    },
+    getRoutePath(data, target) {
+      const path = [];
+      let flag = true;
+      const whileRoute = (data, target) => {
+        data.forEach((item, index) => {
+          if (flag) {
+            if (index > 0) {
+              path.pop();
+            }
+            path.push(item.path);
+            if (item.name === target) {
+              flag = false;
+              return;
+            } else {
+              const children = item.children;
+              if (children) {
+                whileRoute(item.children, target);
+              }
+            }
+          }
+        });
+        if (flag) path.pop();
+        return;
+      };
+      whileRoute(data, target);
+      return path;
+    }
   }
 };
 </script>

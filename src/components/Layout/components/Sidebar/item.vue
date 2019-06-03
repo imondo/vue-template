@@ -1,23 +1,37 @@
 <template>
   <div class="menu-item">
-    <template v-if="item.children.length">
-      <el-submenu :index="item.href">
+    <template v-if="hasOneShowingChild(item.children, item)">
+      <router-link :to="{ path: resolvePath(onlyOneChild.path) }">
+        <el-menu-item :index="resolvePath(onlyOneChild.path)">
+          <i class="el-icon-menu"></i>
+          <span slot="title">{{ onlyOneChild.meta.title }}</span>
+        </el-menu-item>
+      </router-link>
+    </template>
+    <template v-else-if="item.children && item.children.length">
+      <el-submenu :index="resolvePath(item.path)">
         <template slot="title">
           <i class="el-icon-location"></i>
-          <span>{{ item.name }}</span>
+          <span>{{ item.meta && item.meta.title }}</span>
         </template>
         <template v-for="menu in item.children">
-          <router-link :to="{ path: resolvePath(menu.href) }" :key="menu.herf">
-            <el-menu-item :index="menu.herf">{{ menu.name }}</el-menu-item>
+          <router-link
+            v-if="menu.meta && !menu.meta.hidden"
+            :to="{ path: resolvePath(menu.path) }"
+            :key="menu.path"
+          >
+            <el-menu-item :index="resolvePath(menu.path)">{{
+              menu.meta.title
+            }}</el-menu-item>
           </router-link>
         </template>
       </el-submenu>
     </template>
     <template v-else>
-      <router-link :to="{ path: resolvePath(item.href) }" :key="item.herf">
-        <el-menu-item :index="item.href">
+      <router-link :to="{ path: resolvePath(item.path) }" :key="item.path">
+        <el-menu-item :index="resolvePath(item.path)">
           <i class="el-icon-menu"></i>
-          <span slot="title">{{ item.name }}</span>
+          <span slot="title">{{ item.meta.title }}</span>
         </el-menu-item>
       </router-link>
     </template>
@@ -40,7 +54,33 @@ export default {
       default: ''
     }
   },
+  data() {
+    return {
+      onlyOneChild: null
+    };
+  },
   methods: {
+    /**
+     * 是否只显示子级菜单
+     */
+    hasOneShowingChild(children, parent) {
+      if (!children) return;
+      const showingChildren = children.filter(item => {
+        const {
+          meta: { hidden }
+        } = parent;
+        if (hidden && !item.meta.hidden) {
+          this.onlyOneChild = item;
+          return true;
+        } else {
+          return false;
+        }
+      });
+      if (showingChildren && showingChildren.length) {
+        return true;
+      }
+      return false;
+    },
     resolvePath(routePath) {
       if (this.isExternalLink(routePath)) {
         return routePath;

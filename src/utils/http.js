@@ -112,7 +112,7 @@ service.interceptors.response.use(
   response => {
     // 在请求完成后，自动移出队列
     removeQueue(response.config);
-    // 设置全局按钮Loading响应
+    // 关闭全局按钮Loading响应
     store.dispatch('CancalLoading');
     // 错误码处理
     if (response.status !== 200) {

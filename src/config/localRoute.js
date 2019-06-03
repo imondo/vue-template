@@ -1,83 +1,83 @@
 const localRoutes = [
   {
     name: '申购上报',
-    href: 'report',
+    permission: 'report',
     children: [
       {
         name: '项目立项',
-        href: 'project'
+        permission: 'project'
       },
       {
         name: '计划代录',
-        href: 'agent'
+        permission: 'agent'
       },
       {
         name: '计划审核',
-        href: 'planaudit'
+        permission: 'planaudit'
       },
       {
         name: '确定单位',
-        href: 'unitsubmit'
+        permission: 'unitsubmit'
       },
       {
         name: '申购汇总',
-        href: 'detailed'
+        permission: 'detailed'
       },
       {
         name: '项目完成',
-        href: 'complete'
+        permission: 'complete'
       }
     ]
   },
   {
     name: '数据分包',
-    href: 'subpackage',
+    permission: 'subpackage',
     children: [
       {
         name: '项目分包',
-        href: 'projectpackage'
+        permission: 'projectpackage'
       }
     ]
   },
   {
     name: '中标回填',
-    href: 'bidding',
+    permission: 'bidding',
     children: [
       {
         name: '中标信息',
-        href: 'bidinfo'
+        permission: 'bidinfo'
       }
     ]
   },
   {
     name: '分发验收',
-    href: 'distribute',
+    permission: 'distribute',
     children: [
       {
         name: '货物分发',
-        href: 'goodsdb'
+        permission: 'goodsdb'
       }
     ]
   },
   {
     name: '统计分析',
-    href: 'statistic',
+    permission: 'statistic',
     children: [
       {
         name: '资金流向',
-        href: 'moneyflow'
+        permission: 'moneyflow'
       },
       {
         name: '厂商统计',
-        href: 'vendorflow'
+        permission: 'vendorflow'
       },
       {
         name: '货物流向',
-        href: 'goodsflow'
+        permission: 'goodsflow'
       },
       {
         name: '单位汇总',
-        href: 'unitssummary'
+        permission: 'unitssummary'
       }
     ]
   }
