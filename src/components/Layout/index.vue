@@ -16,6 +16,14 @@ export default {
     AppMain,
     Navbar,
     Sidebar
+  },
+  computed: {
+    classObj() {
+      return {
+        hideSidebar: !this.sidebar.opened,
+        openSidebar: this.sidebar.opened
+      }
+    }
   }
 };
 </script>
