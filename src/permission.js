@@ -14,7 +14,7 @@ const whiteList = ['/login']; // 免登录白名单
 
 router.beforeEach(async (to, from, next) => {
   NProgress.start();
-  await store.dispatch('SetConfigApi'); // 获取配置  
+  await store.dispatch('SetConfigApi'); // 获取配置
   await store.dispatch('SetApi'); // 设置基本配置
   // const nodeId = await store.dispatch('GetNodeId'); // 获取节点id
   const token = await store.dispatch('getToken'); // 获取token
@@ -24,9 +24,7 @@ router.beforeEach(async (to, from, next) => {
       await store.dispatch('GetUser'); // 获取用户信息
       const menuList = await store.dispatch('GetMenu', localRoute); // 获取菜单
       await store.dispatch('GenerateRoutes', localRoute);
-      console.log(store.getters.addRoutes);
       router.addRoutes(store.getters.addRoutes);
-      console.log(store);
       if (to.path === '/' || to.path === '/login') {
         // 跳转至首页
         next({
@@ -41,7 +39,6 @@ router.beforeEach(async (to, from, next) => {
         next($path);
       }
     } else {
-      console.log(123);
       next();
     }
   } else {

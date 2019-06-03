@@ -1,5 +1,5 @@
 <template>
-  <div class="layout">
+  <div :class="classObj" class="layout">
     <sidebar class="sidebar-wapper" />
     <div class="main-container">
       <navbar class="nav-bar-wapper" />
@@ -18,31 +18,23 @@ export default {
     Sidebar
   },
   computed: {
+    sidebar() {
+      return this.$store.state.app.sidebar;
+    },
+    device() {
+      return this.$store.state.app.device;
+    },
+    fixedHeader() {
+      return this.$store.state.settings.fixedHeader;
+    },
     classObj() {
       return {
-        hideSidebar: !this.sidebar.opened,
-        openSidebar: this.sidebar.opened
-      }
+        hideSidebar: this.sidebar.opened,
+        openSidebar: !this.sidebar.opened
+      };
     }
   }
 };
 </script>
 
-<style lang="scss" scoped>
-@import '@/styles/variables.scss';
-.sidebar-wapper {
-  transition: width 0.28s;
-  width: $mainLeft !important;
-  height: 100%;
-  position: fixed;
-  font-size: 0px;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  z-index: 1001;
-  overflow: hidden;
-}
-.main-container {
-  padding-left: $mainLeft;
-}
-</style>
+<style lang="scss" scoped></style>

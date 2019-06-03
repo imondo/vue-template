@@ -4,9 +4,12 @@
       <el-menu
         :show-timeout="200"
         :default-active="isActive($route)"
+        :collapse="isCollapse"
+        :background-color="variables.menuBg"
+        :text-color="variables.menuText"
+        :unique-opened="false"
+        :collapse-transition="false"
         mode="vertical"
-        background-color="#537bf0"
-        text-color="#fff"
       >
         <Logo />
         <template v-for="route in routes">
@@ -24,6 +27,7 @@
 <script>
 import SideItem from './item';
 import Logo from './Logo';
+import variables from '@/styles/variables.scss';
 import { mapGetters } from 'vuex';
 
 export default {
@@ -33,7 +37,13 @@ export default {
     Logo
   },
   computed: {
-    ...mapGetters(['menu', 'routes'])
+    ...mapGetters(['menu', 'routes', 'sidebar']),
+    isCollapse() {
+      return this.sidebar.opened;
+    },
+    variables() {
+      return variables;
+    }
   },
   created() {
     console.log(this.routes);
@@ -46,10 +56,8 @@ export default {
       if (parentName) {
         const routePath = this.getRoutePath(this.routes, parentName);
         const path = routePath.join('/');
-        console.log(path);
         return path;
       }
-      console.log(route.path);
       return route.path;
     },
     getRoutePath(data, target) {

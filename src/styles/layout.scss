@@ -1,5 +1,17 @@
 // 侧边栏
+@import './variables.scss';
 .sidebar-wapper {
+  transition: width 0.28s;
+  width: $sideBarWidth !important;
+  height: 100%;
+  position: fixed;
+  font-size: 0px;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1001;
+  overflow: hidden;
+  overflow: hidden;
   .scrollbar {
     overflow-x: hidden; 
   }
@@ -20,6 +32,63 @@
         &.is-active {
           background-color: #fff !important;
           color: #537bf0 !important;
+        }
+      }
+    }
+  }
+}
+.main-container {
+  transition: padding-left .28s;
+  padding-left: $sideBarWidth;
+}
+// 隐藏侧边栏
+.hideSidebar {
+  .sidebar-wapper {
+    width: $hideBarWidth !important;
+  }
+
+  .main-container {
+    padding-left: $hideBarWidth;
+  }
+
+  .submenu-title-noDropdown {
+    padding: 0 !important;
+    position: relative;
+
+    .el-tooltip {
+      padding: 0 !important;
+
+      .svg-icon {
+        margin-left: 20px;
+      }
+    }
+  }
+
+  .el-submenu {
+    overflow: hidden;
+
+    &>.el-submenu__title {
+      padding: 0 !important;
+
+      .svg-icon {
+        margin-left: 20px;
+      }
+
+      .el-submenu__icon-arrow {
+        display: none;
+      }
+    }
+  }
+
+  .el-menu--collapse {
+    .el-submenu {
+      &>.el-submenu__title {
+        &>span {
+          height: 0;
+          width: 0;
+          overflow: hidden;
+          visibility: hidden;
+          display: inline-block;
         }
       }
     }

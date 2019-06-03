@@ -57,7 +57,7 @@ const permission = {
       const routes = filterAsyncRouter(asyncRoutes, permissionList);
       commit('SET_ROUTES', routes);
     },
-    // 遍历菜单获取permiss字段
+    // 遍历菜单获取Permission字段
     async GetMeunPermission({ commit }, data) {
       const permissionMenu = [];
 

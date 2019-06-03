@@ -1,6 +1,6 @@
 <template>
   <div class="logo">
-    后台系统
+    vue-cli模版
   </div>
 </template>
 

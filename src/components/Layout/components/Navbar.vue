@@ -1,12 +1,29 @@
 <template>
   <div class="nav-bar">
-    navbar
+    <Hamburger
+      :is-active="sidebar.opened"
+      class="hamburger-container"
+      @click="toggleSideBar"
+    />
   </div>
 </template>
 
 <script>
+import Hamburger from './Hamburger';
+import { mapGetters } from 'vuex';
 export default {
-  name: 'Navbar'
+  name: 'Navbar',
+  components: {
+    Hamburger
+  },
+  computed: {
+    ...mapGetters(['sidebar'])
+  },
+  methods: {
+    toggleSideBar() {
+      this.$store.dispatch('ToggleSideBar');
+    }
+  }
 };
 </script>
 
@@ -15,7 +32,7 @@ export default {
 .nav-bar {
   height: $navHeight;
   line-height: $navHeight;
-  background-color: #3455b6;
+  background-color: $navBg;
   color: #fff;
 }
 </style>
