@@ -51,10 +51,10 @@ export default {
   methods: {
     isActive(route) {
       const {
-        meta: { parentName = '' }
+        meta: { activeMenu = '' }
       } = route;
-      if (parentName) {
-        const routePath = this.getRoutePath(this.routes, parentName);
+      if (activeMenu) {
+        const routePath = this.getRoutePath(this.routes, activeMenu);
         const path = routePath.join('/');
         return path;
       }

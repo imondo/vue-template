@@ -16,7 +16,7 @@ const report = {
     {
       path: 'projectdetail',
       name: 'ProjectDetail',
-      meta: { title: '项目立项详情', parentName: 'Project', hidden: true },
+      meta: { title: '项目立项详情', activeMenu: 'Project', hidden: true },
       component: importView(`/Home.vue`)
     },
     {
