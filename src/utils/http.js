@@ -1,6 +1,6 @@
 // 设置请求统一信息
 import axios from 'axios';
-import store from '../store/index.js';
+import store from '@/store/index.js';
 import qs from 'qs';
 import { messages } from './msg-box.js';
 
