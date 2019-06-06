@@ -4,7 +4,6 @@ import NProgress from 'nprogress';
 import { MessageBox } from 'element-ui';
 
 import localRoute from '@/config/localRoute';
-import { logout } from '@/utils/logout.js';
 
 NProgress.configure({
   showSpinner: true
@@ -16,7 +15,6 @@ router.beforeEach(async (to, from, next) => {
   NProgress.start();
   await store.dispatch('SetConfigApi'); // 获取配置
   await store.dispatch('SetApi'); // 设置基本配置
-  // const nodeId = await store.dispatch('GetNodeId'); // 获取节点id
   const token = await store.dispatch('getToken'); // 获取token
   if (token) {
     // 用户信息不存在
@@ -58,7 +56,7 @@ async function checkMenu(menuList) {
     MessageBox.alert('您暂时没有系统菜单权限，请点击确认重新登陆', '提示', {
       confirmButtonText: '确定',
       callback: () => {
-        logout();
+        store.dispatch('logout');
       }
     });
     return false;

@@ -3,7 +3,6 @@ import axios from 'axios';
 import store from '../store/index.js';
 import qs from 'qs';
 import { messages } from './msg-box.js';
-import { logout } from './logout.js';
 
 const service = axios.create({
   timeout: 300000, // 超时设置
@@ -80,7 +79,7 @@ const errorHandle = response => {
   hasLogoutStatus = status === 401 || status === 403;
   if (hasLogoutStatus) {
     messages('error', msg, () => {
-      logout();
+      store.dispatch('Logout');
     });
   }
   messages('error', msg);
@@ -144,7 +143,7 @@ export default {
   get: (url, data = {}) => {
     return new Promise((resolve, reject) => {
       service
-        .get(store.getters.api.EMS_API + url, { params: data })
+        .get(store.getters.api.API + url, { params: data })
         .then(response => {
           resolve(response.data);
         })
@@ -158,7 +157,7 @@ export default {
   post: (url, data = {}) => {
     return new Promise((resolve, reject) => {
       service
-        .post(store.getters.api.EMS_API + url, data, {
+        .post(store.getters.api.API + url, data, {
           headers: {
             'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8'
           },
@@ -182,7 +181,7 @@ export default {
   put: (url, data = {}) => {
     return new Promise((resolve, reject) => {
       service
-        .put(store.getters.api.EMS_API + url, data, {
+        .put(store.getters.api.API + url, data, {
           headers: {
             'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8'
           },
@@ -206,7 +205,7 @@ export default {
   putJson: (url, data = {}) => {
     return new Promise((resolve, reject) => {
       service
-        .put(store.getters.api.EMS_API + url, data, {
+        .put(store.getters.api.API + url, data, {
           headers: { 'Content-Type': 'application/json' },
           withCredentials: true
         })
@@ -223,7 +222,7 @@ export default {
   postJson: (url, data = {}) => {
     return new Promise((resolve, reject) => {
       service
-        .post(store.getters.api.EMS_API + url, data, {
+        .post(store.getters.api.API + url, data, {
           headers: { 'Content-Type': 'application/json' },
           withCredentials: true
         })
@@ -240,7 +239,7 @@ export default {
   delete: (url, data = {}) => {
     return new Promise((resolve, reject) => {
       service
-        .delete(store.getters.api.EMS_API + url, {
+        .delete(store.getters.api.API + url, {
           data
         })
         .then(response => {
@@ -256,7 +255,7 @@ export default {
   deleteJson: (url, data = {}) => {
     return new Promise((resolve, reject) => {
       service
-        .delete(store.getters.api.EMS_API + url, {
+        .delete(store.getters.api.API + url, {
           headers: { 'Content-Type': 'application/json' },
           withCredentials: true,
           data

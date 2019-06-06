@@ -43,12 +43,16 @@ const user = {
     async FeLogout({ dispatch, commit }) {
       await dispatch('ClearToken');
       commit('LOGOUT');
-      return false;
+      return true;
     },
     // 清理token
     async ClearToken() {
       await removeToken();
       return true;
+    },
+    async Logout({ dispatch, rootGetters }) {
+      await dispatch('FeLogout');
+      window.location.href = rootGetters.api.IPRTAL_LOGOUT_HREF;
     }
   }
 };
