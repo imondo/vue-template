@@ -7,10 +7,9 @@ const happyThreadPool = HappyPack.ThreadPool({ size: OS.cpus().length });
 const resolve = dir => path.join(__dirname, dir);
 
 module.exports = {
+  context: path.resolve(__dirname, '../'),
   resolve: {
-    alias: {
-      '@': resolve('src')
-    }
+    extensions: ['.vue', '.js']
   },
   module: {
     rules: [
@@ -43,4 +42,4 @@ module.exports = {
       loaders: ['vue-loader']
     })
   ]
-}
+};

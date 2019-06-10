@@ -11,21 +11,24 @@ const isDevelopment = process.env.NODE_ENV === 'development'; // 开发环境
 const resolve = dir => path.join(__dirname, dir);
 
 module.exports = {
-  lintOnSave: true, // eslint-loader 是否在保存的时候检查
+  publicPath: '/pms/', // 设置路由base
+  outputDir: 'dist',
+  assetsDir: 'static',
+  lintOnSave: isDevelopment, // eslint-loader 是否在保存的时候检查
+  productionSourceMap: false,
   devServer: {
-    // port: 9527,
-    // open: true,
-    // overlay: {
-    //   warnings: false,
-    //   errors: true
-    // }
-    // proxy: {}
+    open: false,
+    overlay: {
+      warnings: false,
+      errors: true
+    }
   },
   configureWebpack: () => {
     return webpackConfig;
   },
   chainWebpack(config) {
-    config.entry('index').add('babel-polyfill');
+    config.entry('app').add('babel-polyfill');
+    config.resolve.alias.set('@', resolve('src')); // 设置别名
     config.module
       .rule('svg')
       .exclude.add(resolve('src/icons'))
@@ -40,6 +43,13 @@ module.exports = {
       .options({
         symbolId: 'icon-[name]'
       })
+      .end();
+
+    config.module
+      .rule('txt')
+      .test(/\.txt$/)
+      .use('file-loader?name=releaseNotes/[name].[ext]')
+      .loader('file-loader')
       .end();
 
     config.module
