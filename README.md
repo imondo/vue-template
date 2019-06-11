@@ -32,4 +32,10 @@ yarn run lint or npm run lint
 
 - 跨域请求token实现方案
 
+- blob下载方案
+
+1. 后台需要对请求头设置 `Access-Control-Expose-Headers: Content-Disposition`
+
+2. 文件名称放置在`Content-Disposition`请求头内
+
 其他功能待更新...
