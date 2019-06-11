@@ -56,10 +56,8 @@ const removeQueue = config => {
  * @param {Object} response 错误对象
  */
 const errorHandle = response => {
-  const {
-    status,
-    data: { message }
-  } = response;
+  // eslint-disable-next-line prettier/prettier
+  const { status, data: { message = '' } } = response;
   let msg = message;
   if (!message) {
     switch (status) {
@@ -262,6 +260,39 @@ export default {
         })
         .then(response => {
           resolve(response.data);
+        })
+        .catch(error => {
+          reject(error);
+        });
+    }).catch(error => {
+      return Promise.reject(error);
+    });
+  },
+  /**
+   * blob下载
+   * @param {String} url 请求地址
+   * @param {String} method 请求方式 默认`get`
+   * @param {Object} data 请求数据
+   */
+  exportFile({ url = '', data = {}, method = 'get' }) {
+    return new Promise((resolve, reject) => {
+      const isPost =
+        method.toLocaleUpperCase() === 'POST'
+          ? {
+              headers: { 'Content-Type': 'application/json' },
+              data
+            }
+          : {
+              params: data
+            };
+      const downConfig = {
+        withCredentials: true,
+        responseType: 'blob',
+        ...isPost
+      };
+      service[method](store.getters.api.API + url, downConfig)
+        .then(response => {
+          resolve(response);
         })
         .catch(error => {
           reject(error);

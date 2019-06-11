@@ -6,7 +6,7 @@
     "dev": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "test:unit": "vue-cli-service test:unit"
+    "test": "vue-cli-service test:unit"
   },
   "dependencies": {
     "axios": "^0.19.0",
@@ -27,8 +27,9 @@
     "@vue/test-utils": "1.0.0-beta.29",
     "babel-core": "7.0.0-bridge.0",
     "babel-eslint": "^10.0.1",
-    "babel-plugin-component": "^1.1.1",
     "babel-jest": "^23.6.0",
+    "babel-plugin-component": "^1.1.1",
+    "babel-plugin-dynamic-import-node": "^2.0.0",
     "eslint": "^5.16.0",
     "eslint-plugin-vue": "^5.0.0",
     "happypack": "^5.0.1",
