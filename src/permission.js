@@ -33,7 +33,7 @@ router.beforeEach(async (to, from, next) => {
         const hasMenu = await checkMenu(menuList);
         if (!hasMenu) return;
         const isIportal = await getReferrer();
-        const $path = isIportal ? { name: `Index` } : { path: to.path };
+        const $path = isIportal ? { name: `Index` } : { path: to.fullPath };
         next($path);
       }
     } else {
