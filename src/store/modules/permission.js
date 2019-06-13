@@ -1,5 +1,4 @@
-import homePage from '@/router/modules/home';
-import { asyncRoutes } from '@/router/modules/routes';
+import { asyncRoutes, homePage } from '@/router/modules/routes';
 
 /**
  * 通过路由path判断是否与当前用户权限匹配

@@ -1,5 +1,5 @@
 import Layout from '@/components/Layout';
-import { importView } from './routes';
+import { importViews } from './routes';
 
 const report = {
   path: '/report',
@@ -11,19 +11,19 @@ const report = {
       path: 'project',
       name: 'Project',
       meta: { title: '项目立项' },
-      component: importView(`/About.vue`)
+      component: importViews(`/About.vue`)
     },
     {
       path: 'projectdetail',
       name: 'ProjectDetail',
       meta: { title: '项目立项详情', activeMenu: 'Project', hidden: true },
-      component: importView(`/Home.vue`)
+      component: importViews(`/Home.vue`)
     },
     {
       path: 'agent',
       name: 'agent',
       meta: { title: '计划代录' },
-      component: importView(`/Home.vue`)
+      component: importViews(`/Home.vue`)
     }
   ]
 };

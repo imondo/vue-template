@@ -11,13 +11,14 @@ const isDevelopment = process.env.NODE_ENV === 'development'; // 开发环境
 const resolve = dir => path.join(__dirname, dir);
 
 module.exports = {
-  publicPath: '/pms/', // 设置路由base
+  publicPath: '/exp/', // 设置路由base
   outputDir: 'dist',
   assetsDir: 'static',
   lintOnSave: isDevelopment, // eslint-loader 是否在保存的时候检查
   productionSourceMap: false,
   devServer: {
     open: false,
+    port: 8087,
     overlay: {
       warnings: false,
       errors: true
@@ -27,8 +28,13 @@ module.exports = {
     return webpackConfig;
   },
   chainWebpack(config) {
+    config.plugins.delete('preload');
+    config.plugins.delete('prefetch');
+
     config.entry('app').add('babel-polyfill');
-    config.resolve.alias.set('@', resolve('src')); // 设置别名
+    config.resolve.alias
+      .set('@', resolve('src'))
+      .set('~public', resolve('public')); // 设置别名
     config.module
       .rule('svg')
       .exclude.add(resolve('src/icons'))

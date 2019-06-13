@@ -1,10 +1,6 @@
 <template>
   <div class="nav-bar">
-    <Hamburger
-      :is-active="sidebar.opened"
-      class="hamburger-container"
-      @click="toggleSideBar"
-    />
+    <Hamburger :is-active="sidebar.opened" class="hamburger-container" @click="toggleSideBar"/>
   </div>
 </template>
 
@@ -15,6 +11,11 @@ export default {
   name: 'Navbar',
   components: {
     Hamburger
+  },
+  data() {
+    return {
+      publicPath: process.env.BASE_URL
+    };
   },
   computed: {
     ...mapGetters(['sidebar'])
