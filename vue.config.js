@@ -4,6 +4,10 @@ const path = require('path');
 
 const webpackConfig = require('./build/webpack.base.conf');
 
+const local = require('./build/setting');
+
+const host = local();
+
 const isProduction = process.env.NODE_ENV === 'production'; // 生产环境
 
 const isDevelopment = process.env.NODE_ENV === 'development'; // 开发环境
@@ -12,13 +16,14 @@ const resolve = dir => path.join(__dirname, dir);
 
 module.exports = {
   publicPath: '/exp/', // 设置路由base
-  outputDir: 'dist',
-  assetsDir: 'static',
+  outputDir: 'dist', // 打包输出目录
+  assetsDir: 'static', // 打包文件目录
   lintOnSave: isDevelopment, // eslint-loader 是否在保存的时候检查
   productionSourceMap: false,
   devServer: {
-    open: false,
-    port: 8087,
+    open: true,
+    host,
+    port: 9527,
     overlay: {
       warnings: false,
       errors: true
@@ -34,7 +39,8 @@ module.exports = {
     config.entry('app').add('babel-polyfill');
     config.resolve.alias
       .set('@', resolve('src'))
-      .set('~public', resolve('public')); // 设置别名
+      .set('assets', resolve('src/assets'))
+      .set('api', resolve('src/api')); // 设置别名
     config.module
       .rule('svg')
       .exclude.add(resolve('src/icons'))
@@ -54,8 +60,8 @@ module.exports = {
     config.module
       .rule('txt')
       .test(/\.txt$/)
-      .use('file-loader?name=releaseNotes/[name].[ext]')
-      .loader('file-loader')
+      .use('file-loader')
+      .loader('file-loader?name=releaseNotes/[name].[ext]')
       .end();
 
     config.module

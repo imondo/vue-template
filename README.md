@@ -22,6 +22,19 @@ yarn run build or npm run build
 yarn run lint or npm run lint
 ```
 
+## 部分项目目录
+
+```
+...
+|-- src                              // 源码目录
+|-- public                           // 静态文件目录
+|-- releaseNotes                     // 版本更新日志
+...
+|-- package.json                     // 配置项目相关信息
+|-- .prettierrc                      // 风格配置
+|-- README.md                        // 项目说明
+```
+
 ### 实现功能
 
 - 动态请求配置方案
