@@ -33,16 +33,16 @@ export function handleExport({
           ? res.headers['content-disposition'].split('=')
           : '';
         const fileName = headers ? headers[1] : '文件';
-        const reader = new FileReader();
-        reader.readAsDataURL(res.data);
+        const blob = window.URL.createObjectURL(res.data);
         reader.onload = function(e) {
           const link = document.createElement('a');
           link.style.display = 'none';
-          link.href = e.target.result;
+          link.href = blob;
           link.setAttribute('download', decodeURI(fileName));
           document.body.appendChild(link);
           link.click();
           document.body.removeChild(link);
+          window.URL.revokeObjectURL(blob);
         };
       }
     })

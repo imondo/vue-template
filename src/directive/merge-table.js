@@ -13,8 +13,8 @@ const direcFn = (el, binding) => {
     const queryTd = fixed
       ? '.el-table__fixed .el-table__fixed-body-wrapper tbody'
       : footer
-      ? '.el-table__footer .has-gutter'
-      : '.el-table__body-wrapper tbody';
+        ? '.el-table__footer .has-gutter'
+        : '.el-table__body-wrapper tbody';
     const $table = el.querySelectorAll(queryTd);
     if ($table[0]) {
       const $tr = $table[0].childNodes;

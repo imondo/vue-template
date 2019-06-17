@@ -14,8 +14,8 @@
         <Logo />
         <template v-for="route in routes">
           <SideItem
-            :item="route"
             :key="route.path"
+            :item="route"
             :base-path="`/${route.path}`"
           />
         </template>

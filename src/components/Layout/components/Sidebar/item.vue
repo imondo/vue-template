@@ -17,8 +17,8 @@
         <template v-for="menu in item.children">
           <router-link
             v-if="menu.meta && !menu.meta.hidden"
-            :to="{ path: resolvePath(menu.path) }"
             :key="menu.path"
+            :to="{ path: resolvePath(menu.path) }"
           >
             <el-menu-item :index="resolvePath(menu.path)">{{
               menu.meta.title
@@ -28,7 +28,7 @@
       </el-submenu>
     </template>
     <template v-else>
-      <router-link :to="{ path: resolvePath(item.path) }" :key="item.path">
+      <router-link :key="item.path" :to="{ path: resolvePath(item.path) }">
         <el-menu-item :index="resolvePath(item.path)">
           <i class="el-icon-menu svg-icon"></i>
           <span slot="title">{{ item.meta.title }}</span>

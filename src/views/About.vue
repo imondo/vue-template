@@ -17,5 +17,5 @@ export default {
       console.log(to, from);
     }
   }
-}
+};
 </script>

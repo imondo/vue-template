@@ -1,7 +1,10 @@
 'use strict';
 
 const path = require('path');
-
+// 打包进度查看
+const SpeedMeasurePlugin = require('speed-measure-webpack-plugin');
+const smp = new SpeedMeasurePlugin();
+// webpack配置
 const webpackConfig = require('./build/webpack.base.conf');
 
 const local = require('./build/setting');
@@ -27,10 +30,23 @@ module.exports = {
     overlay: {
       warnings: false,
       errors: true
-    }
+    },
+    proxy: {
+      '/mock': {
+        target: `http://192.168.2.218:9527/mock`,
+        changeOrigin: true,
+        // pathRewrite: {
+        //   ['^/api']: ''
+        // }
+      }
+    },
+    after: require('./mock/server.js') // 使用mock数据模拟
   },
   configureWebpack: () => {
-    return webpackConfig;
+    if (isProduction) {
+      return smp.wrap(webpackConfig);
+    }
+    return webpackConfig;    
   },
   chainWebpack(config) {
     config.plugins.delete('preload');

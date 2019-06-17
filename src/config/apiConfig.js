@@ -11,7 +11,7 @@ export const config = {
 };
 
 const apiKey = [`api`][0]; // 联调IP，取对应环境变量
-config[apiKey] = `http://192.168.2.0:8087/api`;
+config[apiKey] = `http://192.168.2.218:9527/api`;
 
 const CONFIG_API = {
   BASE_HOST: '',

@@ -1,5 +1,6 @@
 const path = require('path');
 const SimpleProgressWebpackPlugin = require('simple-progress-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const OS = require('os');
 const HappyPack = require('happypack');
 const happyThreadPool = HappyPack.ThreadPool({ size: OS.cpus().length });
@@ -17,7 +18,7 @@ module.exports = {
         test: /\.(js|vue)$/,
         loader: 'eslint-loader',
         enforce: 'pre',
-        include: [resolve('src')],
+        include: [resolve('src'), resolve('test')],
         options: {
           fix: true
         }
@@ -49,6 +50,17 @@ module.exports = {
       id: 'vue',
       threads: 4,
       loaders: ['vue-loader']
-    })
+    }),
+    new CopyWebpackPlugin([
+      {
+        from: resolve('../releaseNotes'),
+        to: 'releaseNotes',
+        ignore: ['.txt']
+      },
+      {
+        from: resolve('../version.txt'),
+        ignore: ['.txt']
+      }
+    ])
   ]
 };

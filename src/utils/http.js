@@ -57,7 +57,7 @@ const removeQueue = config => {
  */
 const errorHandle = response => {
   // eslint-disable-next-line prettier/prettier
-  const { status, data: { message = '' } } = response;
+  const { status, data: { message = '' }} = response;
   let msg = message;
   if (!message) {
     switch (status) {
@@ -83,6 +83,16 @@ const errorHandle = response => {
   messages('error', msg);
 };
 
+const mockApi = config => {
+  if (process.env.NODE_ENV === 'development') {
+    const isMock = config.url.includes('/mock');
+    if (isMock) {
+      config.url = config.url.replace('/api', '');
+      return config;
+    }
+  }
+};
+
 // 请求拦截器
 service.interceptors.request.use(
   config => {
@@ -97,6 +107,7 @@ service.interceptors.request.use(
       config.headers['Authorization'] =
         store.getters.token.token_type + ' ' + store.getters.token.access_token;
     }
+    mockApi(config); // mock接口拦截
     return config;
   },
   error => {
@@ -279,18 +290,20 @@ export default {
       const isPost =
         method.toLocaleUpperCase() === 'POST'
           ? {
-              headers: { 'Content-Type': 'application/json' },
-              data
-            }
+            headers: { 'Content-Type': 'application/json' },
+            data
+          }
           : {
-              params: data
-            };
+            params: data
+          };
       const downConfig = {
         withCredentials: true,
         responseType: 'blob',
         ...isPost
       };
-      service[method](store.getters.api.API + url, downConfig)
+      service
+        // eslint-disable-next-line no-unexpected-multiline
+        [method](store.getters.api.API + url, downConfig)
         .then(response => {
           resolve(response);
         })

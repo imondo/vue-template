@@ -1,9 +1,9 @@
 <template>
   <div :class="classObj" class="layout">
-    <sidebar class="sidebar-wapper" />
+    <Sidebar class="sidebar-wapper" />
     <div class="main-container">
-      <navbar class="nav-bar-wapper" />
-      <app-main />
+      <Navbar class="nav-bar-wapper" />
+      <AppMain />
     </div>
   </div>
 </template>
