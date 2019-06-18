@@ -10,6 +10,7 @@ const webpackConfig = require('./build/webpack.base.conf');
 const local = require('./build/setting');
 
 const host = local();
+const port = 9527;
 
 const isProduction = process.env.NODE_ENV === 'production'; // 生产环境
 
@@ -26,18 +27,16 @@ module.exports = {
   devServer: {
     open: true,
     host,
-    port: 9527,
+    port,
     overlay: {
       warnings: false,
       errors: true
     },
     proxy: {
-      '/mock': {
-        target: `http://192.168.2.218:9527/mock`,
+      '/api/mock': {
+        target: `http://${host}:${port}`,
         changeOrigin: true,
-        // pathRewrite: {
-        //   ['^/api']: ''
-        // }
+        pathRewrite: {'^/api': ''}
       }
     },
     after: require('./mock/server.js') // 使用mock数据模拟

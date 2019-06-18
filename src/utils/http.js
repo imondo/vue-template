@@ -83,11 +83,16 @@ const errorHandle = response => {
   messages('error', msg);
 };
 
+/**
+ * 修改开发环境下mock配置
+ * @param {Object} config 请求配置
+ */
 const mockApi = config => {
   if (process.env.NODE_ENV === 'development') {
     const isMock = config.url.includes('/mock');
     if (isMock) {
-      config.url = config.url.replace('/api', '');
+      const api = config.url.match(/\/api(.+)/g);
+      config.url = `http://${window.location.host}${api}`;
       return config;
     }
   }
@@ -107,7 +112,7 @@ service.interceptors.request.use(
       config.headers['Authorization'] =
         store.getters.token.token_type + ' ' + store.getters.token.access_token;
     }
-    mockApi(config); // mock接口拦截
+    mockApi(config);
     return config;
   },
   error => {

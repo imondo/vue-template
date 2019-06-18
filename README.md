@@ -51,4 +51,6 @@ yarn run lint or npm run lint
 
 2. 文件名称放置在`Content-Disposition`请求头内
 
+- Mock数据请求
+
 其他功能待更新...

@@ -1,4 +1,5 @@
 import { getToken, removeToken } from '@/utils/auth';
+import { getUser } from '@/api/user';
 
 const user = {
   state: {
@@ -32,6 +33,9 @@ const user = {
       return tokenObj;
     },
     async GetUser({ commit }) {
+      getUser().then(res => {
+        console.log(res);
+      });
       commit('SET_USER', { name: 'pms' });
       return { name: 'pms' };
     },
