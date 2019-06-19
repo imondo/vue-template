@@ -11,7 +11,7 @@ const report = {
       path: 'project',
       name: 'Project',
       meta: { title: '项目立项' },
-      component: importViews(`/About.vue`)
+      component: importViews(`/Report.vue`)
     },
     {
       path: 'projectdetail',

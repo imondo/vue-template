@@ -1,13 +1,15 @@
 import Mock from 'mockjs';
 
 const data = Mock.mock({
-  'items|30': [{
+  'items|10': [{
     id: '@id',
-    title: '@sentence(10, 20)',
-    'status|1': ['published', 'draft', 'deleted'],
-    author: 'name',
-    display_time: '@datetime',
-    pageviews: '@integer(300, 5000)'
+    categoryName: '@cword(2, 10)',
+    code: '@integer(30000, 50000)',
+    name: '@cword(2, 20)',
+    spec: '@cword(10, 50)',
+    'uom|1': ['台', '只', '个', '条', '瓶'],
+    price: '@float(1, 100, 0, 2)',
+    'status|1': ['published', 'draft', 'deleted']
   }]
 });
 
