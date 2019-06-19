@@ -44,14 +44,13 @@ module.exports = {
   configureWebpack: () => {
     if (isProduction) {
       return smp.wrap(webpackConfig);
-    }
-    return webpackConfig;    
+    }    
   },
   chainWebpack(config) {
     config.plugins.delete('preload');
     config.plugins.delete('prefetch');
 
-    config.entry('app').add('babel-polyfill');
+    // config.entry('app').add('babel-polyfill');
     config.resolve.alias
       .set('@', resolve('src'))
       .set('assets', resolve('src/assets'))
