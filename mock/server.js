@@ -26,7 +26,9 @@ function unregisterRoutes() {
 }
 
 module.exports = app => {
-  require('@babel/register'); // 解决es6 node环境
+  require('@babel/register')({
+    presets: ['@babel/preset-env']
+  }); // 解决es6 node环境
 
   const mockRoutes = registerMockApi(app);
   var mockRoutesLength = mockRoutes.mockRoutesLength;
