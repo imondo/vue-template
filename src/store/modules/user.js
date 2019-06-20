@@ -4,7 +4,7 @@ import { getUser } from '@/api/user';
 const user = {
   state: {
     menu: [],
-    token: {},
+    token: null,
     info: null
   },
   mutations: {
@@ -26,7 +26,7 @@ const user = {
   actions: {
     async getToken({ commit, state }) {
       if (state.token) return state.token;
-      const token = await getToken(state.api);
+      const token = await getToken();
       const { access_token } = token;
       const tokenObj = access_token ? token : null;
       commit('SET_TOKEN', tokenObj);

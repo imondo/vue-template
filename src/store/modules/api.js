@@ -39,15 +39,15 @@ const api = {
           .get(`/config.json?v=${new Date().getTime()}`)
           .then(result => {
             const configApi = {
-              API: result.data['pms_url'], // 统一接口
+              API: result.data['url'], // 统一接口
               PMS__File_HOST:
-                result.data['pms_file_url'] || result.data['pms_url'], // 文件路径
-              LOCAL_API: result.data['pms_fe_url'], // 业务系统前端路径
+                result.data['file_url'] || result.data['url'], // 文件路径
+              LOCAL_API: result.data['fe_url'], // 业务系统前端路径
               IPORTAL_LOCAL_API: result.data['iportal_fe_url'], // iportal前端路径
               IPORTAL_API: result.data[`iportal_url`], // iportal请求路径
               OAUTH_API: result.data[`iportal_oauth_url`], // iportal oauth请求路径
               SERVICE_API: result.data['service_url'], // 业务系统客服统一请求接口路径
-              SYSTEMCONFIG: result.data['pms_system_config'] || {} // 系统内个性化配置
+              SYSTEMCONFIG: result.data['system_config'] || {} // 系统内个性化配置
             };
             resolve(configApi);
           })

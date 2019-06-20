@@ -44,7 +44,7 @@ router.beforeEach(async(to, from, next) => {
       // 在免登录白名单，直接进入
       next();
     } else {
-      window.location.href = store.getters.api.IPORTAL_LOCAL_API + 'bus?node='; // + nodeId;
+      window.location.href = store.getters.api.IPORTAL_LOCAL_API + 'login';
       NProgress.done();
     }
   }

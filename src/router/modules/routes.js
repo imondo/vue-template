@@ -1,5 +1,5 @@
 import Layout from '@/components/Layout';
-
+import Login from '@/views/Login.vue';
 import report from './report';
 
 export function importViews(view) {
@@ -25,6 +25,12 @@ export const homePage = {
   ]
 };
 
-const routes = [homePage];
+const login = {
+  path: '/login',
+  name: 'Login',
+  component: Login
+};
 
+const routes = [login, homePage];
+console.log(routes);
 export default routes;
