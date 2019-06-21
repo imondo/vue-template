@@ -3,7 +3,7 @@
     <template v-if="hasOneShowingChild(item.children, item)">
       <router-link :to="{ path: resolvePath(onlyOneChild.path) }">
         <el-menu-item :index="resolvePath(onlyOneChild.path)">
-          <i :class="setIocn(item)" class="svg-icon"></i>
+          <i :class="setIocn(onlyOneChild)" class="svg-icon"></i>
           <span slot="title">{{ onlyOneChild.meta.title }}</span>
         </el-menu-item>
       </router-link>

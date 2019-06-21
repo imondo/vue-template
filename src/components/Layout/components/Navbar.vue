@@ -2,7 +2,7 @@
   <div class="nav-bar">
     <Hamburger :is-active="sidebar.opened" class="hamburger-container" @click="toggleSideBar"/>
     <div class="fr nav-right">
-      <el-button type="text" @click="handleClick">退出</el-button>
+      <el-button type="text" icon="el-icon-switch-button" @click="handleClick">退出</el-button>
     </div>
   </div>
 </template>

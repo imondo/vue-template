@@ -1,6 +1,6 @@
 <template>
   <div class="logo">
-    后台模版
+    <i class="el-icon-discover"></i>
   </div>
 </template>
 
