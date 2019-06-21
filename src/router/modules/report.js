@@ -4,7 +4,8 @@ import { importViews } from './routes';
 const report = {
   path: '/report',
   name: 'report',
-  meta: { title: '申购上报' },
+  redirect: { name: 'Project' },
+  meta: { title: '申购上报', icon: 'el-icon-s-operation' },
   component: Layout,
   children: [
     {

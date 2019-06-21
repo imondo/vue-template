@@ -19,7 +19,7 @@ export const homePage = {
     {
       path: 'page',
       name: 'Page',
-      meta: { title: '首页' },
+      meta: { title: '首页', icon: 'el-icon-s-home' },
       component: importViews(`/Page.vue`)
     }
   ]

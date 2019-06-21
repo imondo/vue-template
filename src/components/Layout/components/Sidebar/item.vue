@@ -3,7 +3,7 @@
     <template v-if="hasOneShowingChild(item.children, item)">
       <router-link :to="{ path: resolvePath(onlyOneChild.path) }">
         <el-menu-item :index="resolvePath(onlyOneChild.path)">
-          <i class="el-icon-menu svg-icon"></i>
+          <i :class="setIocn(item)" class="svg-icon"></i>
           <span slot="title">{{ onlyOneChild.meta.title }}</span>
         </el-menu-item>
       </router-link>
@@ -11,7 +11,7 @@
     <template v-else-if="item.children && item.children.length">
       <el-submenu :index="resolvePath(item.path)">
         <template slot="title">
-          <i class="el-icon-location svg-icon"></i>
+          <i :class="setIocn(item)" class="svg-icon"></i>
           <span>{{ item.meta && item.meta.title }}</span>
         </template>
         <template v-for="menu in item.children">
@@ -30,7 +30,7 @@
     <template v-else>
       <router-link :key="item.path" :to="{ path: resolvePath(item.path) }">
         <el-menu-item :index="resolvePath(item.path)">
-          <i class="el-icon-menu svg-icon"></i>
+          <i :class="setIocn(item)" class="svg-icon"></i>
           <span slot="title">{{ item.meta.title }}</span>
         </el-menu-item>
       </router-link>
@@ -89,6 +89,9 @@ export default {
         return path.resolve(this.basePath);
       }
       return path.resolve(this.basePath, routePath);
+    },
+    setIocn(item) {
+      return (item.meta && item.meta.icon) ? item.meta.icon : 'el-icon-s-operation';
     },
     isExternalLink(routePath) {
       return isExternal(routePath);

@@ -41,6 +41,7 @@ export default {
   line-height: $navHeight;
   background-color: $navBg;
   color: #fff;
+  border-bottom: 1px solid #dcdfe6;
 }
 .hamburger-container {
   display: inline-block;

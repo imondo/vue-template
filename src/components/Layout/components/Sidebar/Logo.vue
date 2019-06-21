@@ -1,6 +1,6 @@
 <template>
   <div class="logo">
-    vue-cli模版
+    后台模版
   </div>
 </template>
 
@@ -17,5 +17,6 @@ export default {
   line-height: $navHeight;
   font-size: 24px;
   text-align: center;
+  color: #fff;
 }
 </style>

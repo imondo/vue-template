@@ -25,15 +25,24 @@
     width: 100% !important;
     .el-submenu {
       .el-submenu__title i {
-        color: #fff;
+        color: $menuActiveText;
       }
       .el-menu-item {
         min-width: 100%;
         &.is-active {
-          background-color: #fff !important;
-          color: #537bf0 !important;
+          background-color: $menuActiveText !important;
+          color: $menuActiveBg !important;
         }
       }
+    }
+  }
+  .el-menu-item {
+    i {
+      color: $menuActiveText;
+    }
+    &.is-active {
+      color: $menuActiveBg;
+      background-color: rgb(66, 98, 192)!important;
     }
   }
 }
