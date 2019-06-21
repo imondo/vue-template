@@ -1,6 +1,9 @@
 <template>
   <div class="nav-bar">
     <Hamburger :is-active="sidebar.opened" class="hamburger-container" @click="toggleSideBar"/>
+    <div class="fr nav-right">
+      <el-button type="text" @click="handleClick">退出</el-button>
+    </div>
   </div>
 </template>
 
@@ -23,6 +26,9 @@ export default {
   methods: {
     toggleSideBar() {
       this.$store.dispatch('ToggleSideBar');
+    },
+    handleClick() {
+      this.$store.dispatch('Logout');
     }
   }
 };
@@ -35,5 +41,11 @@ export default {
   line-height: $navHeight;
   background-color: $navBg;
   color: #fff;
+}
+.hamburger-container {
+  display: inline-block;
+}
+.nav-right {
+  padding: 0 10px;
 }
 </style>
