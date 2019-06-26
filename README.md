@@ -53,4 +53,6 @@ yarn run lint or npm run lint
 
 - Mock数据请求
 
+- 可编辑表格组件
+
 其他功能待更新...

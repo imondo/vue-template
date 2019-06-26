@@ -1,4 +1,4 @@
-import { asyncRoutes, homePage } from '@/router/modules/routes';
+import routesConfig, { asyncRoutes } from '@/router/modules/routes';
 
 /**
  * 通过路由path判断是否与当前用户权限匹配
@@ -47,7 +47,7 @@ const permission = {
     },
     SET_ROUTES: (state, routes) => {
       state.addRoutes = [...routes];
-      state.routes = [homePage, ...routes];
+      state.routes = [...routesConfig, ...routes];
     }
   },
   actions: {

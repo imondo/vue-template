@@ -4,7 +4,7 @@
       <router-link :to="{ path: resolvePath(onlyOneChild.path) }">
         <el-menu-item :index="resolvePath(onlyOneChild.path)">
           <i :class="setIocn(onlyOneChild)" class="svg-icon"></i>
-          <span slot="title">{{ onlyOneChild.meta.title }}</span>
+          <span slot="title">{{ onlyOneChild.meta&&onlyOneChild.meta.title }}</span>
         </el-menu-item>
       </router-link>
     </template>
@@ -31,7 +31,7 @@
       <router-link :key="item.path" :to="{ path: resolvePath(item.path) }">
         <el-menu-item :index="resolvePath(item.path)">
           <i :class="setIocn(item)" class="svg-icon"></i>
-          <span slot="title">{{ item.meta.title }}</span>
+          <span slot="title">{{ item.meta&&item.meta.title }}</span>
         </el-menu-item>
       </router-link>
     </template>

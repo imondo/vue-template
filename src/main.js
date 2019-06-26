@@ -5,6 +5,7 @@ import router from './router';
 import store from './store';
 
 import './plugins/element';
+import './components/index.js';
 import './permission';
 
 import './styles/index.scss';

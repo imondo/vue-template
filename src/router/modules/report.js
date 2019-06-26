@@ -2,16 +2,16 @@ import Layout from '@/components/Layout';
 import { importViews } from './routes';
 
 const report = {
-  path: '/report',
-  name: 'report',
+  path: '/budget',
+  name: 'Budget',
   redirect: { name: 'Project' },
-  meta: { title: '申购上报', icon: 'el-icon-s-operation' },
+  meta: { title: '管理', icon: 'el-icon-s-operation' },
   component: Layout,
   children: [
     {
       path: 'project',
       name: 'Project',
-      meta: { title: '项目立项' },
+      meta: { title: '立项' },
       component: importViews(`/Report.vue`)
     },
     {
@@ -21,9 +21,9 @@ const report = {
       component: importViews(`/Home.vue`)
     },
     {
-      path: 'agent',
-      name: 'agent',
-      meta: { title: '计划代录' },
+      path: 'audit',
+      name: 'Audit',
+      meta: { title: '审核' },
       component: importViews(`/Home.vue`)
     }
   ]

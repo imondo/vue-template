@@ -1,6 +1,7 @@
 import Layout from '@/components/Layout';
 import Login from '@/views/Login.vue';
 import report from './report';
+import example from './example'; // 组件示例
 
 export function importViews(view) {
   return () => import(`@/views${view}`);
@@ -31,6 +32,6 @@ const login = {
   component: Login
 };
 
-const routes = [login, homePage];
-console.log(routes);
-export default routes;
+const routesConfig = [login, homePage, example];
+
+export default routesConfig;
