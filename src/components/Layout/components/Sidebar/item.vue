@@ -28,7 +28,7 @@
       </el-submenu>
     </template>
     <template v-else>
-      <router-link :key="item.path" :to="{ path: resolvePath(item.path) }">
+      <router-link v-if="item.meta&&!item.meta.hidden" :key="item.path" :to="{ path: resolvePath(item.path) }">
         <el-menu-item :index="resolvePath(item.path)">
           <i :class="setIocn(item)" class="svg-icon"></i>
           <span slot="title">{{ item.meta&&item.meta.title }}</span>
