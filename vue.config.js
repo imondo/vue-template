@@ -10,7 +10,7 @@ const webpackConfig = require('./build/webpack.base.conf');
 const local = require('./build/setting');
 
 const host = local();
-const port = 9527;
+const port = 9528;
 
 const isProduction = process.env.NODE_ENV === 'production'; // 生产环境
 

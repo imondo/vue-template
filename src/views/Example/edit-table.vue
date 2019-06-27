@@ -4,7 +4,7 @@
     <el-button type="primary" class="mb-10" @click="handleClick">保存</el-button>
     <page-edit-table
       ref="editTable"
-      v-model="list"
+      v-model="tableData"
       :columns="['categoryName', 'name', 'purchaseDate']"
       :default-edit="true"
       :verify-rules="verifyRules"
@@ -12,7 +12,7 @@
       <el-table
         ref="table"
         v-loading="loading"
-        :data="list"
+        :data="tableData"
         tooltip-effect="dark"
         highlight-current-row
         border
@@ -24,12 +24,15 @@
         </el-table-column>
         <el-table-column label="品目名称" prop="categoryName" show-overflow-tooltip>
           <template slot-scope="{ row }">
-            <edit-table-cell
-              :row="row"
-              prop="categoryName"
-            >
+            <edit-table-cell :row="row" prop="categoryName">
               <template slot-scope="{ cellState, validateCell }">
-                <el-select v-if="cellState.edit" v-model="row.categoryName" clearable placeholder="请选择品目" @change="validateCell">
+                <el-select
+                  v-if="cellState.edit"
+                  v-model="row.categoryName"
+                  clearable
+                  placeholder="请选择品目"
+                  @change="validateCell"
+                >
                   <el-option label="你" value="1"></el-option>
                   <el-option label="好" value="2"></el-option>
                   <el-option label="呀" value="3"></el-option>
@@ -47,7 +50,18 @@
               slot-name="input"
               :maxlength="5"
               placeholder="请输入"
-            ></edit-table-cell>
+            >
+              <template slot-scope="{ cellState, validateCell }">
+                <el-input
+                  v-if="cellState.edit"
+                  v-model="row.name"
+                  clearable
+                  placeholder="请输入名称"
+                  @input="validateCell"
+                ></el-input>
+                <span v-if="!cellState.edit">{{ row.name }}</span>
+              </template>
+            </edit-table-cell>
           </template>
         </el-table-column>
         <el-table-column label="物品编号" prop="code" show-overflow-tooltip></el-table-column>
@@ -74,16 +88,23 @@
         </el-table-column>
       </el-table>
     </page-edit-table>
+    <page-pagination :page-config="pageConfig" @change="pageChange"></page-pagination>
   </div>
 </template>
 <script>
 import { getList } from '@/api/list';
+
 export default {
   name: 'EditTable',
   data() {
     return {
       loading: false,
-      list: [],
+      tableData: [],
+      pageConfig: {
+        total: 100,
+        pageSize: 15,
+        pageNo: 1
+      },
       verifyRules: {
         categoryName({ categoryName }, cb) {
           if (!categoryName) {
@@ -110,15 +131,14 @@ export default {
     };
   },
   created() {
-    console.time();
     this.getListDemo();
-    console.timeEnd();
   },
   methods: {
     getListDemo() {
       this.loading = true;
       getList().then(res => {
-        this.list = res.items;
+        const { pageNo, pageSize } = this.pageConfig;
+        this.tableData = res.items.splice(pageNo, pageSize);
         this.loading = false;
       });
     },
@@ -131,6 +151,10 @@ export default {
           this.$messages('warning', '验证不通过');
         }
       });
+    },
+    pageChange(data) {
+      this.pageConfig = Object.assign(this.pageConfig, data);
+      this.getListDemo();
     }
   }
 };

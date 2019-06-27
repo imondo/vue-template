@@ -17,6 +17,12 @@ const example = {
       name: 'EditTable',
       meta: { title: '编辑表格' },
       component: importViews(`/edit-table.vue`)
+    },
+    {
+      path: 'edit-tree',
+      name: 'PageTree',
+      meta: { title: '编辑树' },
+      component: importViews(`/tree.vue`)
     }
   ]
 };
