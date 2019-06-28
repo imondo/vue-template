@@ -18,18 +18,22 @@ export default {
     event: 'table-data-change'
   },
   props: {
+    // 表格数据
     tableData: {
       type: Array,
       default: () => []
     },
+    // 需要验证的列字段
     columns: {
       type: Array,
       default: () => []
     },
+    // 是否可编辑
     defaultEdit: {
       type: Boolean,
       default: true
     },
+    // 验证集合
     verifyRules: {
       type: Object,
       default: () => {}
