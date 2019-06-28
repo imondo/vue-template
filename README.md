@@ -67,4 +67,8 @@ yarn run lint or npm run lint
 
 1. 可以增删改子节点
 
+- svg图标组件
+
+- 多表单组件处理
+
 其他功能待更新...

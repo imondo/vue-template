@@ -7,6 +7,7 @@ import store from './store';
 import './plugins/element';
 import './components/index.js';
 import './permission';
+import './icons';
 
 import './styles/index.scss';
 import './filters/currency.js'; // 金额货币化

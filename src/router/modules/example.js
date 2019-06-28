@@ -23,6 +23,12 @@ const example = {
       name: 'PageTree',
       meta: { title: '编辑树' },
       component: importViews(`/tree.vue`)
+    },
+    {
+      path: 'edit-form',
+      name: 'EditForm',
+      meta: { title: '多表单验证' },
+      component: importViews(`/edit-form/form.vue`)
     }
   ]
 };

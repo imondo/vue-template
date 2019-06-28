@@ -6,12 +6,16 @@ import routesConfig, { asyncRoutes } from '@/router/modules/routes';
  * @param route
  */
 function hasPermission(permissionMenu, route) {
+  const hasRoute = permissionMenu.find(p => p.path === route.path);
+  if (hasRoute) {
+    const { sort, name } = hasRoute;
+    route.sort = sort;
+    route.meta && (route.meta.title = name);
+  }
   return (
     permissionMenu.findIndex(v => {
-      const key = v.path || v;
-      const sort = v.sort || '';
-      route.sort = sort; // 排序
-      return route.path.includes(key);
+      const path = v.path || v;
+      return route.path.includes(path);
     }) > -1
   );
 }
@@ -64,8 +68,8 @@ const permission = {
         menuData.forEach(e => {
           if (e.permission) {
             // 需要排序字段
-            const { permission, sort } = e;
-            const menuItem = { path: permission, sort };
+            const { permission, sort, name } = e;
+            const menuItem = { path: permission, sort, name };
             permissionMenu.push(menuItem);
           }
           if (e.children && Array.isArray(e.children)) {

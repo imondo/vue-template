@@ -19,7 +19,7 @@ const isDevelopment = process.env.NODE_ENV === 'development'; // 开发环境
 const resolve = dir => path.join(__dirname, dir);
 
 module.exports = {
-  publicPath: '/exp/', // 设置路由base
+  publicPath: '/temp/', // 设置路由base
   outputDir: 'dist', // 打包输出目录
   assetsDir: 'static', // 打包文件目录
   lintOnSave: isDevelopment, // eslint-loader 是否在保存的时候检查
@@ -62,7 +62,7 @@ module.exports = {
     config.module
       .rule('icons')
       .test(/\.svg$/)
-      .include.add(resolve('src/assets'))
+      .include.add(resolve('src/icons'))
       .end()
       .use('svg-sprite-loader')
       .loader('svg-sprite-loader')
