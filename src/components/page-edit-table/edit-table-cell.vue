@@ -2,8 +2,9 @@
   <div
     class="edit-table-cell"
     :class="{'edit-table-cell-error': !!cellState.errMsg}"
-    @mouseenter="() => cellState.hovering = true"
-    @mouseleave="() => cellState.hovering = false"
+    @mouseenter="handleMouseEnter(cellState, rowState)"
+    @mouseleave="handleMouseLeave(cellState, rowState)"
+    @click="handleClickCell(cellState, rowState)"
   >
     <error-tooltip v-if="cellState.edit" :content="cellState.errMsg" :hovering="cellState.hovering">
       <div class="edit-table-cell-content">
@@ -62,10 +63,60 @@ export default {
     }
   },
   methods: {
+    handleMouseEnter(cellState, rowState) {
+      const hasErr = !!cellState.errMsg; // 存在错误
+      if (!hasErr) return;
+      cellState.hovering = true;
+    },
+    handleMouseLeave(cellState, rowState) {
+      const hasErr = !!cellState.errMsg; // 存在错误
+      if (!hasErr) return;
+      cellState.hovering = false;
+    },
+    // 点击当前行编辑
+    handleClickCell(cellState, rowState) {
+      const { cellEdit } = this.editTable.store;
+      this.hideCellEditState();
+      if (cellEdit && !cellState.edit) {
+        cellState.edit = true;
+      }
+    },
+    // 点击当前行其他列隐藏编辑
+    hideCellEditState() {
+      const curRow = this.row; // 当前行
+      const curProp = this.prop; // 当前列字段
+      const { cellEdit, states, list } = this.editTable.store;
+      const len = list.length;
+      for (let i = 0; i < len; i++) {
+        const row = list[i];
+        const rowState = states.get(row); // 当前行状态
+        // 点击当前行
+        if (row === curRow) {
+          for (const prop of rowState.keys()) {
+            // 其它列状态
+            if (prop !== curProp) {
+              const otherCell = rowState.get(prop);
+              const { errMsg } = otherCell;
+              if (cellEdit && !errMsg) {
+                otherCell.edit = false;
+              }
+            }
+          }
+        } else {
+          for (const prop of rowState.keys()) {
+            const otherCell = rowState.get(prop);
+            const { errMsg } = otherCell;
+            if (cellEdit && !errMsg) {
+              otherCell.edit = false;
+            }
+          }
+        }
+      }
+    },
     // 验证
     validateCell(cb) {
       this.editTable
-        .verifyTableCell(this.row, this.prop, this.cellState)
+        .verifyTableCell(this.row, this.prop, this.cellState, this.rowState)
         .then(errMsg => {
           const valid = !errMsg;
           typeof cb === 'function' && cb(valid);
@@ -76,7 +127,7 @@ export default {
 </script>
 
 <style lang="scss">
-.edit-table-cell .edit-table-cell-content{
+.edit-table-cell .edit-table-cell-content {
   outline: none;
 }
 .edit-table-cell .el-autocomplete,

@@ -1,12 +1,15 @@
 <template>
   <div class="about">
     <h3 class="mb-10">{{ $route.meta.title }}</h3>
+    <el-button type="primary" class="mb-10" @click="handleClickEdit">点击列编辑表格</el-button>
+    <el-button type="primary" class="mb-10" @click="handleClickDefult">默认编辑表格</el-button>
     <el-button type="primary" class="mb-10" @click="handleClick">保存</el-button>
     <page-edit-table
       ref="editTable"
       v-model="tableData"
       :columns="['categoryName', 'name', 'purchaseDate']"
-      :default-edit="true"
+      :default-edit="defaultEdit"
+      :cell-edit="cellEdit"
       :verify-rules="verifyRules"
     >
       <el-table
@@ -100,6 +103,8 @@ export default {
     return {
       loading: false,
       tableData: [],
+      defaultEdit: true,
+      cellEdit: false,
       pageConfig: {
         total: 100,
         pageSize: 15,
@@ -141,6 +146,16 @@ export default {
         this.tableData = res.items.splice(pageNo, pageSize);
         this.loading = false;
       });
+    },
+    handleClickEdit() {
+      this.cellEdit = true;
+      this.defaultEdit = false;
+      this.getListDemo();
+    },
+    handleClickDefult() {
+      this.cellEdit = false;
+      this.defaultEdit = true;
+      this.getListDemo();
     },
     handleClick() {
       this.$refs.editTable.verifyTable().then(valid => {

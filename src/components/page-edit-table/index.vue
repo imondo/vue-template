@@ -33,6 +33,11 @@ export default {
       type: Boolean,
       default: true
     },
+    // 当前列是否可以编辑
+    cellEdit: {
+      type: Boolean,
+      default: false
+    },
     // 验证集合
     verifyRules: {
       type: Object,
@@ -58,7 +63,8 @@ export default {
       this.store = new TableStore({
         list: this.tableData,
         columns: this.columns,
-        defaultEdit: this.defaultEdit
+        defaultEdit: this.defaultEdit,
+        cellEdit: this.cellEdit
       });
     },
     // 验证表格数据
