@@ -1,5 +1,6 @@
 <template>
   <div class="app-main">
+    <Breadcrumb/>
     <transition name="el-fade-in-linear" mode="out-in">
       <router-view :key="key"/>
     </transition>
@@ -7,8 +8,10 @@
 </template>
 
 <script>
+import Breadcrumb from './Breadcrumb';
 export default {
   name: 'AppMain',
+  components: { Breadcrumb },
   computed: {
     key() {
       return this.$route.name !== undefined
