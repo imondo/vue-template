@@ -292,23 +292,18 @@ export default {
    */
   exportFile({ url = '', data = {}, method = 'get' }) {
     return new Promise((resolve, reject) => {
-      const isPost =
-        method.toLocaleUpperCase() === 'POST'
-          ? {
-            headers: { 'Content-Type': 'application/json' },
-            data
-          }
-          : {
-            params: data
-          };
+      const isPost = method.toLocaleUpperCase() === 'POST';
+      const postConfig = isPost
+        ? { headers: { 'Content-Type': 'application/json' }, data }
+        : { params: data };
       const downConfig = {
         withCredentials: true,
+        method: method.toLocaleLowerCase(),
         responseType: 'blob',
-        ...isPost
+        ...postConfig
       };
-      service
-        // eslint-disable-next-line no-unexpected-multiline
-        [method](store.getters.api.API + url, downConfig)
+      // eslint-disable-next-line no-unexpected-multiline
+      service(store.getters.api.API + url, downConfig)
         .then(response => {
           resolve(response);
         })
