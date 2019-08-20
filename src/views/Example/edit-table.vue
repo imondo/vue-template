@@ -25,6 +25,11 @@
         <el-table-column align="center" label="序号" width="50">
           <template slot-scope="scope">{{ scope.$index + 1 }}</template>
         </el-table-column>
+        <el-table-column align="center" label="操作" width="50">
+          <template slot-scope="{row}">
+            <el-button type="text" @click="handleVaildate(row)">验证</el-button>
+          </template>
+        </el-table-column>
         <el-table-column label="品目名称" prop="categoryName" show-overflow-tooltip>
           <template slot-scope="{ row }">
             <edit-table-cell :row="row" prop="categoryName">
@@ -120,7 +125,7 @@ export default {
         },
         name({ name }, cb) {
           if (!name) {
-            cb('请输入名称');
+            cb('请选择品目');
           } else {
             cb('');
           }
@@ -146,6 +151,9 @@ export default {
         this.tableData = res.items.splice(pageNo, pageSize);
         this.loading = false;
       });
+    },
+    handleVaildate(row) {
+      this.$refs.editTable.verifyCell(row, 'name');
     },
     handleClickEdit() {
       this.cellEdit = true;

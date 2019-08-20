@@ -105,11 +105,20 @@ export default {
     verifyTableCell(row, prop, cellState) {
       const verify = this.verifyRules[prop]; // 验证规则
       return new Promise((resolve, reject) => {
+        // 验证规则不存在时为真
+        if (!verify) {
+          resolve();
+        }
         verify(row, errMsg => {
+          console.log(cellState);
           Object.assign(cellState, { errMsg });
           resolve(errMsg);
         });
       });
+    },
+    verifyCell(row, prop) {
+      const cellState = this.store.GetTableCell(row, prop);
+      this.verifyTableCell(row, prop, cellState);
     }
   }
 };
