@@ -41,7 +41,9 @@ export default {
     // 验证集合
     verifyRules: {
       type: Object,
-      default: () => {}
+      default: () => {
+        return {};
+      }
     }
   },
   data() {
@@ -67,7 +69,6 @@ export default {
         cellEdit: this.cellEdit
       });
     },
-    // 验证表格数据
     async verifyTable() {
       const verifyList = [];
       const { list, columns } = this.store;
@@ -116,9 +117,52 @@ export default {
         });
       });
     },
+    // 验证prop
     verifyCell(row, prop) {
-      const cellState = this.store.GetTableCell(row, prop);
-      this.verifyTableCell(row, prop, cellState);
+      if (typeof prop !== 'string' && !Array.isArray(prop)) {
+        console.warn('prop is not String or Array');
+        return;
+      }
+      if (typeof prop === 'string') {
+        const cellState = this.store.GetTableCell(row, prop);
+        this.verifyTableCell(row, prop, cellState);
+      }
+      if (Array.isArray(prop)) {
+        prop.forEach(p => {
+          const cellState = this.store.GetTableCell(row, p);
+          this.verifyTableCell(row, p, cellState);
+        });
+      }
+    },
+    // 重置表格验证信息
+    restTable() {
+      if (!this.columns) {
+        console.warn('请填写验证columns字段');
+        return;
+      }
+      const states = this.store.states;
+      states.forEach((value, row) => {
+        this.columns.forEach(prop => {
+          this.restTableCell(row, prop);
+        });
+      });
+    },
+    // 重置prop验证信息
+    restTableCell(row, prop) {
+      if (typeof prop !== 'string' && !Array.isArray(prop)) {
+        console.warn('prop is not String or Array');
+        return;
+      }
+      if (typeof prop === 'string') {
+        const cellState = this.store.GetTableCell(row, prop);
+        cellState.errMsg = '';
+      }
+      if (Array.isArray(prop)) {
+        prop.forEach(p => {
+          const cellState = this.store.GetTableCell(row, p);
+          cellState.errMsg = '';
+        });
+      }
     }
   }
 };

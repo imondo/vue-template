@@ -4,6 +4,7 @@
     <el-button type="primary" class="mb-10" @click="handleClickEdit">点击列编辑表格</el-button>
     <el-button type="primary" class="mb-10" @click="handleClickDefult">默认编辑表格</el-button>
     <el-button type="primary" class="mb-10" @click="handleClick">保存</el-button>
+    <el-button type="primary" class="mb-10" @click="handleRest">重置</el-button>
     <page-edit-table
       ref="editTable"
       v-model="tableData"
@@ -25,9 +26,10 @@
         <el-table-column align="center" label="序号" width="50">
           <template slot-scope="scope">{{ scope.$index + 1 }}</template>
         </el-table-column>
-        <el-table-column align="center" label="操作" width="50">
+        <el-table-column align="center" label="操作" width="100">
           <template slot-scope="{row}">
             <el-button type="text" @click="handleVaildate(row)">验证</el-button>
+            <el-button type="text" @click="handleRestCell(row)">重置</el-button>
           </template>
         </el-table-column>
         <el-table-column label="品目名称" prop="categoryName" show-overflow-tooltip>
@@ -153,7 +155,7 @@ export default {
       });
     },
     handleVaildate(row) {
-      this.$refs.editTable.verifyCell(row, 'name');
+      this.$refs.editTable.verifyCell(row, ['name', 'purchaseDate']);
     },
     handleClickEdit() {
       this.cellEdit = true;
@@ -174,6 +176,12 @@ export default {
           this.$messages('warning', '验证不通过');
         }
       });
+    },
+    handleRest() {
+      this.$refs.editTable.restTable();
+    },
+    handleRestCell(row) {
+      this.$refs.editTable.restTableCell(row, ['name', 'purchaseDate']);
     },
     pageChange(data) {
       this.pageConfig = Object.assign(this.pageConfig, data);

@@ -10,7 +10,7 @@ const data = Mock.mock({
     spec: '@cword(10, 50)',
     'uom|1': ['台', '只', '个', '条', '瓶'],
     price: '@float(1, 100, 0, 2)',
-    purchaseDate: '@date(yyyy-MM-dd)',
+    purchaseDate: '', // '@date(yyyy-MM-dd)',
     'status|1': ['published', 'draft', 'deleted']
   }]
 });

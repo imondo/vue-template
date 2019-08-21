@@ -121,6 +121,9 @@ export default {
           const valid = !errMsg;
           typeof cb === 'function' && cb(valid);
         });
+    },
+    restCell() {
+      this.editTable.restTableCell(this.row, this.prop);
     }
   }
 };
