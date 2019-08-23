@@ -1,12 +1,13 @@
 <template>
   <div
+    ref="tooltip"
     class="edit-table-cell"
     :class="{'edit-table-cell-error': !!cellState.errMsg}"
     @mouseenter="handleMouseEnter(cellState, rowState)"
     @mouseleave="handleMouseLeave(cellState, rowState)"
     @click="handleClickCell(cellState, rowState)"
   >
-    <error-tooltip v-if="cellState.edit" :content="cellState.errMsg" :hovering="cellState.hovering">
+    <error-tooltip v-if="!isHidden&&cellState.edit" :content="cellState.errMsg" :hovering="cellState.hovering">
       <div class="edit-table-cell-content">
         <!-- 是否input -->
         <el-input
@@ -48,6 +49,11 @@ export default {
       default: () => {}
     }
   },
+  data() {
+    return {
+      isHidden: false
+    }
+  },
   computed: {
     isInput() {
       return this.slotName === 'input';
@@ -62,7 +68,17 @@ export default {
       return cellState;
     }
   },
+  mounted() {
+    this.$nextTick().then(() => {
+      this.isHidden = this.checkIsHidden();
+    })
+  },
   methods: {
+    checkIsHidden() {
+      const $td = this.$refs.tooltip.offsetParent;
+      const isHidden = $td.className.includes('is-hidden');
+      return isHidden;
+    },
     handleMouseEnter(cellState, rowState) {
       const hasErr = !!cellState.errMsg; // 存在错误
       if (!hasErr) return;
