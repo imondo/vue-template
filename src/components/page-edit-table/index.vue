@@ -69,7 +69,27 @@ export default {
         cellEdit: this.cellEdit
       });
     },
-    async verifyTable() {
+    /**
+     * 验证表格
+     * @param { Boolean } isBreakOff // 存在验证错误时是否中断验证
+     */
+    async verifyTable(isBreakOff = false) {
+      if (isBreakOff) {
+        const breakOff = await this.breakOffVerify();
+        return breakOff;
+      } else {
+        const verifyList = this.getAllColumnsVerify();
+        // 统一验证
+        try {
+          await Promise.all(verifyList);
+          return true;
+        } catch (error) {
+          return false;
+        }
+      }
+    },
+    // 获取所有验证字段集合
+    getAllColumnsVerify() {
       const verifyList = [];
       const { list, columns } = this.store;
       const len = list.length;
@@ -94,13 +114,22 @@ export default {
           }
         });
       }
-      // 统一验证
-      try {
-        await Promise.all(verifyList);
-        return true;
-      } catch (error) {
-        return false;
-      }
+      return verifyList;
+    },
+    // 中断验证
+    breakOffVerify() {
+      return new Promise(resolve => {
+        const { columns, states } = this.store;
+        states.forEach((state, row) => {
+          columns.forEach(prop => {
+            const cellState = this.store.GetTableCell(row, prop);
+            // 已存在错误信息
+            if (cellState && cellState.errMsg) {
+              resolve(false);
+            }
+          });
+        });
+      });
     },
     // 验证当前行数据
     verifyTableCell(row, prop, cellState) {
@@ -111,7 +140,6 @@ export default {
           resolve();
         }
         verify(row, errMsg => {
-          console.log(cellState);
           Object.assign(cellState, { errMsg });
           resolve(errMsg);
         });
