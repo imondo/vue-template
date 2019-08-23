@@ -74,22 +74,23 @@ export default {
      * @param { Boolean } isBreakOff // 存在验证错误时是否中断验证
      */
     async verifyTable(isBreakOff = false) {
-      if (isBreakOff) {
-        const breakOff = await this.breakOffVerify();
-        return breakOff;
-      } else {
-        const verifyList = this.getAllColumnsVerify();
-        // 统一验证
-        try {
+      // 统一验证
+      try {
+        if (isBreakOff) {
+          const breakOff = this.breakOffVerify();
+          await Promise.all(breakOff);
+          return true;
+        } else {
+          const verifyList = this.getAllColumnsVerify();
           await Promise.all(verifyList);
           return true;
-        } catch (error) {
-          return false;
         }
+      } catch (error) {
+        return false;
       }
     },
-    // 获取所有验证字段集合
-    getAllColumnsVerify() {
+    // 中断验证
+    breakOffVerify() {
       const verifyList = [];
       const { list, columns } = this.store;
       const len = list.length;
@@ -100,13 +101,11 @@ export default {
           if (cellState.edit && this.verifyRules[prop]) {
             // 定义行数据验证
             const verifyCell = new Promise((resolve, reject) => {
-              this.verifyTableCell(row, prop, cellState).then(errMsg => {
-                if (errMsg) {
-                  reject(false);
-                } else {
-                  resolve(true);
-                }
-              });
+              if (cellState.errMsg) {
+                reject(false);
+              } else {
+                resolve(true);
+              }
             });
 
             // 验证集合
@@ -115,35 +114,6 @@ export default {
         });
       }
       return verifyList;
-    },
-    // 中断验证
-    breakOffVerify() {
-      return new Promise(resolve => {
-        const { columns, states } = this.store;
-        states.forEach((state, row) => {
-          columns.forEach(prop => {
-            const cellState = this.store.GetTableCell(row, prop);
-            // 已存在错误信息
-            if (cellState && cellState.errMsg) {
-              resolve(false);
-            }
-          });
-        });
-      });
-    },
-    // 验证当前行数据
-    verifyTableCell(row, prop, cellState) {
-      const verify = this.verifyRules[prop]; // 验证规则
-      return new Promise((resolve, reject) => {
-        // 验证规则不存在时为真
-        if (!verify) {
-          resolve();
-        }
-        verify(row, errMsg => {
-          Object.assign(cellState, { errMsg });
-          resolve(errMsg);
-        });
-      });
     },
     // 验证prop
     verifyCell(row, prop) {
@@ -191,10 +161,51 @@ export default {
           cellState.errMsg = '';
         });
       }
+    },
+    verifyTableCell(row, prop, cellState) {
+      const verify = this.verifyRules[prop]; // 验证规则
+      return new Promise((resolve, reject) => {
+        // 验证规则不存在时为真
+        if (!verify) {
+          resolve();
+        }
+        verify(row, errMsg => {
+          Object.assign(cellState, { errMsg });
+          resolve(errMsg);
+        });
+      });
+    },
+    // 获取所有验证字段集合
+    getAllColumnsVerify() {
+      const verifyList = [];
+      const { list, columns } = this.store;
+      const len = list.length;
+      for (let i = 0; i < len; i++) {
+        const row = list[i];
+        columns.forEach(prop => {
+          const cellState = this.store.GetTableCell(row, prop);
+          if (cellState.edit && this.verifyRules[prop]) {
+            // 定义行数据验证
+            const verifyCell = new Promise((resolve, reject) => {
+              this.verifyTableCell(row, prop, cellState).then(errMsg => {
+                if (errMsg) {
+                  reject(false);
+                } else {
+                  resolve(true);
+                }
+              });
+            });
+
+            // 验证集合
+            verifyList.push(verifyCell);
+          }
+        });
+      }
+      return verifyList;
     }
   }
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 </style>
