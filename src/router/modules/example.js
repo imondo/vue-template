@@ -29,6 +29,12 @@ const example = {
       name: 'EditForm',
       meta: { title: '多表单验证' },
       component: importViews(`/edit-form/form.vue`)
+    },
+    {
+      path: 'virtual',
+      name: 'Virtual',
+      meta: { title: '虚列列表' },
+      component: importViews(`/virtual.vue`)
     }
   ]
 };

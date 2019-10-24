@@ -1,6 +1,5 @@
 <template>
   <div class="about">
-    <h3 class="mb-10">{{ $route.meta.title }}</h3>
     <el-button type="primary" class="mb-10" @click="handleClickEdit">点击列编辑表格</el-button>
     <el-button type="primary" class="mb-10" @click="handleClickDefult">默认编辑表格</el-button>
     <el-button type="primary" class="mb-10" @click="handleClick">保存</el-button>

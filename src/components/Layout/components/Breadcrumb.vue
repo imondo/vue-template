@@ -1,5 +1,5 @@
 <template>
-  <el-breadcrumb separator="/">
+  <el-breadcrumb class="breadcrumb-wap" separator="/">
     <template v-for="{name, meta, path} in list">
       <el-breadcrumb-item :key="path" :to="{ name }">{{ meta&&meta.title }}</el-breadcrumb-item>
     </template>
@@ -37,4 +37,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.breadcrumb-wap {
+  padding-bottom: 10px;
+}
 </style>

@@ -1,6 +1,6 @@
 <template>
   <div ref="virtual" class="virtual-block">
-    <slot :data="visibleData" />
+    <slot :data="visibleData" :index="startIndex"/>
   </div>
 </template>
 
@@ -16,12 +16,6 @@ export default {
         return [];
       }
     },
-    // 表格dom
-    refKey: {
-      required: true,
-      type: String,
-      default: ''
-    },
     // 表格可视区域展示条数
     size: {
       type: Number,
@@ -34,17 +28,22 @@ export default {
     fixed: {
       type: Boolean,
       default: false
+    },
+    // 选中的数据
+    selection: {
+      type: Array,
+      default: () => []
     }
   },
   data() {
     return {
-      visibleData: []
+      visibleData: [],
+      startIndex: 0
     };
   },
   watch: {
     list: {
-      handler: 'loadData',
-      immediate: true
+      handler: 'loadData'
     }
   },
   created() {
@@ -61,16 +60,18 @@ export default {
     });
   },
   methods: {
-    loadData(newVal) {
-      this.$nextTick().then(() => {
-        this.createElementHeight();
-        this.updateVisibleData();
-      });
+    loadData(val) {
+      if (val.length) {
+        this.$nextTick().then(() => {
+          this.createElementHeight();
+          this.updateVisibleData();
+        });
+      }
     },
     eleMap() {
       const selectWrap = this.$el.querySelector('.el-table__body-wrapper'); // el-table__fixed-body-wrapper
       const selectTable = this.$el.querySelector('.el-table');
-      const selectRow = selectWrap.querySelector('table tr');
+      const selectRow = this.$el.querySelector('.el-table table tr');
       const selectTbody = selectWrap.querySelector('table');
       return { selectWrap, selectTable, selectRow, selectTbody };
     },
@@ -104,7 +105,9 @@ export default {
       const visibleCount = Math.ceil(selectWrap.clientHeight / rowHeight);
       const start = Math.floor(scrollTop / rowHeight);
       const end = start + visibleCount;
+      this.startIndex = start;
       this.visibleData = this.list.slice(start, end);
+      this.renderRows(start, end);
       const marginTop = start * rowHeight;
       selectTbody.style.marginTop = `${marginTop}px`;
     },
@@ -112,11 +115,52 @@ export default {
       const selectWrap = this.$el.querySelector('.el-table__body-wrapper');
       const scrollTop = selectWrap.scrollTop;
       // y轴滚动监听
-      if (scrollTop > 0) {
+      if (scrollTop >= 0) {
         window.requestAnimationFrame(() => {
-          this.updateVisibleData(scrollTop);
+          this.debounce(this.updateVisibleData(scrollTop), 100);
         });
       }
+    },
+    // 更新序号
+    renderRows(start, end) {
+      const { visibleData } = this;
+      visibleData.forEach((row, rowIndex) => {
+        row.$index = start + rowIndex + 1;
+      });
+    },
+    debounce(func, wait, immediate) {
+      let timeout, args, context, timestamp, result;
+
+      const later = function() {
+        // 据上一次触发时间间隔
+        const last = +new Date() - timestamp;
+
+        // 上次被包装函数被调用时间间隔last小于设定时间间隔wait
+        if (last < wait && last > 0) {
+          timeout = setTimeout(later, wait - last);
+        } else {
+          timeout = null;
+          // 如果设定为immediate===true，因为开始边界已经调用过了此处无需调用
+          if (!immediate) {
+            result = func.apply(context, args);
+            if (!timeout) context = args = null;
+          }
+        }
+      };
+
+      return function(...args) {
+        context = this;
+        timestamp = +new Date();
+        const callNow = immediate && !timeout;
+        // 如果延时不存在，重新设定延时
+        if (!timeout) timeout = setTimeout(later, wait);
+        if (callNow) {
+          result = func.apply(context, args);
+          context = args = null;
+        }
+
+        return result;
+      };
     }
   }
 };
