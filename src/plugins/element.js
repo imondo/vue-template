@@ -49,7 +49,8 @@ import {
   Loading,
   MessageBox,
   Message,
-  Scrollbar
+  Scrollbar,
+  Card
 } from 'element-ui';
 
 Vue.use(Pagination);
@@ -99,6 +100,7 @@ Vue.use(Container);
 Vue.use(Aside);
 Vue.use(Main);
 Vue.use(Scrollbar);
+Vue.use(Card);
 
 Vue.use(Loading.directive);
 
