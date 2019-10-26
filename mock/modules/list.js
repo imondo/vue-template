@@ -1,7 +1,7 @@
 import Mock from 'mockjs';
 
 const data = Mock.mock({
-  'items|10': [{
+  'items|100': [{
     id: '@id',
     categoryName: '@cword(2, 10)',
     code: '@integer(30000, 50000)',

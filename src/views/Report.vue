@@ -3,6 +3,7 @@
     <h1>{{ $route.meta.title }}</h1>
     <el-table
       :data="list"
+      height="400px"
       tooltip-effect="dark"
       highlight-current-row
       border

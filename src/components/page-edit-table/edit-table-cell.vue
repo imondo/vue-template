@@ -52,7 +52,7 @@ export default {
   data() {
     return {
       isHidden: false
-    }
+    };
   },
   computed: {
     isInput() {
@@ -71,7 +71,7 @@ export default {
   mounted() {
     this.$nextTick().then(() => {
       this.isHidden = this.checkIsHidden();
-    })
+    });
   },
   methods: {
     checkIsHidden() {
