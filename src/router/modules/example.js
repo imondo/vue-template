@@ -35,6 +35,12 @@ const example = {
       name: 'Virtual',
       meta: { title: '虚列列表' },
       component: importViews(`/virtual.vue`)
+    },
+    {
+      path: 'table',
+      name: 'TableComp',
+      meta: { title: '表格组件' },
+      component: importViews(`/table.vue`)
     }
   ]
 };

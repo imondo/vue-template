@@ -7,3 +7,7 @@ contexts.keys().forEach(component => {
     Vue.component(componentEntity.name, componentEntity);
   }
 });
+
+import MdTableColumn from './md-table-column';
+
+Vue.component(MdTableColumn.name, MdTableColumn);
