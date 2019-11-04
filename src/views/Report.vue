@@ -3,7 +3,7 @@
     <h1>{{ $route.meta.title }}</h1>
     <el-table
       :data="list"
-      height="400px"
+      height="600px"
       tooltip-effect="dark"
       highlight-current-row
       border
@@ -42,7 +42,7 @@ export default {
   methods: {
     getListDemo() {
       getList().then(res => {
-        this.list = res.items;
+        this.list = res.items.splice(0, 100);
       });
     }
   }

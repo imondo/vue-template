@@ -1,22 +1,20 @@
 <template>
-  <div class="table-body el-table__body">
-    <table>
-      <colgroup>
-        <template v-for="({ label, prop }, index) in columns">
-          <col :key="index" :width="columnWidth" />
-        </template>
-      </colgroup>
-      <tbody>
-        <template v-for="(row, index) in tableData">
-          <tr :key="index">
-            <template v-for="({ prop }, index) in columns">
-              <td :key="index">{{ row[prop] }}</td>
-            </template>
-          </tr>
-        </template>
-      </tbody>
-    </table>
-  </div>
+  <table cellspacing="0" cellpadding="0" border="0" class="md-table__body">
+    <colgroup>
+      <template v-for="({ label, prop, minWidth, width }, index) in columns">
+        <col :key="index" :name="index" :width="width" />
+      </template>
+    </colgroup>
+    <tbody>
+      <template v-for="(row, index) in tableData">
+        <tr :key="index">
+          <template v-for="({ prop }, index) in columns">
+            <td :key="index">{{ row[prop] }}</td>
+          </template>
+        </tr>
+      </template>
+    </tbody>
+  </table>
 </template>
 
 <script>

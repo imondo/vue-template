@@ -1,9 +1,12 @@
 <template>
   <div>
-    <md-table :data="tableData">
-      <md-table-column label="列1" prop="code"></md-table-column>
-      <md-table-column label="列2" prop="categoryName"></md-table-column>
+    <md-table :data="tableData" height="500px">
+      <md-table-column label="列1" prop="code" width="100" fixed></md-table-column>
+      <md-table-column label="列2" prop="categoryName" fixed="right"></md-table-column>
       <md-table-column label="列3" prop="spec"></md-table-column>
+      <md-table-column label="列4" prop="spec"></md-table-column>
+      <md-table-column label="列5" prop="spec"></md-table-column>
+      <md-table-column label="列6" prop="spec"></md-table-column>
     </md-table>
   </div>
 </template>
@@ -23,7 +26,7 @@ export default {
   methods: {
     getListDemo() {
       getList().then(res => {
-        this.tableData = res.items.splice(1, 10);
+        this.tableData = res.items;
       });
     }
   }
