@@ -3,7 +3,7 @@ import store from './store';
 import NProgress from 'nprogress';
 import { MessageBox } from 'element-ui';
 
-import localRoute from '@/config/localRoute';
+import localRoute from '@/config/dev.routes';
 
 NProgress.configure({
   showSpinner: true

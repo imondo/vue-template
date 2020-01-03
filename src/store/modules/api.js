@@ -1,5 +1,5 @@
 import axios from 'axios';
-import CONFIGAPI from '@/config/apiConfig';
+import CONFIGAPI from '@/config/config.default.js';
 import { Message } from 'element-ui';
 
 console.log(process.env);
