@@ -325,10 +325,17 @@ export default {
 
 // 打印样式设置
 @media print {
+  /**打印页面边距设置 */
+  @page {
+    margin: 0cm;
+  }
+  body {
+    margin: 0cm;
+    background-color: #fff;
+  }
   .print-wrapper {
-    width: 86%;
     margin: 0 auto;
-    padding: 1cm 0;
+    padding: 2cm 2cm;
   }
   table,
   tbody,
