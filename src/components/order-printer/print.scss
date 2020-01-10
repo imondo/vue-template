@@ -1,0 +1,104 @@
+.ly-print-content {
+  overflow: hidden;
+  color: #333;
+  page-break-before: always;
+  .fl {
+    float: left;
+  }
+  .fr {
+    float: right;
+  }
+  .label {
+    color: #000;
+  }
+  .print-title {
+    text-align: center;
+    font-size: 24px;
+    color: #000;
+  }
+  .print-chapter {
+    margin-bottom: 10px;
+    overflow: hidden;
+    text-align: right;
+    .chapter {
+      float: right;
+      width: 80px;
+      border-style: dotted;
+      border-width: 1px;
+      font-size: 14px;
+      text-align: center;
+    }
+  }
+  .print-table {
+    width: 100%;
+    .el-table {
+      width: 100%;
+    }
+    .el-table--border th {
+      border-right: 1px solid #000;
+    }
+    .el-table th {
+      height: 100%;
+    }
+    .el-table td {
+      padding: 0;
+    }
+    .el-table .cell {
+      line-height: 29px;
+    }
+    .el-table--border,
+    .el-table--group,
+    .el-table--border td,
+    .el-table--border th {
+      border-color: #000;
+    }
+  }
+  .print-header {
+    .print-form {
+      overflow: hidden;
+      margin-bottom: 5px;
+    }
+    .print-form-item {
+      vertical-align: middle;
+      .print-form-item__label {
+        vertical-align: middle;
+        color: #000;
+      }
+      .print-form-item__content {
+        display: inline-block;
+        vertical-align: middle;
+      }
+      .ellipsis-200 {
+        width: 200px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+    }
+  }
+  .footer-amount {
+    border-left: 1px solid #000;
+    border-right: 1px solid #000;
+    .footer-amount-item {
+      padding: 0 10px;
+      overflow: hidden;
+      line-height: 29px;
+      border-bottom: 1px solid #000;
+    }
+  }
+  .print-footer {
+    position: relative;
+    padding-top: 15px;
+    overflow: hidden;
+    color: #000;
+    .footer-item {
+      float: left;
+      width: 25%;
+    }
+    .number-pages {
+      position: absolute;
+      right: 0;
+      top: 15px;
+    }
+  }
+}
