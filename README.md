@@ -7,17 +7,17 @@
 yarn install or npm install
 ```
 
-### 程序启动
+## 程序启动
 ```
 yarn run dev or npm run dev
 ```
 
-### 程序打包
+## 程序打包
 ```
 yarn run build or npm run build
 ```
 
-### 程序代码检查
+## 程序代码检查
 ```
 yarn run lint or npm run lint
 ```
@@ -74,3 +74,19 @@ yarn run lint or npm run lint
 - 多表单组件处理
 
 其他功能待更新...
+
+## 模板更新到vue-cli 4.x版本
+
+* 全局更新vue cli 版本
+
+```js
+npm i -g @vue/cli
+
+vue -V
+```
+
+* 项目根目录执行更新命令 `vue upgrade`
+
+* 启动程序
+
+> 注意 sass-loader 升级， babel.config.js 更新
