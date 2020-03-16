@@ -4,7 +4,7 @@ import routesConfig from './modules/routes';
 
 Vue.use(Router);
 export default new Router({
-  mode: 'history',
+  mode: 'hash',
   base: process.env.BASE_URL, // get vue.config.js publicPath
   routes: routesConfig,
   scrollBehavior: () => ({ y: 0 })

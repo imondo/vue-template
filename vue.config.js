@@ -7,10 +7,7 @@ const smp = new SpeedMeasurePlugin();
 // webpack配置
 const webpackConfig = require('./build/webpack.base.conf');
 
-const local = require('./build/setting');
-
-const host = local();
-const port = 9528;
+const config = require('./config');
 
 const isProduction = process.env.NODE_ENV === 'production'; // 生产环境
 
@@ -19,26 +16,20 @@ const isDevelopment = process.env.NODE_ENV === 'development'; // 开发环境
 const resolve = dir => path.join(__dirname, dir);
 
 module.exports = {
-  publicPath: '/temp/', // 设置路由base
+  publicPath: config.publicPath, // 设置路由base
   outputDir: 'dist', // 打包输出目录
   assetsDir: 'static', // 打包文件目录
   lintOnSave: isDevelopment, // eslint-loader 是否在保存的时候检查
   productionSourceMap: false,
   devServer: {
     open: true,
-    host,
-    port,
+    host: config.host,
+    port: config.port || 8080,
     overlay: {
       warnings: false,
       errors: true
     },
-    proxy: {
-      '/api/mock': {
-        target: `http://${host}:${port}`,
-        changeOrigin: true,
-        pathRewrite: {'^/api': ''}
-      }
-    },
+    proxy: config.proxy,
     after: require('./mock/server.js') // 使用mock数据模拟
   },
   configureWebpack: () => {
