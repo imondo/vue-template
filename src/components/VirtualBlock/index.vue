@@ -98,10 +98,11 @@ export default {
         this.refTable = findComponentDownward(this, 'ElTable');
         this.domMap = this.eleMap();
         const { selectWrap } = this.domMap;
+        const { handleScroll } = this;
         // 监听表格滚动
-        selectWrap.addEventListener('scroll', this.handleScroll);
+        selectWrap.addEventListener('scroll', handleScroll);
         this.$once('hook:beforeDestroy', () => {
-          window.removeEventListener('scroll', this.handleScroll);
+          window.removeEventListener('scroll', handleScroll);
         });
       });
     },
@@ -169,10 +170,11 @@ export default {
     handleScroll(e) {
       const { selectWrap } = this.domMap;
       const scrollTop = selectWrap.scrollTop;
+      const { updateVisibleData } = this;
       // y轴滚动监听
       if (scrollTop >= 0) {
         window.requestAnimationFrame(() => {
-          debounce(this.updateVisibleData(scrollTop), 1000);
+          debounce(updateVisibleData(scrollTop), 500);
         });
       }
     },
