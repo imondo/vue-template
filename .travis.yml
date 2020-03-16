@@ -1,6 +1,7 @@
 language: node_js
 node_js:
-  - lts/*
+  - 8.11.1
+install: npm install --registry=https://registry.npm.taobao.org
 script:
   - npm run build
 deploy:
