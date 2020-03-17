@@ -1,5 +1,7 @@
 # vue-template
 
+[![Build Status](https://travis-ci.org/one-pupil/vue-template.svg?branch=master)](https://travis-ci.org/one-pupil/vue-template)
+
 > 使用vue-cli3搭建
 
 ## 程序依赖
