@@ -1,7 +1,7 @@
 /**
  * 获取本机IP
  */
-if (process.env.NODE_ENV === 'production') {
+if (['production', 'testing'].includes(process.env.NODE_ENV)) {
   module.exports = function() {};
   return;
 }
