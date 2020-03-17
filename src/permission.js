@@ -11,6 +11,8 @@ NProgress.configure({
 
 const whiteList = ['/login']; // 免登录白名单
 
+console.log('start');
+
 router.beforeEach(async(to, from, next) => {
   NProgress.start();
   await store.dispatch('SetConfigApi'); // 获取配置
