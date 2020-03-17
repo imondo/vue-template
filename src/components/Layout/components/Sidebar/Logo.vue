@@ -1,6 +1,8 @@
 <template>
   <div class="logo">
-    <i class="el-icon-discover"></i>
+    <a href="https://github.com/one-pupil/vue-template" target="_blank">
+      <SvgIcon icon-class="github"/>
+    </a>
   </div>
 </template>
 
