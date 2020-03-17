@@ -3,7 +3,7 @@ node_js:
   - 8.11.1
 install: npm install --registry=https://registry.npm.taobao.org
 script:
-  - npm run build
+  - npm run test
 deploy:
   provider: pages
   skip-cleanup: true
