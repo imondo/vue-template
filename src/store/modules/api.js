@@ -19,6 +19,7 @@ const api = {
           resolve();
         } else if (process.env.NODE_ENV === 'testing') {
           commit('SET_CONFIG_API', CONFIGAPI);
+          resolve();
         } else if (process.env.NODE_ENV === 'production') {
           if (!state.LOCAL_URL) {
             dispatch('GetConfigApi')
