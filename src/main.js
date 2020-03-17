@@ -40,6 +40,11 @@ Vue.prototype.$multipleSortList = multipleSortList;
 
 Vue.config.productionTip = false;
 
+if (process.env.NODE_ENV === 'testing') {
+  const { mockXHR } = require('../mock');
+  mockXHR();
+}
+
 new Vue({
   router,
   store,

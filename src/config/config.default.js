@@ -8,7 +8,7 @@ export const config = {
   api: `http://test.com/api` // 测试环境单管IP,
 };
 
-const apiKey = [`api`][2]; // 联调IP，取对应环境变量
+const apiKey = [`api`][1]; // 联调IP，取对应环境变量
 config[apiKey] = `http://192.168.2.29:8080/api`;
 
 const CONFIG_API = {
