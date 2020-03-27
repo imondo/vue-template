@@ -41,6 +41,12 @@ const example = {
       name: 'TableComp',
       meta: { title: '表格组件' },
       component: importViews(`/table.vue`)
+    },
+    {
+      path: 'area-map',
+      name: 'AreaMap',
+      meta: { title: '地图绘制' },
+      component: importViews(`/area-map.vue`)
     }
   ]
 };
