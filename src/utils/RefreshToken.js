@@ -1,3 +1,6 @@
+/* eslint-disable no-undef */
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-empty */
 /**
  * 1. 获取token
  * 2. 判断token是否超期 isPastDue
@@ -208,7 +211,7 @@ class RefreshToken {
 	}
 }
 
-function refreshingFn() {
+function refreshingFn(error) {
 	const { config } = error.response;
 	if (!isRefreshing) {
 		isRefreshing = true;

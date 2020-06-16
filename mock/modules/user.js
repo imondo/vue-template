@@ -2,10 +2,10 @@ import Mock from 'mockjs';
 
 const Info = Mock.mock({
   data: {
-    name: '测试湖北省管理员',
+    name: 'Mondo',
     orgId: '777777',
-    orgName: '测试湖北省',
-    orgType: '221'
+    orgName: '超级管理员',
+    orgType: '0'
   }
 });
 

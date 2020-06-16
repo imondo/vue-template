@@ -46,9 +46,9 @@ const api = {
               PMS__File_HOST:
                 result.data['file_url'] || result.data['url'], // 文件路径
               LOCAL_API: result.data['fe_url'], // 业务系统前端路径
-              IPORTAL_LOCAL_API: result.data['iportal_fe_url'], // iportal前端路径
-              IPORTAL_API: result.data[`iportal_url`], // iportal请求路径
-              OAUTH_API: result.data[`iportal_oauth_url`], // iportal oauth请求路径
+              IPORTAL_LOCAL_API: result.data['iportal_fe_url'], // 认证前端路径
+              IPORTAL_API: result.data[`iportal_url`], // 认证请求路径
+              OAUTH_API: result.data[`iportal_oauth_url`], // 认证 oauth请求路径
               SERVICE_API: result.data['service_url'], // 业务系统客服统一请求接口路径
               SYSTEMCONFIG: result.data['system_config'] || {} // 系统内个性化配置
             };
@@ -63,12 +63,10 @@ const api = {
     async SetApi({ rootGetters, commit, state }) {
       const config = Object.assign({}, state);
       const { IPORTAL_LOCAL_API } = config;
-      // 节点名称
-      const nodeName = localStorage.getItem('nodeName') || rootGetters.nodeName;
       // 平台
-      config.PLATFORM_HREF = `${IPORTAL_LOCAL_API}platform`;
+      config.PLATFORM_HREF = `${IPORTAL_LOCAL_API}login`;
       // 前端退出直接到项目首页
-      config.LOGOUT_HREF = `${IPORTAL_LOCAL_API}bus?node=${nodeName}`;
+      config.LOGOUT_HREF = `${IPORTAL_LOCAL_API}login`;
       commit('SET_CONFIG_API', config);
       return config;
     }

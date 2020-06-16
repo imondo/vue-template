@@ -1,9 +1,11 @@
 <template>
   <div class="app-main">
-    <Breadcrumb/>
-    <transition name="el-fade-in-linear" mode="out-in">
-      <router-view :key="key"/>
-    </transition>
+    <Breadcrumb class="breadcrumb-wap"/>
+    <div class="app-main-content">
+      <transition name="el-fade-in-linear" mode="out-in">
+        <router-view :key="key"/>
+      </transition>
+    </div>
   </div>
 </template>
 
@@ -24,6 +26,15 @@ export default {
 
 <style lang="scss" scoped>
 .app-main {
-  padding: 10px;
+  padding-bottom: 10px;
+}
+.breadcrumb-wap {
+  padding: 16px 20px;
+  background: #fff;
+}
+.app-main-content {
+  margin: 20px;
+  padding: 20px;
+  background: #fff;
 }
 </style>

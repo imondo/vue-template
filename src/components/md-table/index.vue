@@ -94,9 +94,9 @@ export default {
       const tableBody = this.$refs.tableBody;
       const { scrollTop, scrollLeft } = tableBody;
       console.log(scrollTop, scrollLeft);
-      if (scrollLeft > 0) {
-        
-      }
+      // if (scrollLeft > 0) {
+
+      // }
     }
   }
 };

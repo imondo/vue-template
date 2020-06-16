@@ -56,7 +56,7 @@ const user = {
     },
     async Logout({ dispatch, rootGetters }) {
       await dispatch('FeLogout');
-      window.location.href = rootGetters.api.IPRTAL_LOGOUT_HREF;
+      window.location.href = rootGetters.api.LOGOUT_HREF;
     }
   }
 };

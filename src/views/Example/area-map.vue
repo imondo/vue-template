@@ -13,6 +13,10 @@
 </template>
 
 <script>
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-undef */
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-unused-vars */
 export default {
   name: 'AreaMap',
   data() {
@@ -22,7 +26,7 @@ export default {
     };
   },
   mounted() {
-    this.$nextTick(async () => {
+    this.$nextTick(async() => {
       await this.testMap();
       await this.mapUIArea();
     });
@@ -133,7 +137,7 @@ export default {
           map: map
         }));
 
-        //切换区域
+        // 切换区域
         function switch2AreaNode(adcode, callback) {
           if (
             currentAreaNode &&
@@ -153,7 +157,7 @@ export default {
 
             currentAreaNode = window.currentAreaNode = areaNode;
 
-            //设置当前使用的定位用节点
+            // 设置当前使用的定位用节点
             districtExplorer.setAreaNodesForLocating([currentAreaNode]);
 
             refreshAreaNode(areaNode);

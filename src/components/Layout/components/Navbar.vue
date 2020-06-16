@@ -2,6 +2,9 @@
   <div class="nav-bar">
     <Hamburger :is-active="sidebar.opened" class="hamburger-container" @click="toggleSideBar"/>
     <div class="fr nav-right">
+      <a class="github" href="https://github.com/one-pupil/vue-template" target="_blank">
+        <SvgIcon icon-class="github"/>
+      </a>
       <el-button type="text" icon="el-icon-switch-button" @click="handleClick">退出</el-button>
     </div>
   </div>
@@ -28,7 +31,11 @@ export default {
       this.$store.dispatch('ToggleSideBar');
     },
     handleClick() {
-      this.$store.dispatch('Logout');
+      this.$confirm('是否确认退出？', {
+        onClose: () => {
+          this.$store.dispatch('Logout');
+        }
+      });
     }
   }
 };
@@ -40,13 +47,25 @@ export default {
   height: $navHeight;
   line-height: $navHeight;
   background-color: $navBg;
-  color: #fff;
-  border-bottom: 1px solid #dcdfe6;
+  position: relative;
+  padding: 0;
+  box-shadow: 0 1px 4px rgba(0,21,41,.08);
 }
 .hamburger-container {
   display: inline-block;
+  cursor: pointer;
+  &:hover {
+    background: rgba(0,0,0,.025);
+  }
 }
 .nav-right {
-  padding: 0 10px;
+  padding: 0 20px;
+  font-size: 20px;
+  .github {
+    padding-right: 10px;
+  }
+  .el-button--text {
+    color: $menuBg;
+  }
 }
 </style>

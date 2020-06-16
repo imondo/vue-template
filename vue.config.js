@@ -32,6 +32,13 @@ module.exports = {
     proxy: config.proxy,
     after: require('./mock/server.js') // 使用mock数据模拟
   },
+  css: {
+    loaderOptions: {
+      sass: {
+        implementation: require('sass')
+      }
+    }
+  },
   configureWebpack: () => {
     if (isProduction) {
       return smp.wrap(webpackConfig);
@@ -78,8 +85,6 @@ module.exports = {
         return options;
       })
       .end();
-
-    config.module.rule();
 
     config.when(isDevelopment, config => config.devtool('cheap-source-map'));
 

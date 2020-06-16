@@ -1,14 +1,14 @@
 const localRoutes = [
   {
-    name: '管理',
+    name: '测试',
     permission: 'budget'
   },
   {
-    name: '立项',
+    name: '测试一',
     permission: 'project'
   },
   {
-    name: '审核',
+    name: '测试二',
     permission: 'audit'
   },
   {

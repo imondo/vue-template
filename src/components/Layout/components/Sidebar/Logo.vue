@@ -1,8 +1,6 @@
 <template>
   <div class="logo">
-    <a href="https://github.com/one-pupil/vue-template" target="_blank">
-      <SvgIcon icon-class="github"/>
-    </a>
+    后台管理系统
   </div>
 </template>
 
