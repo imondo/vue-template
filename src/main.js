@@ -1,5 +1,7 @@
-import { createApp } from 'vue'
-import App from './App.vue'
-import './index.css'
+import { createApp } from 'vue';
+import App from './App.vue';
+import './index.less';
 
-createApp(App).mount('#app')
+// console.log(import.meta.env.VITE_TOKEN);
+
+createApp(App).mount('#app');
