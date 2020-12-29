@@ -1,7 +1,11 @@
 import { createApp } from 'vue';
 import App from './App.vue';
-import './index.less';
+import AntDesign from './plugins/ant-design';
+import './styles/index.less';
+import router from './routes';
 
-// console.log(import.meta.env.VITE_TOKEN);
+console.log(import.meta.env);
 
-createApp(App).mount('#app');
+const app = createApp(App);
+
+app.use(AntDesign).use(router).mount('#app');
