@@ -1,19 +1,32 @@
 import { createRouter, createWebHashHistory } from 'vue-router';
 
-import Layouts from '../layouts/index.vue';
-
 const routes = [
   {
     path: '/',
-    component: Layouts,
+    component: () => import('../layouts/index.jsx'),
+    redirect: {
+      name: 'dashboard'
+    },
     children: [
       {
-        path: '/',
+        path: '/dashboard',
+        name: 'dashboard',
         component: () => import('../views/Home.vue')
       },
       {
-        path: '/about',
+        path: '/form',
+        name: 'Form',
         component: () => import('../views/About.vue')
+      },
+      {
+        path: '/table',
+        name: 'Table',
+        component: () => import('../views/About.vue')
+      },
+      {
+        path: '/:pathMatch(.*)*',
+        name: 'NotFound',
+        component: () => import('../components/NotFound/index.jsx')
       }
     ]
   }

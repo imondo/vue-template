@@ -1,0 +1,82 @@
+.app-box {
+  display: flex;
+  .app-main {
+    flex: 1;
+  }
+  .app-container {
+    padding: 20px;
+  }
+
+  .app-header {
+    flex: 1;
+    height: @headerHeight;
+    padding: 0 50px;
+    line-height: @headerHeight;
+    background: #fff;
+    box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
+  }
+
+  .app-sidebar {
+    flex: 0 0 @sidebarWidth;
+    width: @sidebarWidth;
+    position: relative;
+    z-index: 10;
+    min-height: 100vh;
+    .logo {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: @headerHeight;
+      background-color: #fff;
+      &-img {
+        width: 32px;
+        height: 32px;
+        vertical-align: middle;
+        margin-right: 12px;
+      }
+      &-title {
+        display: inline-block;
+        margin: 0;
+        font-weight: 600;
+        line-height: 50px;
+        font-size: 14px;
+        font-family: Avenir, Helvetica Neue, Arial, Helvetica, sans-serif;
+        vertical-align: middle;
+      }
+    }
+  }
+
+  .app-sidebar {
+    background-color: @menuBg;
+    box-shadow: 2px 0 6px rgba(0, 21, 41, 0.25);
+    .sidebar-menu.ant-menu-dark {
+      background-color: @menuBg;
+      .ant-menu-sub {
+        background-color: @menuBg;
+      }
+      .ant-menu-inline.ant-menu-sub {
+        background-color: @menuSubBg;
+      }
+      .ant-menu-item:hover {
+        background-color: @menuTitleBgHover;
+      }
+      .ant-menu-item-selected:hover {
+        background-color: @menuBgSelectHover;
+      }
+      .ant-menu-submenu-active {
+        background-color: @menuTitleBgHover;
+      }
+      &.ant-menu-inline > .ant-menu-item,
+      .ant-menu-submenu > .ant-menu-submenu-title {
+        margin: 0;
+        height: @menuItemHeight;
+        line-height: @menuItemHeight;
+      }
+      .ant-menu-inline .ant-menu-item {
+        margin: 0;
+        height: @menuItemHeight;
+        line-height: @menuItemHeight;
+      }
+    }
+  }
+}

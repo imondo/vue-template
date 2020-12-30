@@ -27,6 +27,17 @@ module.exports = {
     '/@/': path.resolve(__dirname, './src')
     // '/@components/': path.resolve(__dirname, './src/components')
   },
+  cssPreprocessOptions: {
+    // less 全局配置
+    less: {
+      modifyVars: {
+        hack: `true; @import "${path.resolve(
+          __dirname,
+          './src/styles/variable.less'
+        )}";`
+      }
+    }
+  },
   proxy: {
     // '/api': 'http://test.com'
     // '/api': {

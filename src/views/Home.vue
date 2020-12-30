@@ -1,8 +1,12 @@
 <template>
-  <div>
-    <h1>Home</h1>
-    <a-button type="primary" @click="onClick">点击</a-button>
-  </div>
+  <layout-main>
+    <template #appTop>
+      <h1>Home</h1>
+    </template>
+    <template #appContent>
+      <a-button type="primary" @click="onClick">点击</a-button>
+    </template>
+  </layout-main>
 </template>
 
 <script>

@@ -16,6 +16,7 @@ module.exports = {
         libraryName: 'antd',
         style: 'css'
       }
-    ]
+    ],
+    '@vue/babel-plugin-jsx'
   ]
 };
