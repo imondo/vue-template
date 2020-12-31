@@ -31,7 +31,6 @@ export default defineComponent({
       style.cursor = 'pointer';
     }
     const onTarget = () => {
-      console.log(props.url);
       if (props.url) {
         window.open(props.url);
       }
