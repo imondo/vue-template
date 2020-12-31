@@ -1,4 +1,5 @@
 const path = require('path');
+const { default: PurgeIcons } = require('vite-plugin-purge-icons');
 
 module.exports = {
   /**
@@ -38,6 +39,7 @@ module.exports = {
       }
     }
   },
+  plugins: [PurgeIcons()],
   proxy: {
     // '/api': 'http://test.com'
     // '/api': {

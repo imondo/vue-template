@@ -21,7 +21,7 @@ export default defineComponent({
             if (!item.children) {
               return (
                 <Menu.Item key={item.key}>
-                  {() => <span>{item.name}</span>}
+                  <span>{item.name}</span>
                 </Menu.Item>
               );
             } else {

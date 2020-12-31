@@ -1,7 +1,8 @@
 import { ref, watchEffect, defineComponent } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import { Menu } from 'ant-design-vue';
-import Submenu from './Submenu.jsx';
+import Submenu from './Submenu.vue';
+import Icon from '../components/Icon';
 
 export default defineComponent({
   props: {
@@ -48,7 +49,12 @@ export default defineComponent({
                 if (!item.children) {
                   return (
                     <Menu.Item key={item.key}>
-                      {() => <span>{item.name}</span>}
+                      {() => (
+                        <div class="inline">
+                          <Icon class="sidebar-icon" icon={item?.icon} />
+                          <span>{item.name}</span>
+                        </div>
+                      )}
                     </Menu.Item>
                   );
                 } else {

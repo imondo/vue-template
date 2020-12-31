@@ -3,7 +3,8 @@ import { defineAsyncComponent } from 'vue';
 const asyncImport = comp => defineAsyncComponent(() => import(comp));
 
 const comps = {
-  LayoutMain: asyncImport('./LayoutMain/index.vue')
+  LayoutMain: asyncImport('./LayoutMain/index.vue'),
+  Icon: asyncImport('./Icon/index.jsx')
 };
 
 export default {

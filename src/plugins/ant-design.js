@@ -3,9 +3,7 @@ import { Button, message, Menu, Card } from 'ant-design-vue';
 
 export default {
   install(app) {
-    app.use(Button);
-    app.use(Menu);
-    app.use(Card);
+    app.use(Button).use(Menu).use(Card);
     app.config.globalProperties.$message = message;
   }
 };
