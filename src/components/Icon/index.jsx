@@ -15,6 +15,10 @@ export default defineComponent({
     size: {
       type: [String, Number],
       default: 14
+    },
+    url: {
+      type: String,
+      default: ''
     }
   },
   setup(props) {
@@ -23,8 +27,23 @@ export default defineComponent({
       color: props.color,
       display: 'inline-block'
     };
+    if (props.url) {
+      style.cursor = 'pointer';
+    }
+    const onTarget = () => {
+      console.log(props.url);
+      if (props.url) {
+        window.open(props.url);
+      }
+    };
     return () => (
-      <span class="iconify" data-icon={props.icon} style={unref(style)}></span>
+      <div onClick={onTarget} style="display: inline-block;">
+        <span
+          class="iconify"
+          data-icon={props.icon}
+          style={unref(style)}
+        ></span>
+      </div>
     );
   }
 });
