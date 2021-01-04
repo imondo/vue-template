@@ -11,7 +11,7 @@ export default [
     children: [
       {
         key: 'Form',
-        name: '表单',
+        name: '多表单验证',
         icon: 'ant-design:form'
       },
       {
