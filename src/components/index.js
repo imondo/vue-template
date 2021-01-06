@@ -1,6 +1,7 @@
 import { defineAsyncComponent } from 'vue';
 
-const asyncImport = comp => defineAsyncComponent(() => import(comp));
+const asyncImport = comp =>
+  defineAsyncComponent(() => import(/* @vite-ignore */ comp));
 
 const comps = {
   LayoutMain: asyncImport('./LayoutMain/index.vue'),

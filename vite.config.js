@@ -1,4 +1,5 @@
 const path = require('path');
+import vue from '@vitejs/plugin-vue';
 const { default: PurgeIcons } = require('vite-plugin-purge-icons');
 
 module.exports = {
@@ -39,7 +40,7 @@ module.exports = {
       }
     }
   },
-  plugins: [PurgeIcons()],
+  plugins: [vue(), PurgeIcons()],
   proxy: {
     // '/api': 'http://test.com'
     // '/api': {
