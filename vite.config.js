@@ -1,6 +1,6 @@
 const path = require('path');
 import vue from '@vitejs/plugin-vue';
-const { default: PurgeIcons } = require('vite-plugin-purge-icons');
+import PurgeIcons from 'vite-plugin-purge-icons';
 
 module.exports = {
   /**
@@ -21,9 +21,9 @@ module.exports = {
   // 服务端渲染
   ssr: false,
   // 引入第三方的配置
-  optimizeDeps: {
-    include: ['moment', 'echarts', 'axios', 'mockjs']
-  },
+  // optimizeDeps: {
+  //   include: ['moment', 'echarts', 'axios', 'mockjs']
+  // },
   alias: {
     // 必须以斜线开始和结束
     '/@/': path.resolve(__dirname, './src')

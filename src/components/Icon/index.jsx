@@ -1,6 +1,6 @@
 import { defineComponent, unref } from 'vue';
 import '@iconify/iconify';
-import '@purge-icons/generated';
+// import '@purge-icons/generated';
 
 export default defineComponent({
   name: 'Icon',

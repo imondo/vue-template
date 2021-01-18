@@ -2,6 +2,7 @@ import { createApp } from 'vue';
 import App from './App.vue';
 import AntDesign from './plugins/ant-design';
 import GlobalComponents from './components';
+import '@purge-icons/generated';
 
 import './styles/index.less';
 import router from './routes';
