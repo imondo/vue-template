@@ -1,0 +1,96 @@
+@import './variables.scss';
+@import './mixin.scss';
+@import './transition.scss';
+@import './element-ui.scss';
+@import './sidebar.scss';
+
+body {
+  height: 100%;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  font-family: Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Arial, sans-serif;
+}
+
+label {
+  font-weight: 700;
+}
+
+html {
+  height: 100%;
+  box-sizing: border-box;
+}
+
+#app {
+  height: 100%;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+a:focus,
+a:active {
+  outline: none;
+}
+
+a,
+a:focus,
+a:hover {
+  cursor: pointer;
+  color: inherit;
+  text-decoration: none;
+}
+
+div:focus {
+  outline: none;
+}
+
+.clearfix {
+  &:after {
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: " ";
+    clear: both;
+    height: 0;
+  }
+}
+
+// main-container global css
+.app-container {
+  padding: 20px;
+}
+
+.query-form {
+  label {
+    font-weight: normal;
+  }
+  .el-form-item {
+    margin-bottom: 0;
+    width: 100%;
+  }
+  .el-form-item__content {
+    // width: 220px;
+    width: calc(100% - 82px);
+  }
+  .el-cascader,
+  .el-select,
+  .el-date-editor.el-input,
+  .el-date-editor.el-input__inner,
+  .el-input-number--small,
+  .el-input {
+    width: 100%;
+  }
+}
+
+.app-content {
+  margin-top: 10px;
+  min-height: 630px;
+}
+
+.table-operate {
+  margin-bottom: 10px;
+}

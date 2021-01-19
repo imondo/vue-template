@@ -1,15 +1,44 @@
-import { createApp } from 'vue';
-import App from './App.vue';
-import AntDesign from './plugins/ant-design';
-import GlobalComponents from './components';
-import '@purge-icons/generated';
+import Vue from 'vue'
 
-import './styles/index.less';
-import router from './routes';
-import './permission';
+import 'normalize.css/normalize.css' // A modern alternative to CSS resets
 
-console.log(import.meta.env);
+import ElementUI from 'element-ui'
+import 'element-ui/lib/theme-chalk/index.css'
+// import locale from 'element-ui/lib/locale/lang/en' // lang i18n
 
-const app = createApp(App);
+import '@/styles/index.scss' // global css
 
-app.use(AntDesign).use(GlobalComponents).use(router).mount('#app');
+import App from './App'
+import store from './store'
+import router from './router'
+
+import '@/icons' // icon
+import '@/permission' // permission control
+import '@/core/use'
+
+/**
+ * If you don't want to use mock-server
+ * you want to use MockJs for mock api
+ * you can execute: mockXHR()
+ *
+ * Currently MockJs will be used in the production environment,
+ * please remove it before going online ! ! !
+ */
+// if (process.env.NODE_ENV === 'production') {
+//   const { mockXHR } = require('../mock')
+//   mockXHR()
+// }
+
+// set ElementUI lang to EN
+Vue.use(ElementUI, { size: 'small' })
+// 如果想要中文版 element-ui，按如下方式声明
+// Vue.use(ElementUI)
+
+Vue.config.productionTip = false
+
+new Vue({
+  el: '#app',
+  router,
+  store,
+  render: h => h(App)
+})
