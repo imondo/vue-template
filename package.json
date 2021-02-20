@@ -36,6 +36,7 @@
     "lint-staged": "^10.5.4",
     "prettier": "^2.2.1",
     "vite": "^2.0.1",
+    "vite-plugin-imp": "^2.0.4",
     "yorkie": "^2.0.0"
   },
   "resolutions": {

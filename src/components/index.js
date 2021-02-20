@@ -1,12 +1,12 @@
-import { defineAsyncComponent } from 'vue';
+import LayoutMain from './LayoutMain/index.vue'
+import LayoutCard from './LayoutCard/index.vue'
+import Icon from './Icon/Icon.jsx'
 
-const asyncImport = comp =>
-  defineAsyncComponent(() => import(/* @vite-ignore */ comp));
 
 const comps = {
-  LayoutMain: asyncImport('./LayoutMain/index.vue'),
-  LayoutCard: asyncImport('./LayoutCard/index.vue'),
-  Icon: asyncImport('./Icon/Icon.jsx')
+  LayoutMain,
+  LayoutCard,
+  Icon
 };
 
 export default {

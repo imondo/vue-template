@@ -25,6 +25,8 @@
     position: relative;
     z-index: 10;
     min-height: 100vh;
+    background-color: @menuBg;
+    box-shadow: 2px 0 6px rgba(0, 21, 41, 0.25);
     .logo {
       display: flex;
       justify-content: center;
@@ -54,8 +56,9 @@
   }
 
   .app-sidebar {
-    background-color: @menuBg;
-    box-shadow: 2px 0 6px rgba(0, 21, 41, 0.25);
+    .ant-menu-item {
+      box-sizing: border-box;
+    }
     .sidebar-menu.ant-menu-dark {
       background-color: @menuBg;
       .ant-menu-sub {

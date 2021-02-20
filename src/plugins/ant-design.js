@@ -1,4 +1,5 @@
-import 'ant-design-vue/dist/antd.css';
+import 'ant-design-vue/lib/style/index.css';
+
 import {
   Button,
   message,
