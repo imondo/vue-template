@@ -1,22 +1,21 @@
 module.exports = {
-  presets: [
-    [
-      '@babel/preset-env',
-      {
-        targets: {
-          node: 'current'
-        }
-      }
-    ]
-  ],
+  // presets: [
+  //   [
+  //     '@babel/preset-env',
+  //     {
+  //       targets: {
+  //         node: 'current'
+  //       }
+  //     }
+  //   ]
+  // ],
   plugins: [
     [
       'import',
       {
         libraryName: 'antd',
-        style: 'css'
+        style: true
       }
-    ],
-    '@vue/babel-plugin-jsx'
+    ]
   ]
 };

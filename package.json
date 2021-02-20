@@ -1,9 +1,10 @@
 {
   "name": "vue3-admin-template",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "serve": "vite preview",
     "lint": "eslint \"src/**/*.{js,vue}\" --fix"
   },
   "gitHooks": {
@@ -11,32 +12,30 @@
     "pre-push": "npm run test"
   },
   "lint-staged": {
-    "*.{js,vue}": "eslint"
+    "src/**/*.{js,vue}": "eslint"
   },
   "dependencies": {
-    "@iconify/iconify": "^2.0.0-rc.2",
-    "ant-design-vue": "^2.0.0-rc.8",
+    "@ant-design/icons-vue": "^6.0.1",
+    "ant-design-vue": "^2.0.0",
+    "autoprefixer": "^10.2.4",
     "vue": "^3.0.5",
-    "vue-router": "^4.0.3"
+    "vue-router": "4"
   },
   "devDependencies": {
-    "@iconify/json": "^1.1.278",
-    "@purge-icons/generated": "^0.4.1",
-    "@vitejs/plugin-vue": "^1.0.4",
+    "@babel/preset-env": "^7.12.17",
+    "@vitejs/plugin-vue": "^1.1.4",
+    "@vitejs/plugin-vue-jsx": "^1.1.0",
     "@vue/compiler-sfc": "^3.0.5",
     "@vue/eslint-config-prettier": "^6.0.0",
-    "autoprefixer": "^10.1.0",
     "babel-eslint": "^10.1.0",
     "babel-plugin-import": "^1.13.3",
-    "eslint": "^7.16.0",
-    "eslint-plugin-prettier": "^3.3.0",
-    "eslint-plugin-vue": "^7.4.0",
-    "less": "^4.0.0",
-    "lint-staged": "^10.5.3",
-    "postcss": "8.1.7",
+    "eslint": "^7.20.0",
+    "eslint-plugin-prettier": "^3.3.1",
+    "eslint-plugin-vue": "^7.6.0",
+    "less": "^4.1.1",
+    "lint-staged": "^10.5.4",
     "prettier": "^2.2.1",
-    "vite": "^2.0.0-beta.8",
-    "vite-plugin-purge-icons": "^0.5.1",
+    "vite": "^2.0.1",
     "yorkie": "^2.0.0"
   },
   "resolutions": {

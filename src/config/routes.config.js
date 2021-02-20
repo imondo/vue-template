@@ -2,28 +2,28 @@ export default [
   {
     key: 'dashboard',
     name: '首页',
-    icon: 'ant-design:home'
+    icon: 'iconshouye'
   },
   {
     key: 'Base',
     name: '基础组件',
-    icon: 'ant-design:align-center',
+    icon: 'iconjichuziliao',
     children: [
       {
         key: 'Form',
         name: '多表单验证',
-        icon: 'ant-design:form'
+        icon: 'iconyewubiaodan'
       },
       {
         key: 'Table',
         name: '表格',
-        icon: 'ant-design:table'
+        icon: 'icondanganguanli'
       }
     ]
   },
   {
     key: 'Advanced',
     name: '进阶组件',
-    icon: 'ant-design:area-chart'
+    icon: 'icontongjifenxi'
   }
 ];

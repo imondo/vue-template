@@ -6,7 +6,7 @@ const asyncImport = comp =>
 const comps = {
   LayoutMain: asyncImport('./LayoutMain/index.vue'),
   LayoutCard: asyncImport('./LayoutCard/index.vue'),
-  Icon: asyncImport('./Icon/index.jsx')
+  Icon: asyncImport('./Icon/Icon.jsx')
 };
 
 export default {

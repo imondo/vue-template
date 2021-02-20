@@ -4,25 +4,20 @@
       <h1>Home</h1>
     </template>
     <template #appContent>
-      <Icon icon="fa:home" :size="16" />
+      <Icon type="icon-tuichu" :size="16" />
       <a-button type="primary" @click="onClick">点击</a-button>
     </template>
   </layout-main>
 </template>
 
-<script>
+<script setup>
 import { getCurrentInstance } from 'vue';
-export default {
-  name: 'Home',
-  setup() {
-    const { proxy } = getCurrentInstance();
-    const onClick = () => {
-      proxy.$message.info('这阿达');
-    };
-    return {
-      onClick
-    };
-  }
+
+const { proxy } = getCurrentInstance();
+
+/* eslint-disable no-unused-vars */
+const onClick = () => {
+  proxy.$message.info('这阿达');
 };
 </script>
 

@@ -1,52 +1,40 @@
-const path = require('path');
+import { defineConfig } from 'vite';
+import path from 'path';
 import vue from '@vitejs/plugin-vue';
-import PurgeIcons from 'vite-plugin-purge-icons';
+import vueJsx from '@vitejs/plugin-vue-jsx';
 
-module.exports = {
-  /**
-   * 在生产中服务时的基本公共路径。
-   * @default '/'
-   */
-  base: '/vue',
-  /**
-   * 与“根”相关的目录，构建输出将放在其中。如果目录存在，它将在构建之前被删除。
-   * @default 'dist'
-   */
+// https://vitejs.dev/config/
+export default defineConfig({
+  base: '/',
   outDir: 'dist',
-  port: 3000,
-  // 是否自动在浏览器打开
-  open: true,
-  // 是否开启 https
-  https: false,
-  // 服务端渲染
-  ssr: false,
-  // 引入第三方的配置
-  // optimizeDeps: {
-  //   include: ['moment', 'echarts', 'axios', 'mockjs']
-  // },
-  alias: {
-    // 必须以斜线开始和结束
-    '/@/': path.resolve(__dirname, './src')
-    // '/@components/': path.resolve(__dirname, './src/components')
+  plugins: [vue(), vueJsx()],
+  resolve: {
+    alias: {
+      '@': path.resolve(__dirname, './src')
+    },
   },
-  cssPreprocessOptions: {
-    // less 全局配置
-    less: {
-      modifyVars: {
-        hack: `true; @import "${path.resolve(
-          __dirname,
-          './src/styles/variable.less'
-        )}";`
+  css: {
+    preprocessorOptions: {
+      // less 全局配置
+      less: {
+        modifyVars: {
+          hack: `true; @import "${path.resolve(
+            __dirname,
+            './src/styles/variable.less'
+          )}";`
+        }
       }
-    }
+    },
   },
-  plugins: [vue(), PurgeIcons()],
-  proxy: {
-    // '/api': 'http://test.com'
-    // '/api': {
-    //   target: 'http://test.com',
-    //   changeOrigin: true,
-    //   // rewrite: path => path.replace(/^\/api/, '')
-    // }
+  server: {
+    port: 5000,
+    proxy: {
+      '/api': 'http://test.com'
+      // '/api': {
+      //   target: 'http://test.com',
+      //   changeOrigin: true,
+      //   // rewrite: path => path.replace(/^\/api/, '')
+      // }
+    }
   }
-};
+});

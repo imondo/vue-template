@@ -1,5 +1,5 @@
 import { defineComponent } from 'vue';
-import Icon from '/@/components/Icon';
+import Icon from '@/components/Icon/Icon.jsx';
 
 export default defineComponent({
   setup() {
@@ -7,8 +7,9 @@ export default defineComponent({
       <header class="app-header">
         <div class="app-header-right">
           <Icon
-            icon="ant-design:github"
+            type="icongithub"
             size={24}
+            color="#46b980"
             url="https://github.com/one-pupil/vue-template/tree/vue3-admin-template"
           />
         </div>

@@ -2,7 +2,8 @@ import { ref, watchEffect, defineComponent } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import { Menu } from 'ant-design-vue';
 import Submenu from './Submenu.vue';
-import Icon from '../components/Icon';
+import Icon from '@/components/Icon/Icon.jsx';
+import logoImage from '../assets/logo.png';
 
 export default defineComponent({
   props: {
@@ -32,7 +33,7 @@ export default defineComponent({
     return (
       <div class="app-sidebar">
         <div class="logo">
-          <img class="logo-img" src="/@/assets/logo.png" alt="logo" />
+          <img class="logo-img" src='https://imondo.cn/files/logo.png' alt="logo" />
           <h1 class="logo-title">vue3-admin-template</h1>
         </div>
         <div class="sidebar">
@@ -49,12 +50,10 @@ export default defineComponent({
                 if (!item.children) {
                   return (
                     <Menu.Item key={item.key}>
-                      {() => (
-                        <div class="inline">
-                          <Icon class="sidebar-icon" icon={item?.icon} />
-                          <span>{item.name}</span>
-                        </div>
-                      )}
+                      <div class="inline">
+                        <Icon class="sidebar-icon" type={item?.icon} />
+                        <span>{item.name}</span>
+                      </div>
                     </Menu.Item>
                   );
                 } else {

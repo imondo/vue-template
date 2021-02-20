@@ -2,14 +2,14 @@
   <a-sub-menu :key="menuInfo.key" v-bind="$attrs">
     <template #title>
       <span>
-        <Icon class="sidebar-icon" :icon="getIcon(menuInfo)" />
+        <Icon class="sidebar-icon" :type="getIcon(menuInfo)" />
         <span>{{ menuInfo.name }}</span>
       </span>
     </template>
-    <template v-for="item in menuInfo.children" :key="item.key">
+    <template v-for="item in menuInfo.children">
       <template v-if="!item.children">
         <a-menu-item :key="item.key">
-          <Icon class="sidebar-icon" :icon="getIcon(item)" />
+          <Icon class="sidebar-icon" :type="getIcon(item)" />
           <span>{{ item.name }}</span>
         </a-menu-item>
       </template>

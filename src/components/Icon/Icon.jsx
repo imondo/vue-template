@@ -1,18 +1,21 @@
 import { defineComponent, unref } from 'vue';
+import { createFromIconfontCN } from '@ant-design/icons-vue';
+import './index.less';
 
 export default defineComponent({
   name: 'Icon',
   props: {
-    icon: {
+    type: {
       type: String,
       required: true
     },
     color: {
-      type: String
+      type: String,
+      default: '#fff'
     },
     size: {
       type: [String, Number],
-      default: 14
+      default: 16
     },
     url: {
       type: String,
@@ -22,8 +25,7 @@ export default defineComponent({
   setup(props) {
     const style = {
       fontSize: typeof props.size === 'string' ? props.size : `${props.size}px`,
-      color: props.color,
-      display: 'inline-block'
+      color: props.color
     };
     if (props.url) {
       style.cursor = 'pointer';
@@ -33,14 +35,17 @@ export default defineComponent({
         window.open(props.url);
       }
     };
+    const IconFont = createFromIconfontCN({
+      scriptUrl: '//at.alicdn.com/t/font_2378225_dan87vwo2m.js',
+      extraCommonProps: { style }
+    });
     return () => (
-      <div onClick={onTarget} style="display: inline-block;">
-        <span
-          class="iconify"
-          data-icon={props.icon}
-          style={unref(style)}
-        ></span>
-      </div>
+      <IconFont 
+        class="svg-icon"
+        type={props.type} 
+        style={unref(style)} 
+        onClick={onTarget} 
+      />
     );
   }
 });
