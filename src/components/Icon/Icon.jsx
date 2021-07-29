@@ -40,11 +40,11 @@ export default defineComponent({
       extraCommonProps: { style }
     });
     return () => (
-      <IconFont 
+      <IconFont
         class="svg-icon"
-        type={props.type} 
-        style={unref(style)} 
-        onClick={onTarget} 
+        type={props.type}
+        style={unref(style)}
+        onClick={onTarget}
       />
     );
   }

@@ -7,8 +7,12 @@ import './styles/index.less';
 import router from './routes';
 // import './permission';
 
+import Storage from './utils/Storage';
+
 console.log(import.meta.env);
 
 const app = createApp(App);
+
+app.config.globalProperties.$storage = Storage();
 
 app.use(AntDesign).use(GlobalComponents).use(router).mount('#app');

@@ -1,5 +1,7 @@
 import { createRouter, createWebHashHistory } from 'vue-router';
 
+import example from './example.js';
+
 const routes = [
   {
     path: '/',
@@ -8,21 +10,7 @@ const routes = [
       name: 'dashboard'
     },
     children: [
-      {
-        path: '/dashboard',
-        name: 'dashboard',
-        component: () => import('../views/Home.vue')
-      },
-      {
-        path: '/form',
-        name: 'Form',
-        component: () => import('../views/Form/index.vue')
-      },
-      {
-        path: '/table',
-        name: 'Table',
-        component: () => import('../views/About.vue')
-      },
+      ...example,
       {
         path: '/:pathMatch(.*)*',
         name: 'NotFound',

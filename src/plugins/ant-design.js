@@ -11,7 +11,9 @@ import {
   Switch,
   Radio,
   Checkbox,
-  DatePicker
+  DatePicker,
+  Table,
+  Pagination
 } from 'ant-design-vue';
 
 export default {
@@ -26,7 +28,9 @@ export default {
       .use(Switch)
       .use(Radio)
       .use(Checkbox)
-      .use(DatePicker);
+      .use(DatePicker)
+      .use(Pagination)
+      .use(Table);
     app.config.globalProperties.$message = message;
   }
 };

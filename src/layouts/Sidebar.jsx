@@ -1,9 +1,9 @@
 import { ref, watchEffect, defineComponent } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import { Menu } from 'ant-design-vue';
-import Submenu from './Submenu.vue';
+import Submenu from './Submenu.jsx';
 import Icon from '@/components/Icon/Icon.jsx';
-import logoImage from '../assets/logo.png';
+// import logoImage from '../assets/logo.png';
 
 export default defineComponent({
   props: {
@@ -33,7 +33,11 @@ export default defineComponent({
     return (
       <div class="app-sidebar">
         <div class="logo">
-          <img class="logo-img" src='https://imondo.cn/files/logo.png' alt="logo" />
+          <img
+            class="logo-img"
+            src="https://imondo.cn/files/logo.png"
+            alt="logo"
+          />
           <h1 class="logo-title">vue3-admin-template</h1>
         </div>
         <div class="sidebar">
@@ -57,7 +61,7 @@ export default defineComponent({
                     </Menu.Item>
                   );
                 } else {
-                  return <Submenu menu-info={item} key={item.key} />;
+                  return <Submenu menuInfo={item} key={item.key} />;
                 }
               })
             }

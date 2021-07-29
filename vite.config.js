@@ -16,16 +16,16 @@ export default defineConfig({
         {
           libName: 'ant-design-vue',
           style(name) {
-            return `ant-design-vue/es/${name}/style/index.css`
+            return `ant-design-vue/es/${name}/style/index.css`;
           }
-        },
+        }
       ]
     })
   ],
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src')
-    },
+    }
   },
   css: {
     preprocessorOptions: {
@@ -38,17 +38,17 @@ export default defineConfig({
           )}";`
         }
       }
-    },
+    }
   },
   server: {
     port: 5000,
     proxy: {
-      '/api': 'http://test.com'
-      // '/api': {
-      //   target: 'http://test.com',
-      //   changeOrigin: true,
-      //   // rewrite: path => path.replace(/^\/api/, '')
-      // }
+      '/api': 'http://test.com',
+      '/mock': {
+        target: 'http://test.com',
+        changeOrigin: true,
+        rewrite: path => path.replace(/^\/mock/, '')
+      }
     }
   }
 });
