@@ -37,7 +37,7 @@ export default defineComponent({
       <div onClick={onTarget} style="display: inline-block;">
         <span
           class="iconify"
-          data-icon={props.icon}
+          datel-icon={props.icon}
           style={unref(style)}
         ></span>
       </div>

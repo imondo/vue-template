@@ -26,13 +26,15 @@
     z-index: 10;
     min-height: 100vh;
     background-color: @menuBg;
-    box-shadow: 2px 0 6px rgba(0, 21, 41, 0.25);
     .logo {
       display: flex;
       justify-content: center;
       align-items: center;
       height: @headerHeight;
-      background-color: #fff;
+      position: relative;
+      background: #2b2f3a;
+      overflow: hidden;
+      color: #FFF;
       &-img {
         width: 32px;
         height: 32px;
@@ -56,36 +58,20 @@
   }
 
   .app-sidebar {
-    .ant-menu-item {
+    .el-menu-item {
       box-sizing: border-box;
+      color: @menuColor;
     }
-    .sidebar-menu.ant-menu-dark {
+    .sidebar-menu {
       background-color: @menuBg;
-      .ant-menu-sub {
+      width: @sidebarWidth;
+      .el-submenu__title {
         background-color: @menuBg;
+        color: @menuColor;
       }
-      .ant-menu-inline.ant-menu-sub {
-        background-color: @menuSubBg;
-      }
-      .ant-menu-item:hover {
-        background-color: @menuTitleBgHover;
-      }
-      .ant-menu-item-selected:hover {
-        background-color: @menuBgSelectHover;
-      }
-      .ant-menu-submenu-active {
-        background-color: @menuTitleBgHover;
-      }
-      &.ant-menu-inline > .ant-menu-item,
-      .ant-menu-submenu > .ant-menu-submenu-title {
-        margin: 0;
-        height: @menuItemHeight;
-        line-height: @menuItemHeight;
-      }
-      .ant-menu-inline .ant-menu-item {
-        margin: 0;
-        height: @menuItemHeight;
-        line-height: @menuItemHeight;
+      .el-menu-item.is-active {
+        background-color: @menuBgSelectHover!important;
+        color: #fff!important;
       }
     }
   }

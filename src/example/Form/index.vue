@@ -1,35 +1,31 @@
 <template>
   <LayoutCard>
-    <a-form
-      ref="ruleForm"
-      :model="form"
-      :rules="rules"
-      :label-col="labelCol"
-      :wrapper-col="wrapperCol"
-    >
-      <a-form-item label="人员类型：">
-        <a-select v-model:value="form.type" placeholder="请选择人员类型">
-          <a-select-option
+    <el-form ref="ruleForm" :model="form" :rules="rules" label-width="110px">
+      <el-form-item label="人员类型：">
+        <el-select v-model="form.type" placeholder="请选择人员类型">
+          <el-option
             v-for="{ name, value } in types"
             :key="value"
+            :label="name"
             :value="value"
-            >{{ name }}</a-select-option
-          >
-        </a-select>
-      </a-form-item>
-      <a-form-item ref="name" label="登记人名称" name="name">
-        <a-input v-model:value="form.name" placeholder="登记人名称" />
-      </a-form-item>
+          ></el-option>
+        </el-select>
+      </el-form-item>
+      <el-form-item ref="name" label="登记人名称：" prop="name">
+        <el-input v-model="form.name" placeholder="登记人名称" />
+      </el-form-item>
       <Form1 ref="Form1" v-if="form.type === 1" />
       <Form2 ref="Form2" v-if="form.type === 2" />
-      <a-form-item :wrapper-col="{ span: 14, offset: 4 }">
-        <a-button type="primary" @click="onSubmitForm"> 提交 </a-button>
-        <a-button style="margin-left: 10px" @click="resetForm"> 重置 </a-button>
-      </a-form-item>
-    </a-form>
-    <a-card title="提交数据" style="width: 300px">
+      <el-form-item>
+        <el-button type="primary" @click="onSubmitForm"> 提交 </el-button>
+        <el-button style="margin-left: 10px" @click="resetForm">
+          重置
+        </el-button>
+      </el-form-item>
+    </el-form>
+    <el-card title="提交数据" style="width: 300px">
       {{ sumbitData }}
-    </a-card>
+    </el-card>
   </LayoutCard>
 </template>
 <script>
@@ -42,8 +38,6 @@ export default {
   },
   data() {
     return {
-      labelCol: { span: 4 },
-      wrapperCol: { span: 14 },
       other: '',
       form: {
         name: '',

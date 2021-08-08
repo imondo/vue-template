@@ -5,7 +5,7 @@
     </template>
     <template #appContent>
       <Icon type="icon-tuichu" :size="16" />
-      <a-button type="primary" @click="onClick">点击</a-button>
+      <el-button type="primary" @click="onClick">点击</el-button>
     </template>
   </layout-main>
 </template>

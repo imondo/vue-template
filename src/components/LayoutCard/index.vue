@@ -1,7 +1,7 @@
 <template>
-  <a-card class="card-shadow">
+  <el-card class="card-shadow">
     <slot></slot>
-  </a-card>
+  </el-card>
 </template>
 
 <script>

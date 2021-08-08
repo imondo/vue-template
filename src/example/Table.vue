@@ -4,9 +4,9 @@
       <h1>Table</h1>
     </template>
     <template #appContent>
-      <base-table :columns="data.columns" :data-source="data.list">
-        <template #action="{ record }">
-          <a-button type="primary" @click="onClick(record)">点击</a-button>
+      <base-table :columns="data.columns" :data="data.list">
+        <template #action="{ row }">
+          <el-button type="primary" @click="onClick(row)">点击</el-button>
         </template>
       </base-table>
     </template>
@@ -21,30 +21,26 @@ const { proxy: vm } = getCurrentInstance();
 const data = reactive({
   columns: [
     {
-      dataIndex: 'name.a',
-      title: 'Name',
-      key: 'name',
-      slots: { title: 'customTitle', customRender: 'name' }
+      label: 'Name',
+      prop: 'name.a'
     },
     {
-      title: 'Age',
+      label: 'Age',
       dataIndex: 'age',
-      key: 'age'
+      prop: 'age'
     },
     {
-      title: 'Address',
-      dataIndex: 'address',
-      key: 'address'
+      label: 'Address',
+      prop: 'address'
     },
     {
-      title: 'Tags',
-      key: 'tags',
-      dataIndex: 'tags'
+      label: 'Tags',
+      prop: 'tags'
     },
     {
-      title: 'Action',
-      key: 'action',
-      slots: { customRender: 'action' }
+      label: 'Action',
+      prop: 'action',
+      slot: 'action'
     }
   ],
   list: [
@@ -79,7 +75,7 @@ const data = reactive({
 });
 
 const onClick = row => {
-  console.log(row);
+  console.log(row.age);
   vm.$message.success(row.age);
 };
 </script>

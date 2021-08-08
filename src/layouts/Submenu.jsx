@@ -1,5 +1,5 @@
 import { defineComponent } from 'vue';
-import { Menu } from 'ant-design-vue';
+import { ElSubmenu, ElMenuItem } from 'element-plus';
 
 export default defineComponent({
   name: 'Submenu',
@@ -8,18 +8,18 @@ export default defineComponent({
   },
   render(props) {
     return (
-      <Menu.SubMenu key={props.menuInfo.key} title={props.menuInfo.name}>
+      <ElSubmenu index={props.menuInfo.key} title={props.menuInfo.name}>
         {props.menuInfo.children.map(item => {
           if (item.children) {
             return <Submenu menuInfo={item} key={item.key} />;
           }
           return (
-            <Menu.Item key={item.key}>
+            <ElMenuItem key={item.key}>
               <span>{item.name}</span>
-            </Menu.Item>
+            </ElMenuItem>
           );
         })}
-      </Menu.SubMenu>
+      </ElSubmenu>
     );
   }
 });

@@ -1,6 +1,6 @@
 import { createApp } from 'vue';
 import App from './App.vue';
-import AntDesign from './plugins/ant-design';
+import ElementUI from './plugins/ElementUI';
 import GlobalComponents from './components';
 
 import './styles/index.less';
@@ -15,4 +15,4 @@ const app = createApp(App);
 
 app.config.globalProperties.$storage = Storage();
 
-app.use(AntDesign).use(GlobalComponents).use(router).mount('#app');
+app.use(ElementUI).use(GlobalComponents).use(router).mount('#app');

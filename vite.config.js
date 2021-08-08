@@ -2,7 +2,7 @@ import { defineConfig } from 'vite';
 import path from 'path';
 import vue from '@vitejs/plugin-vue';
 import vueJsx from '@vitejs/plugin-vue-jsx';
-import vitePluginImp from 'vite-plugin-imp';
+import styleImport from 'vite-plugin-style-import';
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -11,13 +11,18 @@ export default defineConfig({
   plugins: [
     vue(),
     vueJsx(),
-    vitePluginImp({
-      libList: [
+    styleImport({
+      libs: [
         {
-          libName: 'ant-design-vue',
-          style(name) {
-            return `ant-design-vue/es/${name}/style/index.css`;
-          }
+          libraryName: 'element-plus',
+          esModule: true,
+          ensureStyleFile: true,
+          resolveStyle: (name) => {
+            return `element-plus/lib/theme-chalk/${name}.css`;
+          },
+          resolveComponent: (name) => {
+            return `element-plus/lib/${name}`;
+          },
         }
       ]
     })

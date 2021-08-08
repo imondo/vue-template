@@ -1,37 +1,28 @@
 <template>
-  <a-form
-    ref="form"
-    :model="form"
-    :rules="rules"
-    :label-col="labelCol"
-    :wrapper-col="wrapperCol"
-  >
-    <a-form-item ref="name" label="学生名称" name="name">
-      <a-input v-model:value="form.name" placeholder="学生名称" />
-    </a-form-item>
-    <a-form-item label="学生地址" name="region">
-      <a-select v-model:value="form.region" placeholder="学生地址">
-        <a-select-option value="shanghai"> 上海 </a-select-option>
-        <a-select-option value="beijing"> 北京 </a-select-option>
-      </a-select>
-    </a-form-item>
-    <a-form-item label="出生日期" required name="date1">
-      <a-date-picker
-        v-model:value="form.date1"
-        show-time
+  <el-form ref="form" :model="form" :rules="rules" label-width="110px">
+    <el-form-item ref="name" label="学生名称：" prop="name">
+      <el-input v-model="form.name" placeholder="学生名称" />
+    </el-form-item>
+    <el-form-item label="学生地址：" prop="region">
+      <el-select v-model="form.region" placeholder="学生地址">
+        <el-option value="shanghai"> 上海 </el-option>
+        <el-option value="beijing"> 北京 </el-option>
+      </el-select>
+    </el-form-item>
+    <el-form-item label="出生日期" required prop="date1">
+      <el-date-picker
+        v-model="form.date1"
         type="date"
         placeholder="出生日期"
         style="width: 100%"
       />
-    </a-form-item>
-  </a-form>
+    </el-form-item>
+  </el-form>
 </template>
 <script>
 export default {
   data() {
     return {
-      labelCol: { span: 4 },
-      wrapperCol: { span: 14 },
       other: '',
       form: {
         name: '',
