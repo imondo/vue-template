@@ -1,10 +1,12 @@
 <template>
-  <LayoutCard class="app-container-top">
-    <slot name="appTop"></slot>
-  </LayoutCard>
-  <LayoutCard class="app-container-content">
-    <slot name="appContent"></slot>
-  </LayoutCard>
+  <div>
+    <LayoutCard class="app-container-top">
+      <slot name="appTop"></slot>
+    </LayoutCard>
+    <LayoutCard class="app-container-content">
+      <slot name="appContent"></slot>
+    </LayoutCard>
+  </div>
 </template>
 
 <script>
