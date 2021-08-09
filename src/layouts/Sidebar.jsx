@@ -2,9 +2,8 @@ import { ref, watchEffect, defineComponent } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import { ElMenu, ElMenuItem } from 'element-plus';
 import Submenu from './Submenu.vue';
+import Logo from './Logo.jsx';
 import { useStore } from 'vuex';
-// import Icon from '@/components/Icon/Icon.jsx';
-// import logoImage from '../assets/logo.png';
 
 export default defineComponent({
   props: {
@@ -25,19 +24,12 @@ export default defineComponent({
     });
 
     return () => (
-      <div class="app-sidebar">
-        <div class="logo">
-          <img
-            class="logo-img"
-            src="https://imondo.cn/files/logo.png"
-            alt="logo"
-          />
-          <h1 class="logo-title">vue3-admin-ElementUI</h1>
-        </div>
+      <div class={`app-sidebar ${state.collapsed ? 'app-sidebar-hide' : ''}`}>
+        <Logo collapse={state.collapsed} />
         <div class="sidebar">
           <ElMenu
             router={true}
-            defaultActive={selectKeys}
+            defaultActive={selectKeys.value}
             collapse={state.collapsed}
             backgroundColor="#304156"
             class="sidebar-menu"

@@ -20,12 +20,15 @@
   }
 
   .app-sidebar {
-    flex: 0 0 @sidebarWidth;
     width: @sidebarWidth;
     position: relative;
     z-index: 10;
     min-height: 100vh;
     background-color: @menuBg;
+    transition: width 0.28s;
+    &.app-sidebar-hide {
+      width: @sidebarHideWidth;
+    }
     .logo {
       display: flex;
       justify-content: center;
@@ -34,16 +37,15 @@
       position: relative;
       background: #2b2f3a;
       overflow: hidden;
-      color: #FFF;
+      color: #fff;
       &-img {
         width: 32px;
         height: 32px;
         vertical-align: middle;
-        margin-right: 12px;
       }
       &-title {
         display: inline-block;
-        margin: 0;
+        margin: 0 12px 0 0;
         font-weight: 600;
         line-height: 50px;
         font-size: 14px;
@@ -58,21 +60,21 @@
   }
 
   .app-sidebar {
-    .el-menu-item {
-      box-sizing: border-box;
-      color: @menuColor;
-    }
     .sidebar-menu {
       background-color: @menuBg;
-      width: @sidebarWidth;
+      width: 100%;
       .el-submenu__title {
         background-color: @menuBg;
         color: @menuColor;
       }
       .el-menu-item.is-active {
         background-color: @menuBgSelectHover!important;
-        color: #fff!important;
+        color: #fff !important;
       }
+    }
+    .el-menu--collapse > .el-menu-item [class^='el-icon-'],
+    .el-menu--collapse > .el-submenu > .el-submenu__title [class^='el-icon-'] {
+      width: 0;
     }
   }
 
@@ -83,8 +85,61 @@
     height: 20px;
     cursor: pointer;
   }
-  
+
   .hamburger.is-active {
     transform: rotate(180deg);
+  }
+
+  .horizontal-collapse-transition {
+    transition: 0s all ease-in-out;
+  }
+
+  // logo
+  .sidebarLogoFade-enter-active {
+    transition: opacity 1.5s;
+  }
+
+  .sidebarLogoFade-enter,
+  .sidebarLogoFade-leave-to {
+    opacity: 0;
+  }
+
+  .sidebar-logo-container {
+    position: relative;
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+    background: #2b2f3a;
+    text-align: center;
+    overflow: hidden;
+
+    & .sidebar-logo-link {
+      height: 100%;
+      width: 100%;
+
+      & .sidebar-logo {
+        width: 32px;
+        height: 32px;
+        vertical-align: middle;
+        margin-right: 12px;
+      }
+
+      & .sidebar-title {
+        display: inline-block;
+        margin: 0;
+        color: #fff;
+        font-weight: 600;
+        line-height: 50px;
+        font-size: 14px;
+        font-family: Avenir, Helvetica Neue, Arial, Helvetica, sans-serif;
+        vertical-align: middle;
+      }
+    }
+
+    &.collapse {
+      .sidebar-logo {
+        margin-right: 0px;
+      }
+    }
   }
 }

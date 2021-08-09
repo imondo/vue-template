@@ -1,10 +1,8 @@
 <template>
   <ElSubmenu :index="menuInfo.key" v-bind="$attrs">
     <template #title>
-      <span>
-        <i v-if="getIcon(menuInfo)" :class="getIcon(menuInfo)"></i>
-        <span>{{ menuInfo.name }}</span>
-      </span>
+      <i v-if="getIcon(menuInfo)" :class="getIcon(menuInfo)"></i>
+      <span>{{ menuInfo.name }}</span>
     </template>
     <template v-for="item in menuInfo.children">
       <template v-if="!item.children">
