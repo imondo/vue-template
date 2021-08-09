@@ -10,7 +10,7 @@
   .app-header {
     flex: 1;
     height: @headerHeight;
-    padding: 0 20px 0 50px;
+    padding: 0 20px 0 0;
     line-height: @headerHeight;
     background: #fff;
     box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
@@ -74,5 +74,17 @@
         color: #fff!important;
       }
     }
+  }
+
+  .hamburger {
+    display: inline-block;
+    vertical-align: middle;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+  }
+  
+  .hamburger.is-active {
+    transform: rotate(180deg);
   }
 }

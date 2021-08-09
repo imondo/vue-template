@@ -10,8 +10,4 @@ export default {
 };
 </script>
 
-<style lang="less" scoped>
-.card-shadow {
-  box-shadow: 0 1px 6px 0 rgb(0 0 0 / 10%);
-}
-</style>
+<style lang="less" scoped></style>

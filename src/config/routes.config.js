@@ -2,28 +2,26 @@ export default [
   {
     key: 'dashboard',
     name: '首页',
-    icon: 'iconshouye'
+    icon: 'el-icon-s-home'
   },
   {
     key: 'Base',
     name: '基础组件',
-    icon: 'iconjichuziliao',
+    icon: 'el-icon-setting',
     children: [
       {
         key: 'Form',
-        name: '多表单验证',
-        icon: 'iconyewubiaodan'
+        name: '多表单验证'
       },
       {
         key: 'Table',
-        name: '表格',
-        icon: 'icondanganguanli'
+        name: '表格'
       }
     ]
   },
   {
     key: 'Advanced',
     name: '进阶组件',
-    icon: 'icontongjifenxi'
+    icon: 'el-icon-data-line'
   }
 ];

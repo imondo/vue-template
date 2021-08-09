@@ -2,7 +2,6 @@ import 'element-plus/lib/theme-chalk/index.css';
 
 import {
   ElButton,
-  ElMessage,
   ElMenu,
   ElCard,
   ElImage,
@@ -35,6 +34,6 @@ export default {
       .use(ElCheckbox)
       .use(ElDatePicker)
       .use(ElPagination);
-    app.config.globalProperties.$message = ElMessage;
+    app.config.globalProperties.$ELEMENT = { size: 'medium', zIndex: 3000 };
   }
 };

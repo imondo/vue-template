@@ -1,10 +1,18 @@
 import { defineComponent } from 'vue';
-// import Icon from '@/components/Icon/Icon.jsx';
+import Hamburger from './Hamburger';
+import { useStore } from 'vuex';
 
 export default defineComponent({
   setup() {
+    const { dispatch, state } = useStore();
     return () => (
       <header class="app-header">
+        <Hamburger
+          is-active={state.collapsed}
+          onClick={() => {
+            dispatch('SetCollapsed');
+          }}
+        />
         <div class="app-header-right">
           {/* <Icon
             type="icongithub"

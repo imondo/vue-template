@@ -1,9 +1,10 @@
 import { defineComponent, unref } from 'vue';
+import { ElIcon } from 'element-plus';
 
 export default defineComponent({
   name: 'Icon',
   props: {
-    icon: {
+    type: {
       type: String,
       required: true
     },
@@ -19,7 +20,7 @@ export default defineComponent({
       default: ''
     }
   },
-  setup(props) {
+  async setup(props) {
     const style = {
       fontSize: typeof props.size === 'string' ? props.size : `${props.size}px`,
       color: props.color,
@@ -33,14 +34,9 @@ export default defineComponent({
         window.open(props.url);
       }
     };
-    return () => (
-      <div onClick={onTarget} style="display: inline-block;">
-        <span
-          class="iconify"
-          datel-icon={props.icon}
-          style={unref(style)}
-        ></span>
-      </div>
-    );
+    // const icons = await import('@element-plus/icons');
+
+    // const icon = icons.Module[props.type]
+    return () => <ElIcon style={unref(style)}></ElIcon>;
   }
 });

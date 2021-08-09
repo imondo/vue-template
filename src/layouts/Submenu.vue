@@ -2,7 +2,7 @@
   <ElSubmenu :index="menuInfo.key" v-bind="$attrs">
     <template #title>
       <span>
-        <!-- <Icon class="sidebar-icon" :type="getIcon(menuInfo)" /> -->
+        <i v-if="getIcon(menuInfo)" :class="getIcon(menuInfo)"></i>
         <span>{{ menuInfo.name }}</span>
       </span>
     </template>
@@ -13,8 +13,8 @@
           :key="item.key"
           :route="{ name: item.key }"
         >
-          <!-- <Icon class="sidebar-icon" :type="getIcon(item)" /> -->
-          <span>{{ item.name }}</span>
+          <i v-if="getIcon(item)" :class="getIcon(item)"></i>
+          <span :class="{ 'pl-10': !getIcon(item) }">{{ item.name }}</span>
         </ElMenuItem>
       </template>
       <template v-else>

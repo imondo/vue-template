@@ -5,7 +5,9 @@
     </template>
     <template #appContent>
       <Icon type="icon-tuichu" :size="16" />
-      <el-button type="primary" @click="onClick">点击</el-button>
+      <el-button icon="el-icon-search" type="primary" @click="onClick"
+        >点击</el-button
+      >
     </template>
   </layout-main>
 </template>
@@ -16,7 +18,7 @@ import { getCurrentInstance } from 'vue';
 const { proxy: vm } = getCurrentInstance();
 
 const onClick = () => {
-  vm.$message.info('信息');
+  vm.$message.success('信息');
   vm.$storage.get('a');
 };
 </script>
