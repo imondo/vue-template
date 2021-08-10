@@ -1,7 +1,7 @@
 import { defineComponent, Transition } from 'vue';
 import { RouterView } from 'vue-router';
-import Header from './Header.jsx';
-import Siderbar from './Sidebar.jsx';
+import Header from './Header/Header.jsx';
+import Siderbar from './Sidebar/Sidebar.jsx';
 import config from '../config';
 import './index.less';
 
