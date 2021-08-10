@@ -1,5 +1,6 @@
-import { defineComponent } from 'vue';
 import Hamburger from './Hamburger';
+import Breadcrumb from './Breadcrumb';
+import { defineComponent } from 'vue';
 import { useStore } from 'vuex';
 
 export default defineComponent({
@@ -13,6 +14,7 @@ export default defineComponent({
             dispatch('SetCollapsed');
           }}
         />
+        <Breadcrumb />
         <div class="app-header-right">
           {/* <Icon
             type="icongithub"

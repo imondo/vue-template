@@ -10,7 +10,7 @@ export default defineComponent({
   },
   setup(props) {
     return () => (
-      <div style="padding: 0 15px;">
+      <div class="hamburger-wap">
         <svg
           class={`hamburger ${props.isActive ? 'is-active' : ''}`}
           viewBox="0 0 1024 1024"
