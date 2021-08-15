@@ -2,8 +2,8 @@ import { defineComponent, Transition } from 'vue';
 import { RouterView } from 'vue-router';
 import Header from './Header/Header.jsx';
 import Siderbar from './Sidebar/Sidebar';
-import config from '../config';
 import './index.less';
+import { useMenu } from '@/hooks/useMenu';
 
 export default defineComponent({
   setup() {
@@ -14,9 +14,11 @@ export default defineComponent({
         </Transition>
       )
     };
+
+    const { menu } = useMenu();
     return () => (
       <div class="app-box">
-        <Siderbar menu={config.routes} />
+        <Siderbar menu={menu} />
         <section class="app-main">
           <Header />
           <main class="app-container">

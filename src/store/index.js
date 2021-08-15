@@ -1,19 +1,15 @@
 import { createStore } from 'vuex';
+import app from './modules/app';
+import permission from './modules/permission';
 
 export default createStore({
-  state() {
-    return {
-      collapsed: false
-    };
+  modules: {
+    app,
+    permission
   },
-  mutations: {
-    SET_COLLAPSED(state) {
-      state.collapsed = !state.collapsed;
-    }
-  },
-  actions: {
-    SetCollapsed({ commit }) {
-      commit('SET_COLLAPSED');
-    }
+  getters: {
+    collapsed: state => state.app.collapsed,
+    menuList: state => state.permission.menuList,
+    mapMenuList: state => state.permission.mapMenuList
   }
 });

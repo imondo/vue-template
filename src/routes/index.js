@@ -1,22 +1,23 @@
 import { createRouter, createWebHashHistory } from 'vue-router';
 
-import example from './example.js';
-
 const routes = [
   {
     path: '/',
+    name: 'admin',
     component: () => import('../layouts/index.jsx'),
-    redirect: {
-      name: 'dashboard'
-    },
-    children: [
-      ...example,
-      {
-        path: '/:pathMatch(.*)*',
-        name: 'NotFound',
-        component: () => import('../components/NotFound/index.vue')
-      }
-    ]
+    redirect: '/dashboard',
+    children: []
+  },
+  {
+    path: '/404',
+    component: () => import('../components/NotFound/index.vue'),
+    meta: {
+      title: '404'
+    }
+  },
+  {
+    path: '/:catchAll(.*)',
+    redirect: '/404'
   }
 ];
 

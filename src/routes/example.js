@@ -1,7 +1,7 @@
 export default [
   {
     path: '/dashboard',
-    name: 'dashboard',
+    name: 'Dashboard',
     component: () => import('../example/Home.vue')
   },
   {
@@ -12,6 +12,11 @@ export default [
   {
     path: '/table',
     name: 'Table',
+    component: () => import('../example/Table.vue')
+  },
+  {
+    path: '/table/list',
+    name: 'TableList',
     component: () => import('../example/Table.vue')
   }
 ];

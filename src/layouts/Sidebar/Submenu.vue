@@ -1,22 +1,18 @@
 <template>
-  <ElSubmenu :index="menuInfo.key" v-bind="$attrs">
+  <ElSubmenu :index="menuInfo.path" v-bind="$attrs">
     <template #title>
       <i v-if="getIcon(menuInfo)" :class="getIcon(menuInfo)"></i>
       <span>{{ menuInfo.name }}</span>
     </template>
     <template v-for="item in menuInfo.children">
-      <template v-if="!item.children">
-        <ElMenuItem
-          :index="item.key"
-          :key="item.key"
-          :route="{ name: item.key }"
-        >
+      <template v-if="!item.children || !item.children.length">
+        <ElMenuItem :index="item.path" :key="item.path">
           <i v-if="getIcon(item)" :class="getIcon(item)"></i>
           <span :class="{ 'pl-10': !getIcon(item) }">{{ item.name }}</span>
         </ElMenuItem>
       </template>
       <template v-else>
-        <Submenu :menu-info="item" :key="item.key" />
+        <Submenu :menu-info="item" :key="item.path" />
       </template>
     </template>
   </ElSubmenu>

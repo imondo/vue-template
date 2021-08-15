@@ -6,7 +6,7 @@ import GlobalComponents from './components';
 import './styles/index.less';
 import router from './routes';
 import store from './store';
-// import './permission';
+import './permission';
 
 import Storage from './utils/Storage';
 import message from './utils/message';

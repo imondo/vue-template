@@ -5,11 +5,11 @@ import { useStore } from 'vuex';
 
 export default defineComponent({
   setup() {
-    const { dispatch, state } = useStore();
+    const { dispatch, getters } = useStore();
     return () => (
       <header class="app-header">
         <Hamburger
-          is-active={state.collapsed}
+          is-active={getters.collapsed}
           onClick={() => {
             dispatch('SetCollapsed');
           }}

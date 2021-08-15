@@ -1,21 +1,18 @@
 import { defineComponent, ref, watch, watchEffect } from 'vue';
 import { ElBreadcrumb, ElBreadcrumbItem } from 'element-plus';
 import { useRoute } from 'vue-router';
-import config from '@/config';
+import { useMenu } from '@/hooks/useMenu';
 
 export default defineComponent({
   name: 'Breadcrumb',
   setup() {
     const route = useRoute();
-    const menu = config.routes;
+    const { menu } = useMenu();
     const routeMatch = ref([]);
-    watch(
-      () => route.name,
-      name => {
-        routeMatch.value = [];
-        routeMatch.value = getPath(name, menu);
-      }
-    );
+    watchEffect(() => {
+      routeMatch.value = [];
+      routeMatch.value = getPath(route.path, menu);
+    });
     return () => (
       <ElBreadcrumb class="breadcrumb-wap">
         {routeMatch.value.map(v => {
@@ -45,5 +42,5 @@ function getPath(name, arr) {
     }
     return [];
   };
-  return parse(arr, item => item.key === name);
+  return parse(arr, item => item.path === name);
 }
