@@ -8,11 +8,17 @@ export function useMenu() {
   return { menu };
 }
 
-export function generateRoute(menus) {
+export async function generateRoute(menus) {
   menus.forEach(menu => {
     const route = asyncRoutes.find(v => v.path === menu.path);
+    console.log(route);
     if (route) {
       router.addRoute('admin', route);
     }
   });
+  router.addRoute({
+    path: '/:catchAll(.*)',
+    redirect: '/404'
+  });
+  return;
 }

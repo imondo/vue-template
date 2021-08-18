@@ -1,15 +1,17 @@
 import { createStore } from 'vuex';
 import app from './modules/app';
-import permission from './modules/permission';
+import menu from './modules/menu';
+import user from './modules/user';
 
 export default createStore({
   modules: {
     app,
-    permission
+    menu,
+    user
   },
   getters: {
     collapsed: state => state.app.collapsed,
-    menuList: state => state.permission.menuList,
-    mapMenuList: state => state.permission.mapMenuList
+    menuList: state => state.menu.menuList,
+    mapMenuList: state => state.menu.mapMenuList
   }
 });

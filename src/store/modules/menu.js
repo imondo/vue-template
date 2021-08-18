@@ -35,16 +35,17 @@ const mutations = {
 };
 
 const actions = {
-  GetMenuList({ commit }) {
-    getMenu().then(menu => {
+  async GetMenuList({ commit }) {
+    return getMenu().then(async menu => {
       commit('SET_MENU_LIST', menu);
-      generateRoute(menu);
+      await generateRoute(menu);
+      return;
     });
   }
 };
 
 export default {
-  namespace: true,
+  namespaced: true,
   state,
   mutations,
   actions

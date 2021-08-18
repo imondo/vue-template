@@ -1,12 +1,16 @@
-import { createRouter, createWebHashHistory } from 'vue-router';
+import { createRouter, createWebHistory } from 'vue-router';
 
 const routes = [
   {
     path: '/',
     name: 'admin',
     component: () => import('../layouts/index.jsx'),
-    redirect: '/dashboard',
-    children: []
+    redirect: '/dashboard'
+  },
+  {
+    path: '/login',
+    name: 'Login',
+    component: () => import('../views/login/index.vue')
   },
   {
     path: '/404',
@@ -14,14 +18,12 @@ const routes = [
     meta: {
       title: '404'
     }
-  },
-  {
-    path: '/:catchAll(.*)',
-    redirect: '/404'
   }
 ];
 
+const base = import.meta.env.BASE_URL;
+
 export default createRouter({
-  history: createWebHashHistory(),
+  history: createWebHistory(base),
   routes
 });
