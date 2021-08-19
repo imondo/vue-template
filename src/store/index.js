@@ -12,6 +12,8 @@ export default createStore({
   getters: {
     collapsed: state => state.app.collapsed,
     menuList: state => state.menu.menuList,
-    mapMenuList: state => state.menu.mapMenuList
+    mapMenuList: state => state.menu.mapMenuList,
+    token: state => state.user.token,
+    user: state => state.user.info
   }
 });

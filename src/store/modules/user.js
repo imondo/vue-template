@@ -1,7 +1,13 @@
 import router from '@/routes';
+import { login, getUser } from '@/api/user';
+import Storage from '@/utils/storage';
+import { TOKEN_KEY } from '@/config/constants';
+
+const storage = Storage();
 
 const state = () => ({
-  info: null
+  info: null,
+  token: storage.get(TOKEN_KEY) || ''
 });
 
 const mutations = {
@@ -14,10 +20,19 @@ const mutations = {
 };
 
 const actions = {
-  Login({ commit }, form) {
-    commit('SET_USER', form);
+  async Login({ commit, dispatch }, form) {
+    const { token } = await login(form);
+    if (token) {
+      commit('SET_TOKEN', token);
+      storage.set(TOKEN_KEY, token);
+      await dispatch('GetUser');
+    }
   },
-  GetUser() {},
+  async GetUser({ commit }) {
+    const user = await getUser();
+    console.log('user ===> ', user);
+    commit('SET_USER', user);
+  },
   Logout({ commit }) {
     commit('SET_USER', null);
     router.push('/login');

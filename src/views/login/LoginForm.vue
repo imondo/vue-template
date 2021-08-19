@@ -38,7 +38,7 @@
         </el-form-item>
 
         <el-button
-          :loading="loading"
+          :loading="state.loading"
           type="primary"
           class="login-button"
           @click.prevent="handleLogin"
@@ -76,8 +76,8 @@ const validatePassword = (rule, value, callback) => {
 };
 const state = reactive({
   form: {
-    username: '',
-    password: ''
+    username: 'admin',
+    password: '123456'
   },
   rules: {
     username: [

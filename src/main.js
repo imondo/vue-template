@@ -8,7 +8,7 @@ import router from './routes';
 import store from './store';
 import './permission';
 
-import Storage from './utils/Storage';
+import Storage from './utils/storage';
 import message from './utils/message';
 
 console.log(import.meta.env);
