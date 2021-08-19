@@ -1,3 +1,5 @@
+import router from '@/routes';
+
 const state = () => ({
   info: null
 });
@@ -18,6 +20,7 @@ const actions = {
   GetUser() {},
   Logout({ commit }) {
     commit('SET_USER', null);
+    router.push('/login');
   }
 };
 

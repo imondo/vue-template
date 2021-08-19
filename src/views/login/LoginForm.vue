@@ -55,8 +55,10 @@
 import { reactive, ref } from 'vue';
 import { useStore } from 'vuex';
 import { useRouter } from 'vue-router';
+
 const router = useRouter();
 const store = useStore();
+const loginForm = ref(null);
 
 const validateUsername = (rule, value, callback) => {
   if (!value) {
@@ -72,7 +74,6 @@ const validatePassword = (rule, value, callback) => {
     callback();
   }
 };
-const loginForm = ref(null);
 const state = reactive({
   form: {
     username: '',
@@ -108,7 +109,7 @@ const handleLogin = () => {
       store
         .dispatch('user/Login', state.form)
         .then(() => {
-          router.push('/');
+          router.push({ path: '/' });
           state.loading = false;
         })
         .catch(() => {
