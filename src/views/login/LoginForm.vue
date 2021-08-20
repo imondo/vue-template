@@ -14,7 +14,6 @@
       >
         <el-form-item label="用户名：" prop="username">
           <el-input
-            ref="username"
             v-model="state.form.username"
             placeholder="请输入用户名"
             name="username"
@@ -26,7 +25,6 @@
         <el-form-item label="密码：" prop="password">
           <el-input
             :key="state.passwordType"
-            ref="password"
             v-model="state.form.password"
             :type="state.passwordType"
             placeholder="请输入密码"
