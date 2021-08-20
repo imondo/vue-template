@@ -1,6 +1,9 @@
 <template>
   <div>
-    <LayoutCard class="app-container-top">
+    <LayoutCard
+      class="app-container-top"
+      :class="{ 'app-container-top-query': query }"
+    >
       <slot name="query"></slot>
     </LayoutCard>
     <LayoutCard class="app-container-content">
@@ -18,16 +21,26 @@ export default {
   name: 'LayoutMain',
   components: {
     LayoutCard
+  },
+  props: {
+    query: {
+      type: Boolean,
+      default: true
+    }
   }
 };
 </script>
 
 <style lang="less" scoped>
+.app-container-top-query {
+  /deep/ .el-card__body {
+    padding-bottom: 0;
+  }
+}
 .app-container-content {
   margin-top: 8px;
   .btn-groups {
-    margin-bottom: 8px;
-    // text-align: right;
+    margin-bottom: 16px;
   }
 }
 </style>

@@ -1,50 +1,50 @@
 <template>
   <layout-main>
     <template #query>
-      <el-form :inline="true" :model="query" class="query-form">
-        <el-row :gutter="24">
-          <el-col :xs="24" :sm="24" :md="6">
-            <el-form-item label="预报类型：">
-              <el-select v-model="query.picture_type" placeholder="预报类型">
-                <el-option
-                  v-for="(item, index) in pictures"
-                  :key="index"
-                  :label="item.label"
-                  :value="item.value"
-                />
-              </el-select>
-            </el-form-item>
-          </el-col>
-          <el-col :xs="24" :sm="24" :md="6">
-            <el-form-item label="地区范围：">
-              <el-select v-model="query.area" placeholder="地区范围">
-                <el-option
-                  v-for="(item, index) in areas"
-                  :key="index"
-                  :label="item.label"
-                  :value="item.value"
-                />
-              </el-select>
-            </el-form-item>
-          </el-col>
-          <el-col :xs="24" :sm="24" :md="6">
-            <el-form-item label="站点：" label-width="82px">
-              <el-select
-                v-model="query.station"
-                filterable
-                clearable
-                placeholder="站点"
-              >
-                <el-option label="全区域" value></el-option>
-                <el-option
-                  v-for="(value, name) in stations"
-                  :key="value"
-                  :label="`${value} ${name}`"
-                  :value="value"
-                />
-              </el-select>
-            </el-form-item>
-          </el-col>
+      <QueryForm>
+        <el-col :xs="24" :sm="24" :md="6">
+          <el-form-item label="预报类型：">
+            <el-select v-model="query.picture_type" placeholder="预报类型">
+              <el-option
+                v-for="(item, index) in pictures"
+                :key="index"
+                :label="item.label"
+                :value="item.value"
+              />
+            </el-select>
+          </el-form-item>
+        </el-col>
+        <el-col :xs="24" :sm="24" :md="6">
+          <el-form-item label="地区范围：">
+            <el-select v-model="query.area" placeholder="地区范围">
+              <el-option
+                v-for="(item, index) in areas"
+                :key="index"
+                :label="item.label"
+                :value="item.value"
+              />
+            </el-select>
+          </el-form-item>
+        </el-col>
+        <el-col :xs="24" :sm="24" :md="6">
+          <el-form-item label="站点：" label-width="82px">
+            <el-select
+              v-model="query.station"
+              filterable
+              clearable
+              placeholder="站点"
+            >
+              <el-option label="全区域" value></el-option>
+              <el-option
+                v-for="(value, name) in stations"
+                :key="value"
+                :label="`${value} ${name}`"
+                :value="value"
+              />
+            </el-select>
+          </el-form-item>
+        </el-col>
+        <template #more>
           <el-col :xs="24" :sm="24" :md="6">
             <el-form-item label="模式资料：">
               <el-select v-model="query.data_source" placeholder="模式资料">
@@ -87,25 +87,12 @@
               </el-radio-group>
             </el-form-item>
           </el-col>
-          <el-col :xs="24" :sm="24" :md="6">
-            <el-form-item>
-              <el-button type="primary" icon="el-icon-search" @click="onSearch"
-                >执行</el-button
-              >
-              <el-button
-                type="primary"
-                icon="el-icon-sort"
-                @click="changeImgTabel"
-                >切换</el-button
-              >
-            </el-form-item>
-          </el-col>
-        </el-row>
-      </el-form>
+        </template>
+      </QueryForm>
     </template>
     <template #btns>
-      <el-button type="primary">新建</el-button>
-      <el-button type="primary">删除</el-button>
+      <el-button type="primary" icon="el-icon-plus">新建</el-button>
+      <el-button type="primary" icon="el-icon-delete">删除</el-button>
     </template>
     <template #content>
       <base-table :columns="data.columns" :data="state.list">

@@ -1,5 +1,5 @@
 <template>
-  <layout-main>
+  <layout-main :query="false">
     <template #query>
       <h1>Table</h1>
     </template>
