@@ -23,8 +23,14 @@ const menus = [
   {
     id: '2-2',
     pid: 2,
-    path: '/table/list',
+    path: '/table',
     name: '表格'
+  },
+  {
+    id: '3-2',
+    pid: 2,
+    path: '/table/query',
+    name: '查询'
   },
   {
     id: 3,

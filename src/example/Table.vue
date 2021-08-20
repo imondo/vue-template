@@ -1,9 +1,9 @@
 <template>
   <layout-main>
-    <template #appTop>
+    <template #query>
       <h1>Table</h1>
     </template>
-    <template #appContent>
+    <template #content>
       <base-table :columns="data.columns" :data="data.list">
         <template #action="{ row }">
           <el-button type="primary" @click="onClick(row)">点击</el-button>

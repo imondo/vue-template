@@ -1,6 +1,8 @@
 import 'element-plus/lib/theme-chalk/index.css';
 
 import {
+  ElRow,
+  ElCol,
   ElButton,
   ElMenu,
   ElCard,
@@ -20,6 +22,8 @@ import {
 export default {
   install(app) {
     app
+      .use(ElRow)
+      .use(ElCol)
       .use(ElButton)
       .use(ElMenu)
       .use(ElCard)

@@ -1,9 +1,9 @@
 <template>
   <layout-main>
-    <template #appTop>
+    <template #query>
       <h1>Home</h1>
     </template>
-    <template #appContent>
+    <template #content>
       <Icon type="icon-tuichu" :size="16" />
       <el-button icon="el-icon-search" type="primary" @click="onClick"
         >点击</el-button

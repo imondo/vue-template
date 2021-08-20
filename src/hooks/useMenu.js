@@ -11,7 +11,6 @@ export function useMenu() {
 export async function generateRoute(menus) {
   menus.forEach(menu => {
     const route = asyncRoutes.find(v => v.path === menu.path);
-    console.log(route);
     if (route) {
       router.addRoute('admin', route);
     }

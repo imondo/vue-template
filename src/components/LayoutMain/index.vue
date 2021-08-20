@@ -1,10 +1,13 @@
 <template>
   <div>
     <LayoutCard class="app-container-top">
-      <slot name="appTop"></slot>
+      <slot name="query"></slot>
     </LayoutCard>
     <LayoutCard class="app-container-content">
-      <slot name="appContent"></slot>
+      <div class="btn-groups">
+        <slot name="btns"></slot>
+      </div>
+      <slot name="content"></slot>
     </LayoutCard>
   </div>
 </template>
@@ -21,6 +24,10 @@ export default {
 
 <style lang="less" scoped>
 .app-container-content {
-  margin-top: 20px;
+  margin-top: 8px;
+  .btn-groups {
+    margin-bottom: 8px;
+    // text-align: right;
+  }
 }
 </style>

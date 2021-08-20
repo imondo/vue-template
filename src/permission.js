@@ -3,6 +3,8 @@ import 'nprogress/nprogress.css';
 import router from './routes';
 import store from './store';
 
+NProgress.configure({ showSpinner: false });
+
 const whiteList = ['/login', '/404'];
 
 router.beforeEach(async (to, _, next) => {

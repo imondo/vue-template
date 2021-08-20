@@ -15,8 +15,8 @@ export default [
     component: () => import('../example/Table.vue')
   },
   {
-    path: '/table/list',
-    name: 'TableList',
-    component: () => import('../example/Table.vue')
+    path: '/table/query',
+    name: 'TableQuery',
+    component: () => import('../example/Query.vue')
   }
 ];

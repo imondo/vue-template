@@ -35,6 +35,8 @@ const actions = {
   },
   Logout({ commit }) {
     commit('SET_USER', null);
+    commit('SET_TOKEN', null);
+    storage.clear();
     router.push('/login');
   }
 };
