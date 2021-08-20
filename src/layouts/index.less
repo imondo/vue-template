@@ -1,8 +1,11 @@
 .app-box {
-  display: flex;
-  // overflow: hidden;
+  position: relative;
   .app-main {
-    flex: 1;
+    padding-left: @sidebarWidth;
+    transition: padding 0.28s;
+    &-hide {
+      padding-left: @sidebarHideWidth;
+    }
   }
   .app-container {
     padding: 10px;
@@ -42,13 +45,15 @@
   }
 
   .app-sidebar {
+    position: absolute;
+    left: 0;
+    top: 0;
     width: @sidebarWidth;
-    position: relative;
     z-index: 10;
     min-height: 100vh;
     background-color: @menuBg;
     transition: width 0.28s;
-    &.app-sidebar-hide {
+    &-hide {
       width: @sidebarHideWidth;
     }
     .logo {
