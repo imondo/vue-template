@@ -1,8 +1,9 @@
+@transitiontime: 0.15s;
 .app-box {
   position: relative;
   .app-main {
     padding-left: @sidebarWidth;
-    transition: padding 0.28s;
+    transition: padding @transitiontime;
     &-hide {
       padding-left: @sidebarHideWidth;
     }
@@ -52,7 +53,7 @@
     z-index: 10;
     min-height: 100vh;
     background-color: @menuBg;
-    transition: width 0.28s;
+    transition: width @transitiontime;
     &-hide {
       width: @sidebarHideWidth;
     }
