@@ -1,5 +1,12 @@
 <template>
-  <el-table :data="data" border v-bind="$attrs">
+  <el-table
+    v-loading="loading"
+    :data="data"
+    border
+    v-bind="$attrs"
+    element-loading-spinner="el-icon-loading"
+    element-loading-text="加载中..."
+  >
     <template v-for="{ prop, label, slot, ...attrs } in columns" :key="prop">
       <el-table-column :prop="prop" :label="label" v-bind="attrs">
         <template v-if="slot" #default="scope">
@@ -26,7 +33,8 @@ export default {
     data: {
       type: Array,
       default: () => []
-    }
+    },
+    loading: Boolean
   },
   setup() {
     return {};

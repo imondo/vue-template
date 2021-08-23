@@ -1,5 +1,10 @@
 <template>
-  <el-form :inline="true" :model="model" class="query-form">
+  <el-form
+    ref="queryForm"
+    :inline="true"
+    :model="modelValue"
+    class="query-form"
+  >
     <el-row :gutter="24">
       <slot></slot>
       <template v-if="visable">
@@ -22,23 +27,27 @@ import { ref } from 'vue';
 export default {
   name: 'QueryForm',
   props: {
-    model: {
+    modelValue: {
       type: Object,
       default: () => ({})
     }
   },
   setup(props, { emit }) {
     const visable = ref(false);
+    const queryForm = ref(null);
     const onClickQuery = () => {
       emit('query');
     };
     const onClickReset = () => {
+      console.log(queryForm.value);
+      queryForm.value.resetFields();
       emit('reset');
     };
     const toggleAdvanced = () => {
       visable.value = !visable.value;
     };
     return {
+      queryForm,
       visable,
       onClickQuery,
       onClickReset,

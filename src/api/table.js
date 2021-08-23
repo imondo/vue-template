@@ -1,7 +1,8 @@
 import { get } from '@/utils/request';
 
-export function getList() {
+export function getList(data) {
   return get({
-    url: '/mock/list'
+    url: '/mock/list',
+    data
   });
 }

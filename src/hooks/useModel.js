@@ -16,8 +16,9 @@ export function useTableList({ query, data }) {
   });
 
   // 获取列表
-  function getList() {
+  function getTableList() {
     state.loading = true;
+    console.log('queryData ===> ', queryData);
     return func(queryData)
       .then(res => {
         // 设置列表数据
@@ -29,7 +30,7 @@ export function useTableList({ query, data }) {
   }
 
   // 首次获取数据
-  getList();
+  getTableList();
 
-  return { state, getList };
+  return { state, getTableList };
 }

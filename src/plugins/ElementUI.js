@@ -1,4 +1,12 @@
 import 'element-plus/lib/theme-chalk/index.css';
+import lang from 'element-plus/lib/locale/lang/zh-cn';
+import { locale } from 'element-plus';
+if (typeof locale === 'function') {
+  locale(lang); // dev
+} else {
+  // @ts-ignore
+  locale.use(lang); // production
+}
 
 import {
   ElRow,
@@ -16,7 +24,8 @@ import {
   ElRadio,
   ElCheckbox,
   ElDatePicker,
-  ElPagination
+  ElPagination,
+  ElLoading
 } from 'element-plus';
 
 export default {
@@ -37,7 +46,11 @@ export default {
       .use(ElRadio)
       .use(ElCheckbox)
       .use(ElDatePicker)
-      .use(ElPagination);
-    app.config.globalProperties.$ELEMENT = { size: 'medium', zIndex: 3000 };
+      .use(ElPagination)
+      .use(ElLoading);
+    app.config.globalProperties.$ELEMENT = {
+      size: 'medium',
+      zIndex: 3000
+    };
   }
 };

@@ -1,7 +1,7 @@
 <template>
   <layout-main>
     <template #query>
-      <QueryForm>
+      <QueryForm v-model="query" @query="getTableList">
         <el-col :xs="24" :sm="24" :md="6">
           <el-form-item label="预报类型：">
             <el-select v-model="query.picture_type" placeholder="预报类型">
@@ -62,19 +62,17 @@
               <el-date-picker
                 v-model="query.init_date"
                 type="date"
-                :picker-options="pickerOptions"
-                value-format="yyyy-MM-dd"
+                value-format="YYYY-MM-DD"
                 placeholder="起报日期"
               ></el-date-picker>
             </el-form-item>
           </el-col>
           <el-col :xs="24" :sm="24" :md="6">
-            <el-form-item label="预报日期：">
+            <el-form-item label="预报日期：" prop="date">
               <el-date-picker
-                v-model="query.forecast_date"
+                v-model="query.date"
                 type="date"
-                :picker-options="forecastPickerOptions"
-                value-format="yyyy-MM-dd"
+                value-format="YYYY-MM-DD"
                 placeholder="预报日期"
               ></el-date-picker>
             </el-form-item>
@@ -95,7 +93,11 @@
       <el-button type="primary" icon="el-icon-delete">删除</el-button>
     </template>
     <template #content>
-      <base-table :columns="data.columns" :data="state.list">
+      <base-table
+        :columns="data.columns"
+        :data="state.list"
+        :loading="state.loading"
+      >
         <template #action="{ row }">
           <el-button size="mini" type="primary" @click="onClick(row)"
             >点击</el-button
@@ -107,7 +109,7 @@
 </template>
 
 <script setup>
-import { reactive, getCurrentInstance } from 'vue';
+import { reactive, getCurrentInstance, ref } from 'vue';
 import { getList } from '@/api/table';
 import { useTableList } from '@/hooks/useModel';
 
@@ -142,18 +144,28 @@ const data = reactive({
   list: []
 });
 
-const query = reactive({});
+const query = reactive({
+  date: ''
+});
 
-const { state } = useTableList({
-  query: getList
+const areas = ref([]);
+
+const { state, getTableList } = useTableList({
+  query: getList,
+  data: query
 });
 
 console.log(state);
 
 const onClick = row => {
   console.log(row.age);
+  state.loading = true;
   vm.$message.success(row.age);
 };
+
+const onQuery = () => {
+  console.log(query);
+}
 </script>
 
 <style lang="scss" scoped></style>
