@@ -22,6 +22,7 @@ request.interceptors.request.use(
 
 request.interceptors.response.use(
   response => {
+    store.dispatch('loading/CancalLoading');
     console.log('res===>', response);
     const {
       data: { code, data, msg },

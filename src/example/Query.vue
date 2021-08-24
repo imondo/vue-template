@@ -90,7 +90,13 @@
     </template>
     <template #btns>
       <el-button type="primary" icon="el-icon-plus">新建</el-button>
-      <el-button type="primary" icon="el-icon-delete">删除</el-button>
+      <el-button
+        :loading="loading.del"
+        type="primary"
+        icon="el-icon-delete"
+        @click="handleDelete"
+        >删除</el-button
+      >
     </template>
     <template #content>
       <base-table
@@ -111,7 +117,7 @@
 <script setup>
 import { reactive, getCurrentInstance, ref } from 'vue';
 import { getList } from '@/api/table';
-import { useTableList } from '@/hooks/useModel';
+import { useTableList, useLoading } from '@/hooks/useModel';
 
 const { proxy: vm } = getCurrentInstance();
 
@@ -148,6 +154,8 @@ const query = reactive({
   date: ''
 });
 
+const { loading } = useLoading({ del: false });
+
 const areas = ref([]);
 
 const { state, getTableList } = useTableList({
@@ -163,9 +171,11 @@ const onClick = row => {
   vm.$message.success(row.age);
 };
 
-const onQuery = () => {
+const handleDelete = () => {
   console.log(query);
-}
+  loading.del = true;
+  getTableList();
+};
 </script>
 
 <style lang="scss" scoped></style>

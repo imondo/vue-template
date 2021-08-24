@@ -1,4 +1,5 @@
 import { reactive } from 'vue';
+import { useStore } from 'vuex';
 
 /**
  * 获取 Table 方法
@@ -33,4 +34,15 @@ export function useTableList({ query, data }) {
   getTableList();
 
   return { state, getTableList };
+}
+
+/**
+ * loading 数据
+ * @param {Object} options { [type]: false }
+ * @returns Object { loading }
+ */
+export function useLoading(options) {
+  const store = useStore();
+  store.dispatch('SET_LOADING', options);
+  return { loading: store.state.loading };
 }

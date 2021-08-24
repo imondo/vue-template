@@ -2,12 +2,14 @@ import { createStore } from 'vuex';
 import app from './modules/app';
 import menu from './modules/menu';
 import user from './modules/user';
+import loading from './modules/loading';
 
 export default createStore({
   modules: {
     app,
     menu,
-    user
+    user,
+    loading
   },
   getters: {
     collapsed: state => state.app.collapsed,
