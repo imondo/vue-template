@@ -43,35 +43,7 @@ const data = reactive({
       slot: 'action'
     }
   ],
-  list: [
-    {
-      key: '1',
-      name: {
-        a: 'John Brown'
-      },
-      age: 32,
-      address: 'New York No. 1 Lake Park',
-      tags: ['nice', 'developer']
-    },
-    {
-      key: '2',
-      name: {
-        a: 'John Brown2'
-      },
-      age: 42,
-      address: 'London No. 1 Lake Park',
-      tags: ['loser']
-    },
-    {
-      key: '3',
-      name: {
-        a: 'John Brown3'
-      },
-      age: 32,
-      address: 'Sidney No. 1 Lake Park',
-      tags: ['cool', 'teacher']
-    }
-  ]
+  list: []
 });
 
 const onClick = row => {

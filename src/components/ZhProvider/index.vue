@@ -1,26 +1,24 @@
 <template>
-  <el-config-provider :locale="locale" :loading="loading">
+  <el-config-provider :locale="locale">
     <slot name="app"></slot>
   </el-config-provider>
 </template>
 <script>
+import { defineComponent } from 'vue'
 import { ElConfigProvider } from 'element-plus';
 import zhCn from 'element-plus/lib/locale/lang/zh-cn';
-import { useStore } from 'vuex';
-export default {
+
+export default defineComponent({
   name: 'ZhProvider',
   components: {
     [ElConfigProvider.name]: ElConfigProvider
   },
   setup() {
-    let locale = zhCn;
-    const store = useStore();
     return {
-      locale,
-      loading: store.state.loading
+      locale: zhCn
     };
   }
-};
+});
 </script>
 
 <style scoped lang="less"></style>

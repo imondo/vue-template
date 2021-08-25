@@ -22,9 +22,9 @@ import {
   ElOption,
   ElSwitch,
   ElRadio,
+  ElRadioGroup,
   ElCheckbox,
   ElDatePicker,
-  ElPagination,
   ElLoading,
   ElDialog
 } from 'element-plus';
@@ -45,9 +45,9 @@ export default {
       .use(ElOption)
       .use(ElSwitch)
       .use(ElRadio)
+      .use(ElRadioGroup)
       .use(ElCheckbox)
       .use(ElDatePicker)
-      .use(ElPagination)
       .use(ElDialog)
       .use(ElLoading);
     app.config.globalProperties.$ELEMENT = {

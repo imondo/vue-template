@@ -31,13 +31,14 @@
 </template>
 
 <script>
-import { ElTable, ElTableColumn } from 'element-plus';
+import { ElTable, ElTableColumn, ElPagination } from 'element-plus';
 import { ref } from 'vue';
 export default {
   name: 'BaseTable',
   components: {
-    'el-table': ElTable,
-    'el-table-column': ElTableColumn
+    [ElTable.name]: ElTable,
+    [ElTableColumn.name]: ElTableColumn,
+    [ElPagination.name]: ElPagination
   },
   props: {
     columns: {
@@ -49,7 +50,10 @@ export default {
       default: () => []
     },
     loading: Boolean,
-    total: Number
+    total: {
+      type: Number,
+      default: 0
+    }
   },
   emits: ['pageChange'],
   setup(props, { emit }) {

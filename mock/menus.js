@@ -33,6 +33,12 @@ const menus = [
     name: '查询'
   },
   {
+    id: '3-3',
+    pid: 2,
+    path: '/tinymce',
+    name: '富文本编辑'
+  },
+  {
     id: 3,
     pid: 0,
     path: '/advanced',

@@ -6,7 +6,7 @@
           <el-form-item label="预报类型：">
             <el-select v-model="query.picture_type" placeholder="预报类型">
               <el-option
-                v-for="(item, index) in pictures"
+                v-for="(item, index) in areas"
                 :key="index"
                 :label="item.label"
                 :value="item.value"
@@ -36,7 +36,7 @@
             >
               <el-option label="全区域" value></el-option>
               <el-option
-                v-for="(value, name) in stations"
+                v-for="(value, name) in areas"
                 :key="value"
                 :label="`${value} ${name}`"
                 :value="value"
@@ -47,9 +47,9 @@
         <template #more>
           <el-col :xs="24" :sm="24" :md="6">
             <el-form-item label="模式资料：">
-              <el-select v-model="query.data_source" placeholder="模式资料">
+              <el-select v-model="query.date" placeholder="模式资料">
                 <el-option
-                  v-for="(item, index) in dataSource"
+                  v-for="(item, index) in areas"
                   :key="index"
                   :label="item.label"
                   :value="item.value"
@@ -60,7 +60,7 @@
           <el-col :xs="24" :sm="24" :md="6">
             <el-form-item label="起报日期：">
               <el-date-picker
-                v-model="query.init_date"
+                v-model="query.date"
                 type="date"
                 value-format="YYYY-MM-DD"
                 placeholder="起报日期"
@@ -113,24 +113,24 @@
         </template>
       </BaseTable>
     </template>
+    <!-- 弹出框 -->
+    <BaseModal
+      title="修改"
+      width="500px"
+      v-model:show="showModal"
+      @confirm="onConfirm"
+    >
+      <el-form :model="data.form" ref="formModal" size="normal">
+        <el-form-item label="年龄">
+          <el-input
+            type="text"
+            v-model="data.form.age"
+            autocomplete="off"
+          ></el-input>
+        </el-form-item>
+      </el-form>
+    </BaseModal>
   </layout-main>
-  <!-- 弹出框 -->
-  <BaseModal
-    title="修改"
-    width="500px"
-    v-model:show="showModal"
-    @confirm="onConfirm"
-  >
-    <el-form :model="data.form" ref="formModal" size="normal">
-      <el-form-item label="年龄">
-        <el-input
-          type="text"
-          v-model="data.form.age"
-          autocomplete="off"
-        ></el-input>
-      </el-form-item>
-    </el-form>
-  </BaseModal>
 </template>
 
 <script setup>
@@ -174,7 +174,10 @@ const data = reactive({
 });
 
 const query = reactive({
-  date: ''
+  date: '',
+  picture_type: '',
+  area: '',
+  station: ''
 });
 
 const { loading } = useLoading({ del: false });
@@ -199,7 +202,7 @@ const onClick = row => {
 
 const onConfirm = () => {
   showModal.value = false;
-}
+};
 
 const handleDelete = () => {
   console.log(query);

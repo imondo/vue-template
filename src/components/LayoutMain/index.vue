@@ -1,6 +1,7 @@
 <template>
   <div>
     <LayoutCard
+      v-if="query"
       class="app-container-top"
       :class="{ 'app-container-top-query': query }"
     >
@@ -12,6 +13,7 @@
       </div>
       <slot name="content"></slot>
     </LayoutCard>
+    <slot></slot>
   </div>
 </template>
 

@@ -18,5 +18,10 @@ export default [
     path: '/table/query',
     name: 'TableQuery',
     component: () => import('../example/Query.vue')
+  },
+  {
+    path: '/tinymce',
+    name: 'TinymceEdtior',
+    component: () => import('../example/TinymceEditor.vue')
   }
 ];
