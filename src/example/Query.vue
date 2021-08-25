@@ -99,27 +99,46 @@
       >
     </template>
     <template #content>
-      <base-table
+      <BaseTable
         :columns="data.columns"
         :data="state.list"
         :loading="state.loading"
+        :total="state.list.length"
+        @page-change="onChangePage"
       >
         <template #action="{ row }">
           <el-button size="mini" type="primary" @click="onClick(row)"
             >点击</el-button
           >
         </template>
-      </base-table>
+      </BaseTable>
     </template>
   </layout-main>
+  <!-- 弹出框 -->
+  <BaseModal
+    title="修改"
+    width="500px"
+    v-model:show="showModal"
+    @confirm="onConfirm"
+  >
+    <el-form :model="data.form" ref="formModal" size="normal">
+      <el-form-item label="年龄">
+        <el-input
+          type="text"
+          v-model="data.form.age"
+          autocomplete="off"
+        ></el-input>
+      </el-form-item>
+    </el-form>
+  </BaseModal>
 </template>
 
 <script setup>
 import { reactive, getCurrentInstance, ref } from 'vue';
 import { getList } from '@/api/table';
 import { useTableList, useLoading } from '@/hooks/useModel';
-
-const { proxy: vm } = getCurrentInstance();
+import useContext from '@/hooks/useContext';
+const { message } = useContext();
 
 const data = reactive({
   columns: [
@@ -147,7 +166,11 @@ const data = reactive({
       width: 100
     }
   ],
-  list: []
+  list: [],
+  form: {
+    age: '',
+    date: ''
+  }
 });
 
 const query = reactive({
@@ -158,6 +181,8 @@ const { loading } = useLoading({ del: false });
 
 const areas = ref([]);
 
+const showModal = ref(false);
+
 const { state, getTableList } = useTableList({
   query: getList,
   data: query
@@ -166,15 +191,24 @@ const { state, getTableList } = useTableList({
 console.log(state);
 
 const onClick = row => {
-  console.log(row.age);
-  state.loading = true;
-  vm.$message.success(row.age);
+  // state.loading = true;
+  // message.success(row.age);
+  showModal.value = true;
+  data.form = row;
 };
+
+const onConfirm = () => {
+  showModal.value = false;
+}
 
 const handleDelete = () => {
   console.log(query);
   loading.del = true;
   getTableList();
+};
+
+const onChangePage = data => {
+  console.log(data);
 };
 </script>
 

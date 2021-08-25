@@ -15,10 +15,24 @@
       </el-table-column>
     </template>
   </el-table>
+  <div class="pagination-wap">
+    <el-pagination
+      v-model:currentPage="currentPage"
+      :page-sizes="[10, 20, 50, 100]"
+      :page-size="pageSize"
+      :total="total"
+      background
+      layout="total, sizes, prev, pager, next"
+      @size-change="handleSizeChange"
+      @current-change="handleCurrentChange"
+    >
+    </el-pagination>
+  </div>
 </template>
 
 <script>
 import { ElTable, ElTableColumn } from 'element-plus';
+import { ref } from 'vue';
 export default {
   name: 'BaseTable',
   components: {
@@ -34,12 +48,52 @@ export default {
       type: Array,
       default: () => []
     },
-    loading: Boolean
+    loading: Boolean,
+    total: Number
   },
-  setup() {
-    return {};
+  emits: ['pageChange'],
+  setup(props, { emit }) {
+    const currentPage = ref(1);
+    const pageSize = ref(10);
+    return {
+      currentPage,
+      pageSize,
+      handleSizeChange: val => {
+        pageSize.value = val;
+        emit('pageChange', {
+          pageSizes: pageSize.value,
+          page: currentPage.value
+        });
+      },
+      handleCurrentChange: val => {
+        currentPage.value = val;
+        emit('pageChange', {
+          pageSizes: pageSize.value,
+          page: currentPage.value
+        });
+      }
+    };
   }
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="less" scoped>
+.pagination-wap {
+  padding-top: 10px;
+  text-align: right;
+  /deep/ .el-pagination {
+    padding-right: 0;
+    .btn-next {
+      margin-right: 0;
+      i {
+        margin: 0 auto;
+      }
+    }
+    .btn-prev {
+      i {
+        margin: 0 auto;
+      }
+    }
+  }
+}
+</style>

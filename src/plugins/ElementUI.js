@@ -25,7 +25,8 @@ import {
   ElCheckbox,
   ElDatePicker,
   ElPagination,
-  ElLoading
+  ElLoading,
+  ElDialog
 } from 'element-plus';
 
 export default {
@@ -47,6 +48,7 @@ export default {
       .use(ElCheckbox)
       .use(ElDatePicker)
       .use(ElPagination)
+      .use(ElDialog)
       .use(ElLoading);
     app.config.globalProperties.$ELEMENT = {
       size: 'medium',

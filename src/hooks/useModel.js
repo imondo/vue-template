@@ -43,6 +43,6 @@ export function useTableList({ query, data }) {
  */
 export function useLoading(options) {
   const store = useStore();
-  store.dispatch('SET_LOADING', options);
+  store.dispatch('loading/SetLoading', options);
   return { loading: store.state.loading };
 }
