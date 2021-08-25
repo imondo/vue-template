@@ -2,7 +2,7 @@ import Hamburger from './Hamburger';
 import Breadcrumb from './Breadcrumb';
 import { defineComponent } from 'vue';
 import { useStore } from 'vuex';
-import { useContext } from '@/hooks/useContext';
+import useContext from '@/hooks/useContext';
 import {
   ElAvatar,
   ElDropdown,
@@ -13,7 +13,7 @@ import {
 export default defineComponent({
   setup() {
     const { dispatch, getters } = useStore();
-    const vm = useContext();
+    const { message } = useContext();
 
     const slots = {
       dropdown: () => (
@@ -24,7 +24,7 @@ export default defineComponent({
           <ElDropdownItem
             divided={true}
             onClick={() => {
-              vm.$message.confirm('确认退出？', () => {
+              message.confirm('确认退出？', () => {
                 dispatch('user/Logout');
               });
             }}

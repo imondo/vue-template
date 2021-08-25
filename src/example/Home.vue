@@ -13,13 +13,15 @@
 </template>
 
 <script setup>
-import { getCurrentInstance } from 'vue';
+import { inject } from 'vue';
+import useContext from '@/hooks/useContext';
 
-const { proxy: vm } = getCurrentInstance();
+const { storage, message } = useContext();
 
 const onClick = () => {
-  vm.$message.success('信息');
-  vm.$storage.get('a');
+  message.success('信息');
+  storage.set('a', { a: 1 });
+  console.log(storage.get('a'));
 };
 </script>
 

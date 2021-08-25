@@ -31,4 +31,10 @@ class Storage {
   }
 }
 
-export default Storage.getInstance;
+export const local = Storage.getInstance;
+
+export default {
+  install(app) {
+    app.provide('storage', Storage.getInstance());
+  }
+};

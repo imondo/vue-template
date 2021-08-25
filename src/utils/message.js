@@ -4,7 +4,7 @@ const options = {
   duration: 1500
 };
 
-export default {
+export const message = {
   success(msg) {
     ElMessage.success(
       Object.assign(options, {
@@ -51,5 +51,11 @@ export default {
       .catch(() => {
         callbackCatch();
       });
+  }
+};
+
+export default {
+  install(app) {
+    app.provide('message', message);
   }
 };

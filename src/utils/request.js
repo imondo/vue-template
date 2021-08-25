@@ -1,6 +1,6 @@
 import axios from 'axios';
 import qs from 'qs';
-import message from './message';
+import { message } from './message';
 import store from '@/store';
 
 const request = axios.create({
@@ -67,3 +67,9 @@ export function postJson({ url, data = {} }) {
 export function del({ url, data = {} }) {
   return request.delete(url, { data });
 }
+
+export default {
+  install(app) {
+    app.provide('request', { get, post, postJson, del });
+  }
+};

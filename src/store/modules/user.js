@@ -1,6 +1,6 @@
 import router from '@/routes';
 import { login, getUser } from '@/api/user';
-import Storage from '@/utils/storage';
+import { local as Storage } from '@/utils/storage';
 import { TOKEN_KEY } from '@/config/constants';
 
 const storage = Storage();

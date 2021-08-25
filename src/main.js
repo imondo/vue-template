@@ -15,7 +15,11 @@ console.log(import.meta.env);
 
 const app = createApp(App);
 
-app.config.globalProperties.$storage = Storage();
-app.config.globalProperties.$message = message;
-
-app.use(ElementUI).use(GlobalComponents).use(router).use(store).mount('#app');
+app
+  .use(ElementUI)
+  .use(GlobalComponents)
+  .use(router)
+  .use(store)
+  .use(Storage)
+  .use(message)
+  .mount('#app');

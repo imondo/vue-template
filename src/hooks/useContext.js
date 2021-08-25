@@ -1,6 +1,8 @@
-import { getCurrentInstance } from 'vue';
+import { getCurrentInstance, inject } from 'vue';
 
-export function useContext() {
+export default function useContext() {
   const { proxy: vm } = getCurrentInstance();
-  return vm;
+  const storage = inject('storage');
+  const message = inject('message');
+  return { vm, storage, message };
 }
