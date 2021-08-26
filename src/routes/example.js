@@ -23,5 +23,10 @@ export default [
     path: '/tinymce',
     name: 'TinymceEdtior',
     component: () => import('../example/TinymceEditor.vue')
+  },
+  {
+    path: '/video',
+    name: 'Video',
+    component: () => import('../example/Video.vue')
   }
 ];

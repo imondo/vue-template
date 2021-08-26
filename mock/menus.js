@@ -39,6 +39,12 @@ const menus = [
     name: '富文本编辑'
   },
   {
+    id: '3-4',
+    pid: 2,
+    path: '/video',
+    name: '视频组件'
+  },
+  {
     id: 3,
     pid: 0,
     path: '/advanced',
