@@ -115,7 +115,10 @@
       >
         <template #action="{ row }">
           <TableButton :loading="row.loading" @click="onClick(row)"
-            >点击</TableButton
+            >编辑</TableButton
+          >
+          <TableButton pop title="是否删除该数据？" @confirm="onClick(row)"
+            >删除</TableButton
           >
         </template>
       </BaseTable>
