@@ -97,9 +97,16 @@
         @click="handleDelete"
         >删除</el-button
       >
+      <el-button
+        type="primary"
+        icon="el-icon-folder-opened"
+        @click="handleSelect"
+        >选中</el-button
+      >
     </template>
     <template #content>
       <BaseTable
+        ref="pageTable"
         :columns="data.columns"
         :data="state.list"
         :loading="state.loading"
@@ -107,8 +114,8 @@
         @page-change="onChangePage"
       >
         <template #action="{ row }">
-          <el-button size="mini" type="primary" @click="onClick(row)"
-            >点击</el-button
+          <TableButton :loading="row.loading" @click="onClick(row)"
+            >点击</TableButton
           >
         </template>
       </BaseTable>
@@ -180,13 +187,13 @@ const query = reactive({
   station: ''
 });
 
-const { loading } = useLoading({ del: false });
+const { loading } = useLoading({ del: false, click: false });
 
 const areas = ref([]);
 
 const showModal = ref(false);
 
-const { state, getTableList } = useTableList({
+const { state, getTableList, pageTable } = useTableList({
   query: getList,
   data: query
 });
@@ -198,10 +205,12 @@ const onClick = row => {
   // message.success(row.age);
   showModal.value = true;
   data.form = row;
+  row.loading = true;
 };
 
 const onConfirm = () => {
   showModal.value = false;
+  data.form.loading = false;
 };
 
 const handleDelete = () => {
@@ -213,6 +222,11 @@ const handleDelete = () => {
 const onChangePage = data => {
   console.log(data);
 };
+
+const handleSelect = () => {
+  pageTable.value.baseTable.toggleRowSelection(state.list[1], true);
+};
+
 </script>
 
 <style lang="scss" scoped></style>

@@ -1,4 +1,4 @@
-import { reactive } from 'vue';
+import { reactive, ref } from 'vue';
 import { useStore } from 'vuex';
 
 /**
@@ -10,6 +10,9 @@ import { useStore } from 'vuex';
 export function useTableList({ query, data }) {
   const func = query;
   const queryData = data;
+
+  const pageTable = ref(null);
+
   // 列表数据
   const state = reactive({
     loading: true, // 加载状态
@@ -33,7 +36,7 @@ export function useTableList({ query, data }) {
   // 首次获取数据
   getTableList();
 
-  return { state, getTableList };
+  return { state, pageTable, getTableList };
 }
 
 /**

@@ -1,14 +1,30 @@
 <template>
   <el-table
+    ref="baseTable"
     v-loading="loading"
     :data="data"
     border
+    stripe
+    highlight-current-row
     v-bind="$attrs"
     element-loading-spinner="el-icon-loading"
     element-loading-text="加载中..."
+    @selection-change="handleSelectionChange"
   >
+    <el-table-column type="selection" align="center"></el-table-column>
+    <el-table-column
+      label="序号"
+      width="50"
+      type="index"
+      align="center"
+    ></el-table-column>
     <template v-for="{ prop, label, slot, ...attrs } in columns" :key="prop">
-      <el-table-column :prop="prop" :label="label" v-bind="attrs">
+      <el-table-column
+        :prop="prop"
+        :label="label"
+        v-bind="attrs"
+        align="center"
+      >
         <template v-if="slot" #default="scope">
           <slot :name="slot" v-bind="scope"></slot>
         </template>
@@ -55,13 +71,15 @@ export default {
       default: 0
     }
   },
-  emits: ['pageChange'],
+  emits: ['pageChange', 'selection-change'],
   setup(props, { emit }) {
     const currentPage = ref(1);
     const pageSize = ref(10);
+    const baseTable = ref(null);
     return {
       currentPage,
       pageSize,
+      baseTable,
       handleSizeChange: val => {
         pageSize.value = val;
         emit('pageChange', {
@@ -75,6 +93,9 @@ export default {
           pageSizes: pageSize.value,
           page: currentPage.value
         });
+      },
+      handleSelectionChange: val => {
+        emit('selection-change', val);
       }
     };
   }
