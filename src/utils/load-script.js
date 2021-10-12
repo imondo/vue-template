@@ -1,21 +1,3 @@
-export default function loadScript(src) {
-  return new Promise(resolve => {
-    const existingScript = document.getElementById(src);
-    if (existingScript) {
-      resolve();
-      return;
-    }
-    const node = document.createElement('script');
-    node.setAttribute('type', 'text/javascript');
-    node.onload = function () {
-      resolve();
-    };
-    node.src = src;
-    node.id = src;
-    document.head.appendChild(node);
-  });
-}
-
 export function createStyles(src) {
   const existingLink = document.getElementById(src);
   if (existingLink) {
@@ -27,4 +9,30 @@ export function createStyles(src) {
   node.setAttribute('href', src);
   node.setAttribute('id', src);
   document.head.appendChild(node);
+}
+
+export default function loadScript (url) {
+  const target = document.getElementsByTagName('script')[0] || document.head
+
+  const script = document.createElement('script')
+  script.src = url
+  target.parentNode.insertBefore(script, target)
+
+  return new Promise((resolve, reject) => {
+    script.onload = function () {
+      resolve()
+      cleanup(script)
+    }
+    script.onerror = function () {
+      reject(new Error('script load failed'))
+      cleanup(script)
+    }
+  })
+}
+
+function cleanup (script) {
+  if (script.parentNode) script.parentNode.removeChild(script)
+  script.onload = null
+  script.onerror = null
+  script = null
 }

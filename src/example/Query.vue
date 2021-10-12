@@ -103,6 +103,9 @@
         @click="handleSelect"
         >选中</el-button
       >
+      <el-button type="primary" icon="el-icon-download" @click="handleExport"
+        >导出</el-button
+      >
     </template>
     <template #content>
       <BaseTable
@@ -148,7 +151,9 @@ import { reactive, getCurrentInstance, ref } from 'vue';
 import { getList } from '@/api/table';
 import { useTableList, useLoading } from '@/hooks/useModel';
 import useContext from '@/hooks/useContext';
+import ExportXlsx from '@/plugins/xlsx/index.js';
 const { message } = useContext();
+const exportXlsx = new ExportXlsx();
 
 const data = reactive({
   columns: [
@@ -229,7 +234,49 @@ const onChangePage = data => {
 const handleSelect = () => {
   pageTable.value.baseTable.toggleRowSelection(state.list[1], true);
 };
-
+const handleExport = () => {
+  const header = data.columns.reduce((arr, v) => {
+    const { prop, label } = v;
+    if (prop !== 'action') {
+      arr.push({
+        [prop]: label
+      });
+    }
+    return arr;
+  }, []);
+  const body = state.list;
+  exportXlsx.export({
+    header,
+    body,
+    hasTitle: true,
+    fileName: '表格查询',
+    config: {
+      // merges: ['A2:B2', 'E8:E9', 'C5:E5'],
+      cols: {
+        C: { wpx: 150 }, // C 列宽度
+        D: { wpx: 150 } // D 列宽度
+      },
+      style: {
+        D: {
+          font: {
+            name: '宋体',
+            sz: 16,
+            color: { rgb: 'FFFFAA00' },
+            bold: true
+          },
+          fill: {
+            fgColor: { rgb: 'CCCCCC' } // 单元格颜色
+          },
+          alignment: {
+            horizontal: 'center',
+            vertical: 'center'
+          },
+          numFmt: 'yyyy-mm-dd'
+        }
+      }
+    }
+  });
+};
 </script>
 
 <style lang="scss" scoped></style>
