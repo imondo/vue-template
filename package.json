@@ -42,7 +42,7 @@
     "lint-staged": "^10.5.4",
     "mockjs": "^1.1.0",
     "prettier": "^2.2.1",
-    "vite": "^2.0.1",
+    "vite": "^2.9.13",
     "vite-plugin-mock": "^2.9.4",
     "vite-plugin-style-import": "^1.1.1",
     "yorkie": "^2.0.0"
